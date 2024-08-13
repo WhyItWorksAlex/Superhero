@@ -1,15 +1,18 @@
 import React from "react";
-import MainPage from "../../pages/main-page/main-page";
+import Header from "../header/header";
+import ClashPage from "/src/components/pages/clash-page/clash-page";
 
-import { MainWrapper } from "./styles";
+import { StyledMain } from "./styles";
 
-function PageWrapper(props) {
+
+function PageWrapper( ) {
+  
   return (
     <>
-      <header />
-      <MainWrapper>
-        <MainPage {...props}/>
-      </MainWrapper>
+      <Header />
+      <StyledMain>
+        <ClashPage />
+      </StyledMain>
       <footer />
     </>
   );
