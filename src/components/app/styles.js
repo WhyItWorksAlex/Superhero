@@ -2,16 +2,24 @@ import { createGlobalStyle } from "styled-components";
 
 
 export const GlobalStyle = createGlobalStyle`
-
+  
   @font-face {
-    font-family: "bebas";
-    src: url("/src/fonts/BebasNeue.woff2") format("woff2"), url("/src/fonts/BebasNeue.woff2") format("woff");
+    font-family: "Bebas Neue";
+    src: url("/BebasNeue.woff2") format("woff2"), url("/BebasNeue.woff2") format("woff");
     font-style: normal;
     font-weight: 400;
     font-display: swap;
   }
 
-  
+  @font-face {
+    font-family: "Albert Sans";
+    src: url("/AlbertSans-VariableFont_wght.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+  }
+
+
   body,
   html {
     margin: 0;

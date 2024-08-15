@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   padding: 20px;
   width: 350px;
   border-radius: 30px;
-  background-color: #edd3ba;
+  background-color: ${(props) => props.theme.bcgrCardColor};;
  
   box-shadow: ${(props) => (props.$isGood ? '0px 0px 20px 20px rgba(0, 255, 0, 0.6)' : '0px 0px 20px 20px rgba(255, 0, 0, 0.7)')};
 `;

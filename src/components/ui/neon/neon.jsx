@@ -8,7 +8,7 @@ function Neon( ) {
         <NeonLetter>as</NeonLetter>
         h of Sup
         <NeonLetter>er</NeonLetter>
-        hero
+        heroe
         <NeonLastLetter>s</NeonLastLetter>
       </NeonText>
     </StyledNeon>

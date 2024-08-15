@@ -1,52 +1,77 @@
 import React, { useState } from "react";
+import { StyledTabContent, StyledButton, StyledWrapperButtons } from "./styles";
+import MainHeroInfo from "../main-hero-info/main-hero-info";
 
 function HeroInfo( {hero} ) {
   const [activeTab, setActiveTab] = useState(0);
 
+  const mainInformation = [
+    {
+      title: "Name",
+      content: hero.name
+    },
+    {
+      title: "Alignment",
+      content: hero.biography.alignment
+    },
+    {
+      title: "Race",
+      content: hero.appearance.race === 'null' ? '-' : hero.appearance.race,
+    },
+  ];
+
+  const appearanceInformation = [
+    {
+      title: "Gender",
+      content: hero.appearance.gender
+    },
+    {
+      title: "Height",
+      content: (hero.appearance.height[1] === '0 cm' ? '-' : hero.appearance.height[1]), 
+    },
+    {
+      title: "Weight",
+      content: (hero.appearance.weight[1] === '0 kg' ? '-' : hero.appearance.weight[1]),
+    },
+  ];
+
   const tabsList = [
     {
       title: "Main",
-      content: (
-        <>        
-          <p>{hero.id}</p>
-          <p>его имя {hero.name}</p>
-        </>
-      ),
+      content: <MainHeroInfo data={mainInformation} />
     },
     {
-      title: "Характеристики",
-      content: 
-        <>        
-          <p>{hero.id}</p>
-          <p>{hero.name}</p>
-        </>,
+      title: "Appearance",
+      content: <MainHeroInfo data={appearanceInformation} />
     },
     {
-      title: "Свойства",
+      title: "Stats",
       content: 
         <>        
-          <p>{hero.id}</p>
-          <p>ghbdtn</p>
+          <span>{hero.id}</span>
+          <span>ghbdtn</span>
         </>,
     },
   ];
 
   return (
     <div>
+      <StyledTabContent>{tabsList[activeTab].content}</StyledTabContent>
+      <StyledWrapperButtons>
         {tabsList?.length &&
           tabsList.map((tabName, index) => (
-            <button
+            <StyledButton
               key={index}
-              // $active={index === activeTab}
+              $active={index === activeTab}
               {...(index === activeTab
                 ? {}
                 : { onClick: () => setActiveTab(index) })}
             >
               <span>{tabName.title}</span>
-            </button>
-          ))}
-          <div>{tabsList[activeTab].content}</div>
-      </div>
+            </StyledButton>
+        ))}
+      </StyledWrapperButtons>
+    </div>
   );
 }
 

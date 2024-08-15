@@ -1,8 +1,8 @@
 export const defaultTheme = {
   fontColorBlack: "#333333",
   colorWhite: "#ffffff",
-  buttonColor: "#fc9b27",
-  buttonColorHoverActive: "#fc7427",
+  bcgrCardColor: "#edd3ba",
+  bcgrCardInfoColor: "#DEB887",
   pagePadding: "90px",
   indent: "20px",
   fontFamily: '"Inter", "Arial", sans-serif',

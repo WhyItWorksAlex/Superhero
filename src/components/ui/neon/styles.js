@@ -10,9 +10,10 @@ export const NeonText = styled.p`
 	font-size: 60px;
 	line-height: 70px;
 	letter-spacing: 5px;
-  font-weight: bold;
   color: #FFF;
-  font-family: 'bebas', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 700;
+  font-style: normal;
   text-transform: uppercase;
   text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #BFE2FF, 0 0 0.5em #BFE2FF, 0 0 0.1em #BFE2FF;
 `;

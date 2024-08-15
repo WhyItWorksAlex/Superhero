@@ -36,6 +36,7 @@ function ClashPage( ) {
     getApiData(getRandomInteger(1, 730), 2)
   }, []);
 
+  console.log(hero1)
 
   return (
     <>

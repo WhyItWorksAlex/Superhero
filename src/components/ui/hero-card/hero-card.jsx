@@ -21,12 +21,10 @@ function HeroCard( {getApiData, hero, name} ) {
     }
   }
 
-  console.log(hero)
-
   const handleDebounced = debounce(handle);
 
   let isGood = true;
-  if (hero.biography.alignment !== "good") {
+  if (hero.biography.alignment !== "good" && hero.biography.alignment !== "neutral") {
     isGood = false
   }
 
