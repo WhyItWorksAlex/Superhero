@@ -1,27 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Wrapper, StyledImageWrapper, StyledImage, StyledButton } from "./styles";
-import { getRandomInteger, debounce } from "../../../utils";
+import { Wrapper, StyledImageWrapper, StyledImage } from "./styles";
 import Properties from "../properties/properties";
 import HeroInfo from "../hero-info/hero-info";
 
 
 
-function HeroCard( {getApiData, hero, name} ) {
+
+function HeroCard( {hero, getStats} ) {
 
   useEffect (() => {setHasImage(true)}, [hero])
 
   const [hasImage, setHasImage] = useState(true);
 
-  const handle = () => {
-    const randomId = getRandomInteger(1, 730)
-    if (name === 'hero1') {
-      getApiData(randomId, 1)
-    } else {
-      getApiData(randomId, 2)
-    }
-  }
-
-  const handleDebounced = debounce(handle);
+  const stats = getStats(hero);
 
   let isGood = true;
   if (hero.biography.alignment !== "good" && hero.biography.alignment !== "neutral") {
@@ -32,12 +23,12 @@ function HeroCard( {getApiData, hero, name} ) {
     <Wrapper $isGood={isGood}>
       <StyledImageWrapper>
         <StyledImage src={hasImage ? hero.image.url : 'https://i.ibb.co/WcqzVwy/template-image.png'} onError={() => setHasImage(false)}/>
-        <Properties hero={hero}/>
+        <Properties stats={stats}/>
       </StyledImageWrapper>
-      <HeroInfo hero={hero}/>
-      <StyledButton type='button' onClick={handleDebounced}>Сменить</StyledButton>
+      <HeroInfo hero={hero} stats={stats}/>
     </Wrapper>
   );
 }
+
 
 export default HeroCard;

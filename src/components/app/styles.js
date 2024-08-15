@@ -19,6 +19,14 @@ export const GlobalStyle = createGlobalStyle`
     font-display: swap;
   }
 
+  @font-face {
+    font-family: "Mortal Combat";
+    src: url("/mortalkombat.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+  }
+
 
   body,
   html {

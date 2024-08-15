@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const StyledProperties = styled.div`
   margin: 0;
   position: absolute;
-  top: 40px;
-  background-color: ${(props) => props.theme.bcgrCardColor};
+  top: 20px;
   height: calc(100% - 60px);
   border-radius: 0 10px 0 20px;
 `;
@@ -31,4 +30,15 @@ export const Property = styled.li`
   width: 30px;
   line-height: 30px;
   text-align: center;
+`;
+
+export const PropertyImage = styled.img`
+  display: block;
+  height: 30px;
+  width: 30px;
+`;
+
+export const PropertyValue = styled.p`
+  margin: 0;
+  padding: 0;
 `;

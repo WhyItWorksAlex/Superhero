@@ -8,6 +8,7 @@ export const StyledTabContent = styled.div`
   font-family: "Albert Sans", sans-serif;
   font-weight: 400;
   font-style: normal;
+  min-height: 144px;
 `
 
 export const StyledWrapperButtons = styled.div`
@@ -19,19 +20,18 @@ export const StyledWrapperButtons = styled.div`
 
 
 export const StyledButton = styled(Button)`
-  padding: 5px;
   flex-grow: 1;
   background-color: #f5f5dc;
   text-align: center;
   border: none;
   position: relative;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 5px;
   border-radius: 0 0 5px 5px;
   border-bottom: 2px solid rgba(0,0,0, 0);
   border-left: 1px solid rgba(0,0,0, 0);
   opacity: 0.6;
-  font-size: 22px;
+  font-size: 18px;
+  cursor: pointer;
 
 
   ${(props) =>
@@ -77,7 +77,13 @@ export const StyledButton = styled(Button)`
       &:before {
         display: none;
       }
-      `};
 
-  
+      &:hover {
+        border-bottom: 2px solid rgba(0,0,0, 0.5);
+        border-left: 1px solid rgba(0,0,0, 0.5);
+        box-shadow: -1px 1px 1px 0 rgba(0,0,0, 0.5);
+        opacity: 0.8;
+      }
+      `
+  };  
 `;

@@ -7,8 +7,8 @@ export const StyledNeon = styled.div`
 
 export const NeonText = styled.p`
 	margin: 0 auto;
-	font-size: 60px;
-	line-height: 70px;
+	font-size: 50px;
+	line-height: 60px;
 	letter-spacing: 5px;
   color: #FFF;
   font-family: "Bebas Neue", sans-serif;
