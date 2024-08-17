@@ -1,10 +1,17 @@
 import React from "react";
 import { StyledNeon, NeonText, NeonLetter, NeonLastLetter } from "./styles";
+import { AppRoute } from "/src/const";
+// import { useLocation } from "react-router-dom";
 
-function Neon( ) {
+const Neon = React.memo(( ) => {
+  // const pageUrl = useLocation().pathname;
+
   return (
     <StyledNeon>  
-      <NeonText>Cl
+      <NeonText 
+        // {...(pageUrl === AppRoute.MAIN ? { as: "span" } : { to: AppRoute.MAIN })} // rerender on main page
+        {...{ to: AppRoute.MAIN }}
+      >Cl
         <NeonLetter>as</NeonLetter>
         h of Sup
         <NeonLetter>er</NeonLetter>
@@ -13,6 +20,6 @@ function Neon( ) {
       </NeonText>
     </StyledNeon>
   );
-}
+})
 
 export default Neon;

@@ -1,49 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import HeroCard from "../../ui/hero-card/hero-card";
 import MainButtons from "../../blocks/main-buttons/main-buttons";
 import { getRandomInteger } from "../../../utils";
 import { HeroCardWrapper, StyledFightButton } from "./styles";
 import WinnerModal from "../../blocks/winner-modal/winner-modal";
 
+const qty = 3
 
-function ClashPage( ) {
+
+function ClashPage( {setHistoryFightList, historyFightList} ) {
+
+  // State with information about heroes
+
   const [hero1, setHero1] = useState([]);
   const [hero2, setHero2] = useState([]);
 
+  // State with information about heroes stats
+
+  const [statsHero1, setStatsHero1] = useState([]);
+  const [statsHero2, setStatsHero2] = useState([]);
+
+  // State information about active WinnerModal
+
   const [isActiveWinnerModal, setIsActiveWinnerModal] = useState(false);
 
-  const getStats = (hero) => {
-    return [
-      {
-        title: "Combat",
-        content: (hero.powerstats.combat !== 'null' ? hero.powerstats.combat : 25),
-        image: "https://i.ibb.co/nPq5j1n/image.png",
-      },
-      {
-        title: "Durability",
-        content: hero.powerstats.durability,
-      },
-      {
-        title: "Intelligence",
-        content: hero.powerstats.intelligence,
-      },
-      {
-        title: "Power",
-        content: hero.powerstats.power,
-      },
-      {
-        title: "Speed",
-        content: hero.powerstats.speed,
-      },
-      {
-        title: "Strength",
-        content: hero.powerstats.strength,
-      },
-    ];
-  }
+  // State timer when hold Fight btn
 
+  const [timer, setTimer] = useState(null);
 
-  const getApiData = async (id, heroNum) => {
+  // Function get hero data
+
+  const getApiData = async (id, num = 0) => {
     const response = await fetch(
       `https://superheroapi.com/api.php/8c5c7cad236740defc0bb7b95c4e81e6/${id}`
     )
@@ -54,46 +41,100 @@ function ClashPage( ) {
       return response.json();
     })
     .catch(() => {
-      throw new Error(`Could not fetch ${url}, status: ${response.status}`);
+      throw new Error(`Could not fetch, status: ${response.status}`);
     });
 
-    // Обновим состояние
-    if(heroNum === 1) {
+    if (num === 0) {
+      return response
+    } else if(num === 1) {
       setHero1(response);
     } else {
       setHero2(response);
     }
+  };
 
+  // init Heroes
+
+  const initHeroes = async () => {
+    try {
+      const hero1Data = await getApiData(getRandomInteger(1, qty));
+      setHero1(hero1Data);
+
+      let hero2Data = await getApiData(getRandomInteger(1, qty));
+
+      while (hero2Data.name === hero1Data.name) {
+        hero2Data = await getApiData(getRandomInteger(1, qty)); // Замените 'newHeroId' на ID нового героя
+      }
+
+      setHero2(hero2Data);
+    } catch (error) {
+      console.error("Ошибка загрузки героев:", error);
+    }
   };
 
   useEffect(() => {
-    getApiData(getRandomInteger(1, 730), 1)
-    getApiData(getRandomInteger(1, 730), 2)
+    initHeroes();
+    console.log('и снова инит')
   }, []);
 
-  console.log(hero1)
+  // Function push on Fight btn
 
-  const [timer, setTimer] = useState(null);
+  const handleFightBtn = useMemo(() => () => 
+    {
+      const newTimer = setTimeout(() => {
+        document.body.style.overflow = 'hidden';
+        setIsActiveWinnerModal(true);
+        chooseWinner();
+      }, 1400);
+      setTimer(newTimer)
+    }
+  )
 
-  const handleFightBtn = () => {
-    const newTimer = setTimeout(() => {
-      document.body.style.overflow = 'hidden';
-      setIsActiveWinnerModal(true);
-    }, 1400);
-    setTimer(newTimer)
+  // Function chooce the winner 
+
+  function chooseWinner () {
+    const historyResult = {
+      firstHero: hero1,
+      secondHero: hero2,
+    }
+    let hero1Total = parseInt(calcHeroTotalStat(statsHero1));
+    let hero2Total = parseInt(calcHeroTotalStat(statsHero2));
+    if (hero1Total > hero2Total) {
+      historyResult.winner = hero1.name;
+    } else if (hero1Total < hero2Total) {
+      historyResult.winner = hero2.name;
+    } else {
+      historyResult.winner = "-";
+    }
+    setHistoryFightList([...historyFightList, historyResult]);
+    return historyResult
   }
 
-  const mouseUpFightBtn = () => {
-    clearInterval(timer)
+  // Function calculating total hero stat
+
+  function calcHeroTotalStat (stats) {
+    let result = 0;
+    stats.forEach((stat) => {
+      result += stat.content * stat.coefficient
+    })
+    return result;
   }
+
+  // Function reset timer when unpress fight button before time
+
+  const mouseUpFightBtn = useMemo(() => () => 
+    {
+      clearInterval(timer)
+    }
+  )
 
   return (
     <>
-      {(Boolean(hero1.name) && Boolean(hero2.name)) ? (
+      {(Boolean(hero1?.name) && Boolean(hero2?.name)) ? (
         <>
           <MainButtons getApiData={getApiData}/>
           <HeroCardWrapper>
-            <HeroCard name='hero1' hero={hero1} getStats={getStats}/>
+            <HeroCard name='hero1' hero={hero1} setStatsHero={setStatsHero1}/>
             <StyledFightButton 
               onMouseDown={handleFightBtn} 
               onMouseUp={mouseUpFightBtn}>
@@ -103,13 +144,13 @@ function ClashPage( ) {
               <span className="span_3"></span>
               <span className="span_4"></span>
             </StyledFightButton>
-            <HeroCard name='hero2' hero={hero2} getStats={getStats}/>
+            <HeroCard name='hero2' hero={hero2} setStatsHero={setStatsHero2}/>
           </HeroCardWrapper>
-          <WinnerModal isActiveWinnerModal={isActiveWinnerModal} setIsActiveWinnerModal={setIsActiveWinnerModal} />
+          <WinnerModal isActiveWinnerModal={isActiveWinnerModal} setIsActiveWinnerModal={setIsActiveWinnerModal} lastFight={historyFightList[historyFightList.length-1]} />
         </>
       ) : (
         <>
-          <p>ТУТ ПОКА ПУСТО</p>
+          <p style={{color: 'red'}}>ТУТ ПОКА ПУСТО</p>
         </>
       )}
     </>

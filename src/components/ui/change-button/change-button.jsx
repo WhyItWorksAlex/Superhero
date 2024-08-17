@@ -5,9 +5,10 @@ import { getRandomInteger, debounce } from "../../../utils";
 function ChangeButton( {name, getApiData} ) {
 
   const handle = () => {
-    const randomId = getRandomInteger(1, 730)
+    const randomId = getRandomInteger(1, 5)
     if (name === 'hero1') {
       getApiData(randomId, 1)
+
     } else {
       getApiData(randomId, 2)
     }

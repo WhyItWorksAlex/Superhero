@@ -20,6 +20,9 @@ export const StyledWrapperButtons = styled.div`
 
 
 export const StyledButton = styled(Button)`
+  font-family: "Albert Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
   flex-grow: 1;
   background-color: #f5f5dc;
   text-align: center;

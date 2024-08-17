@@ -1,8 +1,8 @@
 import React from "react";
 import Header from "../header/header";
-import ClashPage from "/src/components/pages/clash-page/clash-page";
-
 import { StyledMain } from "./styles";
+
+import { Outlet } from "react-router-dom";
 
 
 function PageWrapper( ) {
@@ -11,7 +11,7 @@ function PageWrapper( ) {
     <>
       <Header />
       <StyledMain>
-        <ClashPage />
+        <Outlet />
       </StyledMain>
       <footer />
     </>

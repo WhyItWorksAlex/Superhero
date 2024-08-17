@@ -6,7 +6,7 @@ export const StyledButton = styled(Button)`
   border-radius: 12px;
 	border: 3px outset #888;
 	padding: 6px 15px;
-	color: #eee;
+  color: ${(props) => props.theme.btnTextColor};
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	overflow: hidden;
@@ -23,11 +23,11 @@ export const StyledButton = styled(Button)`
 	transition: 0.2s;
 
   &:hover {
-    color: #444;
+    color: ${(props) => props.theme.btnHoverTextColor};
+		box-shadow: 0 0 3px 3px rgba(237, 215, 12, .4)
   }
 
   &:active {
-    color: red;
     border: 3px inset #888;
   }
 `;

@@ -1,11 +1,13 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const StyledNeon = styled.div`
   background: inherit;
   text-align: center;
 `;
 
-export const NeonText = styled.p`
+export const NeonText = styled(Link)`
+	text-decoration: none;
 	margin: 0 auto;
 	font-size: 50px;
 	line-height: 60px;

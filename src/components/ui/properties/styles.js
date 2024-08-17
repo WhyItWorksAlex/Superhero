@@ -3,33 +3,33 @@ import styled from "styled-components";
 export const StyledProperties = styled.div`
   margin: 0;
   position: absolute;
-  top: 20px;
-  height: calc(100% - 60px);
+  bottom: 3px;
   border-radius: 0 10px 0 20px;
+  width: ${(props) => props.theme.widthPhotoHero};
 `;
 
 export const PropertiesList = styled.ul`
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  flex-direction: row;
+  justify-content: space-between;
   list-style: none;
-  color: red;
   font-weight: 700;
   margin: 0;
   padding: 0;
-  padding-top: 20px;
 `;
 
 export const Property = styled.li`
-  border: 1px solid red;
+  border: 1px solid ${(props) => props.theme.btnHoverTextColor};
   border-radius: 50%;
   background-color: white;
   margin: 0;
   padding: 0;
-  height: 30px;
+  height: 50px;
   width: 30px;
-  line-height: 30px;
   text-align: center;
+  position: relative;
+  font-family: "Albert Sans", sans-serif;
+  padding-top: 3px;
 `;
 
 export const PropertyImage = styled.img`
@@ -41,4 +41,13 @@ export const PropertyImage = styled.img`
 export const PropertyValue = styled.p`
   margin: 0;
   padding: 0;
+  padding-top: 4px;
+  font-size: 14px;
+  line-height: 17px;
+  color: white;
+  text-shadow: 
+      -1px -1px 0px black,
+       1px -1px 0px black,
+      -1px  1px 0px black,
+       1px  1px 0px black;
 `;

@@ -7,9 +7,10 @@ function Properties( {stats} ) {
       <PropertiesList>
         {stats?.map((stat) => {
           return (
-            <Property>
-              <PropertyImage src={stat.image} />
-              <PropertyValue key={stat.title}>{stat.content}</PropertyValue>
+            <Property key={stat.title}>
+                            <PropertyValue>{stat.content}</PropertyValue>
+              <PropertyImage src={stat.image} alt={stat.title}/>
+
             </Property>
           )
         })

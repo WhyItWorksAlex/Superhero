@@ -15,7 +15,7 @@ export const StyledFightButton = styled(Button)`
 	position: relative;
 	display: inline-block;
 	padding: 15px 30px;
-	color: #eee;
+  color: ${(props) => props.theme.btnTextColor};
 	text-transform: uppercase;
 	letter-spacing: 4px;
 	overflow: hidden;
@@ -25,14 +25,18 @@ export const StyledFightButton = styled(Button)`
 	
 	box-shadow: 0 0 10px rgb(0, 0, 0, 1);
 	font-size: 28px;
-	font-weight: bolder;
 	background:linear-gradient(160deg, #666, #444);
 	text-shadow: 0px 0px 2px rgba(0, 0, 0, .5);
 
 	transition: 0.2s;
 
+  &:hover {
+    box-shadow: 0 0 5px 5px rgba(237, 215, 12, .4);
+    color: ${(props) => props.theme.btnHoverTextColor};
+  }
+
   &:active {
-    border: 3px outset #ddd;
+    border: 3px inset #888;
     color: #fff;
     background: linear-gradient(160deg, #666, #444);
     text-shadow: 0px 0px 4px #ccc;
