@@ -50,6 +50,7 @@ export const GlobalStyle = createGlobalStyle`
     line-height: 27px;
     font-weight: 400;
     color:${(props) => props.theme.fontColorBlack};
+    padding-left: calc(100vw - 100%);
   }
 
 `;
