@@ -8,12 +8,7 @@ import WinnerModal from "../../blocks/winner-modal/winner-modal";
 const qty = 3
 
 
-function ClashPage( {setHistoryFightList, historyFightList} ) {
-
-  // State with information about heroes
-
-  const [hero1, setHero1] = useState([]);
-  const [hero2, setHero2] = useState([]);
+function ClashPage( {setHistoryFightList, historyFightList, setHero1, setHero2, hero1, hero2} ) {
 
   // State with information about heroes stats
 
@@ -47,9 +42,17 @@ function ClashPage( {setHistoryFightList, historyFightList} ) {
     if (num === 0) {
       return response
     } else if(num === 1) {
-      setHero1(response);
+      if (response.name === hero2.name) {
+        getApiData(getRandomInteger(1, qty), 1)
+      } else {
+        setHero1(response);
+      }
     } else {
-      setHero2(response);
+      if (response.name === hero1.name) {
+        getApiData(getRandomInteger(1, qty), 2)
+      } else {
+        setHero2(response);
+      }
     }
   };
 
@@ -63,7 +66,7 @@ function ClashPage( {setHistoryFightList, historyFightList} ) {
       let hero2Data = await getApiData(getRandomInteger(1, qty));
 
       while (hero2Data.name === hero1Data.name) {
-        hero2Data = await getApiData(getRandomInteger(1, qty)); // Замените 'newHeroId' на ID нового героя
+        hero2Data = await getApiData(getRandomInteger(1, qty));
       }
 
       setHero2(hero2Data);
@@ -73,8 +76,9 @@ function ClashPage( {setHistoryFightList, historyFightList} ) {
   };
 
   useEffect(() => {
-    initHeroes();
-    console.log('и снова инит')
+    if (!hero1?.name && !hero2?.name) {
+      initHeroes();
+    }
   }, []);
 
   // Function push on Fight btn

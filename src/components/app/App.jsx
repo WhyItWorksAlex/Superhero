@@ -13,6 +13,11 @@ const App = () => {
 
   const [historyFightList, setHistoryFightList] = useState([]);
 
+  // State with information about heroes
+
+  const [hero1, setHero1] = useState([]);
+  const [hero2, setHero2] = useState([]);
+
   return (
     <>
       <GlobalStyle />
@@ -20,7 +25,7 @@ const App = () => {
         <ScrollToTop />
         <Routes>
           <Route exact path={AppRoute.MAIN} element={<PageWrapper />}>
-            <Route index element={<ClashPage setHistoryFightList={setHistoryFightList} historyFightList={historyFightList} />} />
+            <Route index element={<ClashPage setHistoryFightList={setHistoryFightList} historyFightList={historyFightList} hero1={hero1} hero2={hero2} setHero1={setHero1} setHero2={setHero2} />} />
             <Route
               exact
               path={AppRoute.HISTORY}

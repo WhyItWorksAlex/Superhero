@@ -5,7 +5,7 @@ import { getRandomInteger, debounce } from "../../../utils";
 function ChangeButton( {name, getApiData} ) {
 
   const handle = () => {
-    const randomId = getRandomInteger(1, 5)
+    const randomId = getRandomInteger(1, 3)
     if (name === 'hero1') {
       getApiData(randomId, 1)
 
