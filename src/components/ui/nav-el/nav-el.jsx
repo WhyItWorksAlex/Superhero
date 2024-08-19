@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledLink } from "./styles";
+import { StyledNavEl, StyledLink } from "./styles";
 
 function NavEl({
   children, // дочерний элемент, отображаемый в кнопке
@@ -9,13 +9,15 @@ function NavEl({
   ...props // остальные переданные пропсы
 }) {
   return (
-    <StyledLink
-      {...props}
-      {...(link ? { to: link } : { as: "span"})}
-      className={className}
-    >
-      {children}
-    </StyledLink>
+    <StyledNavEl {...props} className={className}>
+      <StyledLink
+        {...props}
+        {...(link ? { to: link } : { as: "span"})}
+        className={className}
+      >
+        {children}
+      </StyledLink>
+    </StyledNavEl>
   );
 }
 

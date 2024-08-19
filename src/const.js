@@ -6,4 +6,4 @@ export const AppRoute = {
 
 // Max quantity of heroes
 
-export const qtyHeroes = 731;
+export const qtyHeroes = 730;

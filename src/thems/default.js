@@ -1,6 +1,7 @@
 export const defaultTheme = {
   fontColorBlack: "#333333",
   colorWhite: "#ffffff",
+  colorRed: "#FF2400",
   bcgrCardColor: "#edd3ba",
   bcgrCardInfoColor: "#DEB887",
   btnTextColor: "#eeeeee",

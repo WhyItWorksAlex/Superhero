@@ -1,8 +1,22 @@
-import React from "react";
-import { StyledWinnerModal, Wrapper } from "./styles";
+import React, { useEffect } from "react";
+import { StyledWinnerModal, Wrapper, StyledCloseBtn, StyledWinnerText } from "./styles";
 
 
 function WinnerModal ( {isActiveWinnerModal, setIsActiveWinnerModal, lastFight} ) {
+  
+  // Listener keydown ESC when Winner Modal Window is open
+
+  useEffect(() => {
+    const close = (e) => {
+      if (e.key === 'Escape' && isActiveWinnerModal === true){
+        closeModal();
+      }    
+    }
+    document.addEventListener('keydown', close)
+    return () => document.removeEventListener('keydown', close)
+  },[isActiveWinnerModal])
+
+  // Function close Winner Modal Window
 
   const closeModal = () => {
     document.body.style.overflow = '';
@@ -14,8 +28,8 @@ function WinnerModal ( {isActiveWinnerModal, setIsActiveWinnerModal, lastFight} 
       <Wrapper>
         {!!lastFight && (
           <>
-            <button type="button" onClick={closeModal}>клоз</button>
-            <p>{lastFight.winner}</p>
+            <StyledCloseBtn type="button" onClick={closeModal} >✘</StyledCloseBtn>
+            <StyledWinnerText>{lastFight.winner} wins</StyledWinnerText>
           </>
         )}
       </Wrapper>

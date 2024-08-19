@@ -9,10 +9,7 @@ export const StyledUl = styled.ul`
   flex-wrap: wrap;
   gap: 25px;
   list-style: none;
-  font-family: "Albert Sans", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 22px;
-  line-height: 22px;
+  margin: 0;
+  max-width: 600px;
 `;
 
