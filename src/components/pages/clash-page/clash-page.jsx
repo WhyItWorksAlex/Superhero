@@ -130,19 +130,34 @@ function ClashPage( {setHistoryFightList, historyFightList, setHero1, setHero2, 
 
   // Function chooce the winner 
 
+  function addZero (num) {
+    if (num < 10) {
+      return `0${num}`
+    } else {
+      return num
+    }
+  }
+
   function chooseWinner () {
+    const now = new Date();
+    const curDate = `${addZero(now.getDay())}.${addZero(now.getMonth())}.${now.getFullYear()} ${addZero(now.getHours())}:${addZero(now.getMinutes())}:${addZero(now.getSeconds())}`;
+
+    console.log(hero1)
+
     const historyResult = {
       firstHero: hero1,
       secondHero: hero2,
+      date: curDate,
     }
+
     let hero1Total = parseInt(calcHeroTotalStat(statsHero1));
     let hero2Total = parseInt(calcHeroTotalStat(statsHero2));
     if (hero1Total > hero2Total) {
-      historyResult.winner = hero1.name;
+      historyResult.winner = 'firstHero';
     } else if (hero1Total < hero2Total) {
-      historyResult.winner = hero2.name;
+      historyResult.winner = 'secondHero';
     } else {
-      historyResult.winner = "-";
+      historyResult.winner = 'draw';
     }
     setHistoryFightList([...historyFightList, historyResult]);
     return historyResult

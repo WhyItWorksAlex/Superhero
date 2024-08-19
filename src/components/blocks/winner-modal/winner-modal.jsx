@@ -29,7 +29,7 @@ function WinnerModal ( {isActiveWinnerModal, setIsActiveWinnerModal, lastFight} 
         {!!lastFight && (
           <>
             <StyledCloseBtn type="button" onClick={closeModal} >✘</StyledCloseBtn>
-            <StyledWinnerText>{lastFight.winner} wins</StyledWinnerText>
+            <StyledWinnerText>{lastFight.winner !== 'draw' ? lastFight[lastFight.winner].name : 'draw'} wins</StyledWinnerText>
           </>
         )}
       </Wrapper>
