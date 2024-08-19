@@ -3,3 +3,7 @@ export const AppRoute = {
   HISTORY: "/fight-history",
   THIRD: "/third",
 };
+
+// Max quantity of heroes
+
+export const qtyHeroes = 731;

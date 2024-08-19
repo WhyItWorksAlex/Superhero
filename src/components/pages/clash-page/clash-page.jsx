@@ -4,8 +4,7 @@ import MainButtons from "../../blocks/main-buttons/main-buttons";
 import { getRandomInteger } from "../../../utils";
 import { HeroCardWrapper, StyledFightButton } from "./styles";
 import WinnerModal from "../../blocks/winner-modal/winner-modal";
-
-const qty = 3
+import { qtyHeroes } from "../../../const";
 
 
 function ClashPage( {setHistoryFightList, historyFightList, setHero1, setHero2, hero1, hero2} ) {
@@ -23,7 +22,7 @@ function ClashPage( {setHistoryFightList, historyFightList, setHero1, setHero2, 
 
   const [timer, setTimer] = useState(null);
 
-  // // Function get hero data (on async/await and try block)
+  // // Function get hero data (on async/await)
 
   // const getApiData = async (id, num = 0) => {
   //   const response = await fetch(
@@ -43,13 +42,13 @@ function ClashPage( {setHistoryFightList, historyFightList, setHero1, setHero2, 
   //     return response
   //   } else if(num === 1) {
   //     if (response.name === hero2.name) {
-  //       getApiData(getRandomInteger(1, qty), 1)
+  //       getApiData(getRandomInteger(1, qtyHeroes), 1)
   //     } else {
   //       setHero1(response);
   //     }
   //   } else {
   //     if (response.name === hero1.name) {
-  //       getApiData(getRandomInteger(1, qty), 2)
+  //       getApiData(getRandomInteger(1, qtyHeroes), 2)
   //     } else {
   //       setHero2(response);
   //     }
@@ -71,14 +70,14 @@ function ClashPage( {setHistoryFightList, historyFightList, setHero1, setHero2, 
           return response;
         } else if (num === 1) {
           if (response.name === hero2.name || response.name === hero1.name) {
-            return getApiData(getRandomInteger(1, qty), 1);
+            return getApiData(getRandomInteger(1, qtyHeroes), 1);
           } else {
             setHero1(response);
             return response;
           }
         } else {
           if (response.name === hero2.name || response.name === hero1.name) {
-            return getApiData(getRandomInteger(1, qty), 2);
+            return getApiData(getRandomInteger(1, qtyHeroes), 2);
           } else {
             setHero2(response);
             return response;
@@ -91,16 +90,16 @@ function ClashPage( {setHistoryFightList, historyFightList, setHero1, setHero2, 
       });
   };
   
-  // init Heroes (on Promises)
+  // Function init Heroes
   
   const initHeroes = async () => {
     try {
-      const hero1Data = await getApiData(getRandomInteger(1, qty), 1);
+      const hero1Data = await getApiData(getRandomInteger(1, qtyHeroes), 1);
 
-      let hero2Data = await getApiData(getRandomInteger(1, qty), 2);
+      let hero2Data = await getApiData(getRandomInteger(1, qtyHeroes), 2);
 
       while (hero2Data.name === hero1Data.name) {
-        hero2Data = await getApiData(getRandomInteger(1, qty), 2);
+        hero2Data = await getApiData(getRandomInteger(1, qtyHeroes), 2);
       }
 
     } catch (error) {
@@ -108,7 +107,7 @@ function ClashPage( {setHistoryFightList, historyFightList, setHero1, setHero2, 
     }
   };
 
-  // Init heros on first start
+  // Init heroes on first start
 
   useEffect(() => {
     if (!hero1?.name && !hero2?.name) {

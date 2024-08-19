@@ -1,11 +1,12 @@
 import React from "react";
 import { StyledButton } from "./styles";
 import { getRandomInteger, debounce } from "../../../utils";
+import { qtyHeroes } from "../../../const";
 
 function ChangeButton( {name, getApiData} ) {
 
   const handle = () => {
-    const randomId = getRandomInteger(1, 3)
+    const randomId = getRandomInteger(1, qtyHeroes)
     if (name === 'hero1') {
       getApiData(randomId, 1)
 
