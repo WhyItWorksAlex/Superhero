@@ -38,8 +38,8 @@ export const GlobalStyle = createGlobalStyle`
     height: 100%;
     background-image: url('https://i.ibb.co/rdkB8N6/e6a975ac03b598fb827578dc38060d70.jpg');
     background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center;
+    background-size: calc(100vw);
+    background-position: center left;
   }
   
   body {

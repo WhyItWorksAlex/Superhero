@@ -56,25 +56,6 @@ function ClashPage( {setHistoryFightList, historyFightList, setHero1, setHero2, 
   //   }
   // };
 
-  // // init Heroes (on async/await and try block)
-
-  // const initHeroes = async () => {
-  //   try {
-  //     const hero1Data = await getApiData(getRandomInteger(1, qty));
-  //     setHero1(hero1Data);
-
-  //     let hero2Data = await getApiData(getRandomInteger(1, qty));
-
-  //     while (hero2Data.name === hero1Data.name) {
-  //       hero2Data = await getApiData(getRandomInteger(1, qty));
-  //     }
-
-  //     setHero2(hero2Data);
-  //   } catch (error) {
-  //     console.error("Ошибка загрузки героев:", error);
-  //   }
-  // };
-
   // Function get hero data (on Promises)
 
   const getApiData = (id, num = 0) => {
@@ -86,8 +67,6 @@ function ClashPage( {setHistoryFightList, historyFightList, setHero1, setHero2, 
         return response.json();
       })
       .then((response) => {
-        console.log(response);
-  
         if (num === 0) {
           return response;
         } else if (num === 1) {
@@ -95,53 +74,45 @@ function ClashPage( {setHistoryFightList, historyFightList, setHero1, setHero2, 
             return getApiData(getRandomInteger(1, qty), 1);
           } else {
             setHero1(response);
-            return response; // Возвращаем, чтобы избежать дальнейшего выполнения
+            return response;
           }
         } else {
           if (response.name === hero2.name || response.name === hero1.name) {
             return getApiData(getRandomInteger(1, qty), 2);
           } else {
             setHero2(response);
-            return response; // Возвращаем, чтобы избежать дальнейшего выполнения
+            return response;
           }
         }
       })
       .catch((error) => {
         console.error("Ошибка при получении данных:", error);
-        throw error; // Пробрасываем ошибку дальше
+        throw error;
       });
   };
   
   // init Heroes (on Promises)
   
-  const initHeroes = () => {
-    getApiData(getRandomInteger(1, qty))
-      .then((hero1Data) => {
-        setHero1(hero1Data);
-        return getApiData(getRandomInteger(1, qty));
-      })
-      .then((hero2Data) => {
-        while (hero2Data.name === hero1.name) {
-          hero2Data = getApiData(getRandomInteger(1, qty));
-        }
-        setHero2(hero2Data);
-      })
-      .catch((error) => {
-        console.error("Ошибка загрузки героев:", error);
-      });
-  };
-  
-  useEffect(() => {
-    if (!hero1?.name && !hero2?.name) {
-      initHeroes();
+  const initHeroes = async () => {
+    try {
+      const hero1Data = await getApiData(getRandomInteger(1, qty), 1);
+
+      let hero2Data = await getApiData(getRandomInteger(1, qty), 2);
+
+      while (hero2Data.name === hero1Data.name) {
+        hero2Data = await getApiData(getRandomInteger(1, qty), 2);
+      }
+
+    } catch (error) {
+      console.error("Ошибка загрузки героев:", error);
     }
-  }, []);
+  };
 
   // Init heros on first start
 
   useEffect(() => {
     if (!hero1?.name && !hero2?.name) {
-      initHeroes();
+      initHeroes();   
     }
   }, []);
 
