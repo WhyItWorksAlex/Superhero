@@ -2,7 +2,6 @@ import styled, {css} from "styled-components";
 import { Link } from "react-router-dom";
 
 export const StyledNavEl = styled.div`
-padding-bottom: 5px;
 
 
 ${(props) =>
@@ -43,6 +42,8 @@ export const StyledLink = styled(Link)`
   font-size: 25px;
   line-height: 25px;
   text-decoration: none;
+  padding-bottom: 5px;
+
 
   ${(props) =>
   props.$isActive

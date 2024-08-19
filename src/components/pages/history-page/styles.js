@@ -7,33 +7,6 @@ export const StyledHistoryPage = styled.section`
   color: white;
 `;
 
-// export const StyledTable = styled.table`
-// 	border-collapse: separate;
-//   border-spacing: 0;
-//   border: 1px solid white;
-//   margin-top: 25px;
-//   font-family: "Albert Sans", sans-serif;
-//   font-weight: 400;
-//   font-style: normal;
-
-
-//   & th {
-//     border: 1px solid white;
-//     width: 250px;
-//     background-color: ${(props) => props.theme.btnHoverTextColor};
-//     color: ${(props) => props.theme.fontColorBlack};
-//     font-size: 23px;
-//     padding: 5px;
-//   }
-
-//   & td {
-//     border: 1px solid white;
-//     text-align: center;
-//     font-size: 20px;
-//     padding: 5px;
-//   }
-// `
-
 export const FigthTime = styled.div`
   
 `
