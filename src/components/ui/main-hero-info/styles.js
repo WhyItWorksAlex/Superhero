@@ -1,6 +1,7 @@
 import styled  from "styled-components";
 
 export const StyledMainHeroInfo = styled.ul`
+  margin: 0;
   margin-top: 10px;
   padding-left: 10px;
   list-style: none;

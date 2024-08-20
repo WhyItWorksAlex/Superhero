@@ -7,6 +7,7 @@ export const defaultTheme = {
   btnTextColor: "#eeeeee",
   btnHoverTextColor: "#edd70c",
   widthPhotoHero: "270px",
+  widthBiographyHero: "800px",
   pagePadding: "90px",
   indent: "20px",
   fontFamily: '"Inter", "Arial", sans-serif',

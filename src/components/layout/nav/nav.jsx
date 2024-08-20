@@ -7,15 +7,15 @@ import { StyledNav, StyledUl } from "./styles";
 const links = [
   {
     to: AppRoute.MAIN,
-    text: 'Main',
+    text: 'Clash',
   },
   { 
     to: AppRoute.HISTORY,
-    text: 'Fight history',
+    text: 'Fights record',
   },
   { 
-    to: AppRoute.THIRD,
-    text: 'третий',
+    to: AppRoute.INFO,
+    text: 'Heroes biography',
   },
 ];
 

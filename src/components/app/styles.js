@@ -40,6 +40,7 @@ export const GlobalStyle = createGlobalStyle`
     background-repeat: no-repeat;
     background-size: calc(100vw);
     background-position: center left;
+    background-attachment: fixed;
   }
   
   body {

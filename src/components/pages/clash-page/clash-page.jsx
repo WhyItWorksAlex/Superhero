@@ -3,11 +3,11 @@ import HeroCard from "../../ui/hero-card/hero-card";
 import MainButtons from "../../blocks/main-buttons/main-buttons";
 import { getRandomInteger } from "../../../utils";
 import { HeroCardWrapper, StyledFightButton } from "./styles";
-import WinnerModal from "../../blocks/winner-modal/winner-modal";
+import WinnerModal from "../../ui/winner-modal/winner-modal";
 import { qtyHeroes } from "../../../const";
 
 
-function ClashPage( {setHistoryFightList, historyFightList, setHero1, setHero2, hero1, hero2} ) {
+function ClashPage( {sethistoryFightsList, historyFightsList, hero1, hero2, getApiData, getStats} ) {
 
   // State with information about heroes stats
 
@@ -21,74 +21,6 @@ function ClashPage( {setHistoryFightList, historyFightList, setHero1, setHero2, 
   // State timer when hold Fight btn
 
   const [timer, setTimer] = useState(null);
-
-  // // Function get hero data (on async/await)
-
-  // const getApiData = async (id, num = 0) => {
-  //   const response = await fetch(
-  //     `https://superheroapi.com/api.php/8c5c7cad236740defc0bb7b95c4e81e6/${id}`
-  //   )
-  //   .then((response) => {
-  //     if (!response.ok) {
-  //       throw new Error(`Could not fetch ${url}, status: ${response.status}`);
-  //     }
-  //     return response.json();
-  //   })
-  //   .catch(() => {
-  //     throw new Error(`Could not fetch, status: ${response.status}`);
-  //   });
-
-  //   if (num === 0) {
-  //     return response
-  //   } else if(num === 1) {
-  //     if (response.name === hero2.name) {
-  //       getApiData(getRandomInteger(1, qtyHeroes), 1)
-  //     } else {
-  //       setHero1(response);
-  //     }
-  //   } else {
-  //     if (response.name === hero1.name) {
-  //       getApiData(getRandomInteger(1, qtyHeroes), 2)
-  //     } else {
-  //       setHero2(response);
-  //     }
-  //   }
-  // };
-
-  // Function get hero data (on Promises)
-
-  const getApiData = (id, num = 0) => {
-    return fetch(`https://superheroapi.com/api.php/8c5c7cad236740defc0bb7b95c4e81e6/${id}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Could not fetch ${url}, status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((response) => {
-        if (num === 0) {
-          return response;
-        } else if (num === 1) {
-          if (response.name === hero2.name || response.name === hero1.name) {
-            return getApiData(getRandomInteger(1, qtyHeroes), 1);
-          } else {
-            setHero1(response);
-            return response;
-          }
-        } else {
-          if (response.name === hero2.name || response.name === hero1.name) {
-            return getApiData(getRandomInteger(1, qtyHeroes), 2);
-          } else {
-            setHero2(response);
-            return response;
-          }
-        }
-      })
-      .catch((error) => {
-        console.error("Ошибка при получении данных:", error);
-        throw error;
-      });
-  };
   
   // Function init Heroes
   
@@ -140,12 +72,10 @@ function ClashPage( {setHistoryFightList, historyFightList, setHero1, setHero2, 
 
   function chooseWinner () {
     const now = new Date();
-    const curDate = `${addZero(now.getDay())}.${addZero(now.getMonth())}.${now.getFullYear()} ${addZero(now.getHours())}:${addZero(now.getMinutes())}:${addZero(now.getSeconds())}`;
-
-    console.log(hero1)
+    const curDate = `${addZero(now.getDay())}.${addZero(now.getMonth())}.${now.getFullYear()} ${addZero(now.getHours())}:${addZero(now.getMinutes())}`;
 
     const historyResult = {
-      number: historyFightList.length + 1,
+      number: historyFightsList.length + 1,
       firstHero: hero1,
       secondHero: hero2,
       date: curDate,
@@ -160,7 +90,7 @@ function ClashPage( {setHistoryFightList, historyFightList, setHero1, setHero2, 
     } else {
       historyResult.winner = 'draw';
     }
-    setHistoryFightList([...historyFightList, historyResult]);
+    sethistoryFightsList([...historyFightsList, historyResult]);
     return historyResult
   }
 
@@ -188,7 +118,7 @@ function ClashPage( {setHistoryFightList, historyFightList, setHero1, setHero2, 
         <>
           <MainButtons getApiData={getApiData}/>
           <HeroCardWrapper>
-            <HeroCard name='hero1' hero={hero1} setStatsHero={setStatsHero1}/>
+            <HeroCard name='hero1' hero={hero1} setStatsHero={setStatsHero1} getStats={getStats}/>
             <StyledFightButton 
               onMouseDown={handleFightBtn} 
               onMouseUp={mouseUpFightBtn}>
@@ -198,9 +128,9 @@ function ClashPage( {setHistoryFightList, historyFightList, setHero1, setHero2, 
               <span className="span_3"></span>
               <span className="span_4"></span>
             </StyledFightButton>
-            <HeroCard name='hero2' hero={hero2} setStatsHero={setStatsHero2}/>
+            <HeroCard name='hero2' hero={hero2} setStatsHero={setStatsHero2} getStats={getStats}/>
           </HeroCardWrapper>
-          <WinnerModal isActiveWinnerModal={isActiveWinnerModal} setIsActiveWinnerModal={setIsActiveWinnerModal} lastFight={historyFightList[historyFightList.length-1]} />
+          <WinnerModal isActiveWinnerModal={isActiveWinnerModal} setIsActiveWinnerModal={setIsActiveWinnerModal} lastFight={historyFightsList[historyFightsList.length-1]} />
         </>
       ) : (
         <>

@@ -1,11 +1,37 @@
 import styled from "styled-components";
 import Button from "../../ui/button/button";
+import { Link } from 'react-router-dom';
 
 export const StyledHistoryPage = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
   color: white;
+`;
+
+export const P = styled.p`
+  padding: 0;
+  font-family: "Albert Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+  text-align: center;
+  line-height: 50px;
+`;
+
+export const StyledLink = styled(Link)`
+  color: white;
+  transition: 0.2s ease-in-out all;
+
+  &:hover {
+    color: ${(props) => props.theme.btnHoverTextColor};
+    opacity: 0.8;
+  }
+
+  &:hover {
+    color: ${(props) => props.theme.btnHoverTextColor};
+    opacity: 0.8;
+  }
 `;
 
 export const Ul = styled.ul`
@@ -96,7 +122,7 @@ export const TournamentMatchTeam = styled(Button)`
   color: ${(props) => props.theme.fontColorBlack};
   text-decoration: none;
   text-align: center;
-  border: 2px outset;
+  border: 3px outset;
   background-color: #E0BF1C;
   transition: 0.2s ease-in-out all;
   
@@ -105,7 +131,7 @@ export const TournamentMatchTeam = styled(Button)`
   }
 
   &:active {
-    border: 2px inset;
+    border: 3px inset;
     background-color: #FEE56A;
   }
   
@@ -139,7 +165,7 @@ export const TournamentMatchTeamWinner = styled(Button)`
   color: ${(props) => props.theme.fontColorBlack};
   text-decoration: none;
   text-align: center;
-  border: 2px outset;
+  border: 3px outset;
   background-color: #E0BF1C;
   transition: 0.2s ease-in-out all;
   
@@ -148,7 +174,7 @@ export const TournamentMatchTeamWinner = styled(Button)`
   }
 
   &:active {
-    border: 2px inset;
+    border: 3px inset;
     background-color: #FEE56A;
   }
   

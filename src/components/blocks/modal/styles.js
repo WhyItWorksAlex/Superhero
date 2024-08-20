@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledWinnerModal = styled.section`
-  display: ${(props) => props.$isActive ? 'block' : 'none'};
+  display: ${(props) => props.$isActive ? 'flex' : 'none'};
   position: fixed;
   top: 0;
   left: 0;
@@ -13,13 +13,11 @@ export const StyledWinnerModal = styled.section`
 `;
 
 export const Wrapper = styled.div`
-  max-width: 700px;
-  margin: 150px auto;
+  margin: 0 auto;
+  margin-top: ${(props) => props.$marginTop};
   position: relative;
   padding: 40px;
   background-color: transparent;
-  border-radius: 30px;
-  max-height: 80vh;
 `;
 
 export const StyledCloseBtn = styled.button`
@@ -32,16 +30,4 @@ export const StyledCloseBtn = styled.button`
   font-size: 55px;
   line-height: 55px;
   cursor: pointer;
-`
-
-export const StyledWinnerText = styled.p`
-  margin: 0;
-  padding: 0;
-  font-family: "Mortal Combat", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 50px;
-  line-height: 60px;
-  text-align: center;
-  color: ${(props) => props.theme.colorRed};
 `

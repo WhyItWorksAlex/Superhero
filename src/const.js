@@ -1,7 +1,7 @@
 export const AppRoute = {
   MAIN: "/",
-  HISTORY: "/fight-history",
-  THIRD: "/third",
+  HISTORY: "/fights-history",
+  INFO: "/heroes-full-information",
 };
 
 // Max quantity of heroes
