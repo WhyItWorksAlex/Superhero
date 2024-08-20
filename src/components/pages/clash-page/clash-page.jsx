@@ -145,6 +145,7 @@ function ClashPage( {setHistoryFightList, historyFightList, setHero1, setHero2, 
     console.log(hero1)
 
     const historyResult = {
+      number: historyFightList.length + 1,
       firstHero: hero1,
       secondHero: hero2,
       date: curDate,

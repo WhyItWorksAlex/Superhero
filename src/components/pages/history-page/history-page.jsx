@@ -1,33 +1,50 @@
 import React from "react";
-import { StyledHistoryPage, FigthTime, TournamentGrid, TournamentRoundFinal, TournamentRoundWinner, TournamentMatch, TournamentMatchWinner, TournamentMatchTeam, TournamentMatchTeamWinner } from "./styles";
+import { StyledHistoryPage, Ul, Li, FigthInfo, TournamentGrid, TournamentRoundFinal, TournamentRoundWinner, TournamentMatch, TournamentMatchWinner, TournamentMatchTeam, TournamentMatchTeamWinner, Divider } from "./styles";
 
 function HistoryPage( {historyFightList} ) {
 
   return (
     <StyledHistoryPage>
       {historyFightList.length === 0 ? (
-        <p>Боев нет</p>
-      ) : (
-      <>
-        {historyFightList.map((fight, index) => (
-          <React.Fragment key={index}>
-            <FigthTime>{fight.date}</FigthTime>
+        <>
+          <FigthInfo>There is no fights record.</FigthInfo>
             <TournamentGrid>
               <TournamentRoundFinal>
                 <TournamentMatch>
-                  <TournamentMatchTeam href="#">{fight.firstHero.name}</TournamentMatchTeam>
-                  <TournamentMatchTeam href="#">{fight.secondHero.name}</TournamentMatchTeam>
+                  <TournamentMatchTeam>First Hero</TournamentMatchTeam>
+                  <TournamentMatchTeam>Second Hero</TournamentMatchTeam>
                 </TournamentMatch>
               </TournamentRoundFinal>
               <TournamentRoundWinner>
                 <TournamentMatchWinner>
-                  <TournamentMatchTeamWinner href="#">{fight.winner !== 'draw' ? fight[fight.winner].name : 'draw'}</TournamentMatchTeamWinner>
+                  <TournamentMatchTeamWinner>Winner</TournamentMatchTeamWinner>
                 </TournamentMatchWinner>
               </TournamentRoundWinner>
             </TournamentGrid>
-          </React.Fragment>
+            <Divider />
+        </>
+      ) : (
+      <Ul>
+        {historyFightList.map((fight, index) => (
+          <Li key={index}>
+            <FigthInfo>Fight №{fight.number}. {fight.date}</FigthInfo>
+            <TournamentGrid>
+              <TournamentRoundFinal>
+                <TournamentMatch>
+                  <TournamentMatchTeam>{fight.firstHero.name}</TournamentMatchTeam>
+                  <TournamentMatchTeam>{fight.secondHero.name}</TournamentMatchTeam>
+                </TournamentMatch>
+              </TournamentRoundFinal>
+              <TournamentRoundWinner>
+                <TournamentMatchWinner>
+                  <TournamentMatchTeamWinner>{fight.winner !== 'draw' ? fight[fight.winner].name : 'draw'}</TournamentMatchTeamWinner>
+                </TournamentMatchWinner>
+              </TournamentRoundWinner>
+            </TournamentGrid>
+            <Divider />
+          </Li>
           ))}
-      </>)}
+      </Ul>)}
     </StyledHistoryPage>
   );
 }
