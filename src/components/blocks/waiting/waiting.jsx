@@ -8,9 +8,9 @@ function Waiting({ $isFunny }) {
     <WrapperWaiting $isFunny={$isFunny}>
       <WaitingText>loading...</WaitingText>
       {$isFunny ? (
-        <WaitingImgLu src='/src/assets/liu-kang-bicycle-kick.gif' />
+        <WaitingImgLu src='/liu-kang-bicycle-kick.gif' />
       ) : (
-        <WaitingImg src='/src/assets/spinner.svg' />
+        <WaitingImg src='/spinner.svg' />
       )}
     </WrapperWaiting>
   );

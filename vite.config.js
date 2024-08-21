@@ -8,9 +8,9 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./src/setupTests.js'],
   },
-  build: {
-    rollupOptions: {
-      external: ["/src/components/app/app"]
-    }
-  },
+  // build: {
+  //   rollupOptions: {
+  //     external: ["/src/components/app/app"]
+  //   }
+  // },
 });

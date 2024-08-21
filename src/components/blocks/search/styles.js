@@ -93,7 +93,7 @@ export const NextPageBtn = styled(Button)`
     content: "";
     width: 32px;
     height: 10px;
-    background-image: url('/src/assets/icon-arrow-long.svg');
+    background-image: url('/icon-arrow-long.svg');
     background-repeat: no-repeat;
     background-position: center;
     top: 50%;
@@ -126,7 +126,7 @@ export const PrevPageBtn = styled(Button)`
     content: "";
     width: 32px;
     height: 10px;
-    background-image: url('/src/assets/icon-arrow-long.svg');
+    background-image: url('/icon-arrow-long.svg');
     background-repeat: no-repeat;
     background-position: center;
     top: 50%;
