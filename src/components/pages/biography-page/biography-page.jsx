@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { StyledBiographyPage, P } from "./styles";
 import HeroBigCard from "../../blocks/hero-big-card/hero-big-card";
-import { getRandomInteger } from "../../../utils";
-import { qtyHeroes } from "../../../const";
+import Search from "../../blocks/search/search";
 
 function BiographyPage( {biographyHero, getApiData, getStats} ) {
 
@@ -13,6 +12,7 @@ function BiographyPage( {biographyHero, getApiData, getStats} ) {
   return (
     <StyledBiographyPage>
       <P>This section is about heroes information. You can figure out powerstats, biography, appearance, work, connections and so on.</P>
+      <Search getApiData={getApiData}/>
       {(Boolean(biographyHero?.name)) ? (
         <HeroBigCard hero={biographyHero} getStats={getStats}/>
       ) : (
