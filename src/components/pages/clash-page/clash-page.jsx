@@ -5,6 +5,7 @@ import { getRandomInteger } from "../../../utils";
 import { HeroCardWrapper, StyledFightButton } from "./styles";
 import WinnerModal from "../../ui/winner-modal/winner-modal";
 import { qtyHeroes } from "../../../const";
+import Waiting from "../../blocks/waiting/waiting";
 
 
 function ClashPage( {sethistoryFightsList, historyFightsList, hero1, hero2, getApiData, getStats} ) {
@@ -133,9 +134,7 @@ function ClashPage( {sethistoryFightsList, historyFightsList, hero1, hero2, getA
           <WinnerModal isActiveWinnerModal={isActiveWinnerModal} setIsActiveWinnerModal={setIsActiveWinnerModal} lastFight={historyFightsList[historyFightsList.length-1]} />
         </>
       ) : (
-        <>
-          <p style={{color: 'red'}}>ТУТ ПОКА ПУСТО</p>
-        </>
+        <Waiting $isFunny={true}/>
       )}
     </>
   );

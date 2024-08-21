@@ -19,6 +19,9 @@ export const StyledWrapperLeftPart = styled.div`
 
 export const StyledImageWrapper = styled.div`
   height: 350px;
+  width: 270px;
+  display: flex;
+  justify-content: center;
 `;
 
 export const StyledImage = styled.img`

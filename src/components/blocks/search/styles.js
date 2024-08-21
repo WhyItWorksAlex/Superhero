@@ -25,10 +25,12 @@ export const StyledPaginationBtn = styled(Button)`
 
   &:hover {
     text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #BFE2FF, 0 0 0.5em #BFE2FF, 0 0 0.1em #BFE2FF;
+    color: ${(props) => props.theme.btnHoverTextColor};
   }
 
   &:active {
     text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #BFE2FF, 0 0 0.5em #BFE2FF, 0 0 0.1em #BFE2FF;
+    color: ${(props) => props.theme.btnHoverTextColor};
     opacity: 0.6;
   }
 `;

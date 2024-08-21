@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { StyledBiographyPage, P } from "./styles";
 import HeroBigCard from "../../blocks/hero-big-card/hero-big-card";
 import Search from "../../blocks/search/search";
+import Waiting from "../../blocks/waiting/waiting";
 
 function BiographyPage( {biographyHero, getApiData, getStats} ) {
 
@@ -17,7 +18,7 @@ function BiographyPage( {biographyHero, getApiData, getStats} ) {
         <HeroBigCard hero={biographyHero} getStats={getStats}/>
       ) : (
         <>
-          <p style={{color: 'red'}}>Ожидаем данные</p>
+          <Waiting $isFunny={false}/>
         </>
       )}
     </StyledBiographyPage>
