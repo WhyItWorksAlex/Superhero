@@ -1,6 +1,6 @@
 import React from "react";
-import Modal from "../../blocks/modal/modal";
-import HeroBigCard from "../../blocks/hero-big-card/hero-big-card";
+import Modal from "/src/components/blocks/modal/modal";
+import HeroBigCard from "/src/components/blocks/hero-big-card/hero-big-card";
 
 
 function HeroBigCardModal ( {isActiveBigCardHeroModal, setIsActiveBigCardHeroModal, hero, getStats} ) {

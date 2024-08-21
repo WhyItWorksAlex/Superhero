@@ -1,7 +1,7 @@
 import React from "react";
 import { StyledButton } from "./styles";
-import { getRandomInteger, debounce } from "../../../utils";
-import { qtyHeroes } from "../../../const";
+import { getRandomInteger, debounce } from "/src/utils";
+import { qtyHeroes } from "/src/const";
 
 function ChangeButton( {name, getApiData} ) {
 

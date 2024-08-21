@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import PageWrapper from "../layout/page-wrapper/page-wrapper";
+import PageWrapper from "/src/components/layout/page-wrapper/page-wrapper";
 import { GlobalStyle } from "./styles";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ScrollToTop from "../ui/scroll-to-top/scroll-to-top";
+import ScrollToTop from "/src/components/ui/scroll-to-top/scroll-to-top";
 import { AppRoute } from "/src/const";
 import ClashPage from "/src/components/pages/clash-page/clash-page";
-import HistoryPage from "../pages/history-page/history-page";
-import BiographyPage from "../pages/biography-page/biography-page";
-import { getRandomInteger } from "../../utils";
+import HistoryPage from "/src/components/pages/history-page/history-page";
+import BiographyPage from "/src/components/pages/biography-page/biography-page";
+import { getRandomInteger } from "/src/utils";
 
 
 const App = () => {

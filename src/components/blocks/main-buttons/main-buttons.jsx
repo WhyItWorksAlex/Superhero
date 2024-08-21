@@ -1,5 +1,5 @@
 import React from "react";
-import ChangeButton from "../../ui/change-button/change-button";
+import ChangeButton from "/src/components/ui/change-button/change-button";
 import { StyledMainButtons } from "./styles";
 
 

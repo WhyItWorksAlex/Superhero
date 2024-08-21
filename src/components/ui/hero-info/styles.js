@@ -1,5 +1,5 @@
 import styled, { css }  from "styled-components";
-import Button from "../button/button";
+import Button from "/src/components/ui/button/button";
 
 export const StyledTabContent = styled.div`
   background-color: ${(props) => props.theme.bcgrCardInfoColor};

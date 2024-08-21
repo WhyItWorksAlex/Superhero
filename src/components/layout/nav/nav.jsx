@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { AppRoute } from "/src/const";
-import NavEl from "../../ui/nav-el/nav-el";
+import NavEl from "/src/components/ui/nav-el/nav-el";
 import { StyledNav, StyledUl } from "./styles";
 
 const links = [

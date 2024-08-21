@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "../../ui/button/button";
+import Button from "/src/components/ui/button/button";
 import { Link } from 'react-router-dom';
 
 export const StyledHistoryPage = styled.section`

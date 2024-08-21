@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Ul, StyledPaginationBtn , Content, UlHeroes, HeroBtn, NextPageBtn, PrevPageBtn } from "./styles";
-import { heroes } from "../../../const";
+import { heroes } from "/src/const";
 
 function Search ( {getApiData} ) {
 

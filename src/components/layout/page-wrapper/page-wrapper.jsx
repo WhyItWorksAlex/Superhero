@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../header/header";
+import Header from "/src/components/layout/header/header";
 import { StyledMain } from "./styles";
 
 import { Outlet } from "react-router-dom";

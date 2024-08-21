@@ -1,6 +1,6 @@
 import React from "react";
-import Neon from "../../ui/neon/neon";
-import Nav from "../nav/nav";
+import Neon from "/src/components/ui/neon/neon";
+import Nav from "/src/components/layout/nav/nav";
 
 import { StyledHeader } from "./styles";
 

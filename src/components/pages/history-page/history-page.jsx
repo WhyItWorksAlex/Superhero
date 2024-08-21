@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyledHistoryPage, P, StyledLink, Ul, Li, FigthInfo, TournamentGrid, TournamentRoundFinal, TournamentRoundWinner, TournamentMatch, TournamentMatchWinner, TournamentMatchTeam, TournamentMatchTeamWinner, Divider } from "./styles";
 import { AppRoute } from "/src/const";
-import HeroBigCardModal from "../../ui/hero-big-card-modal/hero-big-card-modal";
+import HeroBigCardModal from "/src/components/ui/hero-big-card-modal/hero-big-card-modal";
 
 function HistoryPage( {historyFightsList, getStats} ) {
 

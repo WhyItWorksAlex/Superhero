@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { StyledBiographyPage, P } from "./styles";
-import HeroBigCard from "../../blocks/hero-big-card/hero-big-card";
-import Search from "../../blocks/search/search";
-import Waiting from "../../blocks/waiting/waiting";
+import HeroBigCard from "/src/components/blocks/hero-big-card/hero-big-card";
+import Search from "/src/components/blocks/search/search";
+import Waiting from "/src/components/blocks/waiting/waiting";
 
 function BiographyPage( {biographyHero, getApiData, getStats} ) {
 

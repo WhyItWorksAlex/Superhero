@@ -1,6 +1,6 @@
 import React from "react";
 import { StyledWinnerText } from "./styles";
-import Modal from "../../blocks/modal/modal";
+import Modal from "/src/components/blocks/modal/modal";
 
 
 function WinnerModal ( {isActiveWinnerModal, setIsActiveWinnerModal, lastFight} ) {

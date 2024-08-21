@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { StyledWrapperCard, StyledWrapperLeftPart, StyledImageWrapper, StyledImage, Description } from "./styles";
-import MainHeroInfo from "../../ui/main-hero-info/main-hero-info";
-import StatsHeroInfo from "../../ui/stats-hero-info/stats-hero-info";
+import MainHeroInfo from "/src/components/ui/main-hero-info/main-hero-info";
+import StatsHeroInfo from "/src/components/ui/stats-hero-info/stats-hero-info";
 
 
 function HeroBigCard( {hero, getStats} ) {

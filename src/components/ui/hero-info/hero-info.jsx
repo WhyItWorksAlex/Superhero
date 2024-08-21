@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyledTabContent, StyledButton, StyledWrapperButtons } from "./styles";
-import MainHeroInfo from "../main-hero-info/main-hero-info";
-import StatsHeroInfo from "../stats-hero-info/stats-hero-info";
+import MainHeroInfo from "/src/components/ui/main-hero-info/main-hero-info";
+import StatsHeroInfo from "/src/components/ui/stats-hero-info/stats-hero-info";
 
 function HeroInfo( {hero, stats} ) {
   const [activeTab, setActiveTab] = useState(0);

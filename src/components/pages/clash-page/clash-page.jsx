@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useMemo } from "react";
-import HeroCard from "../../ui/hero-card/hero-card";
-import MainButtons from "../../blocks/main-buttons/main-buttons";
-import { getRandomInteger } from "../../../utils";
+import HeroCard from "/src/components/ui/hero-card/hero-card";
+import MainButtons from "/src/components/blocks/main-buttons/main-buttons";
+import { getRandomInteger } from "/src/utils";
 import { HeroCardWrapper, StyledFightButton } from "./styles";
-import WinnerModal from "../../ui/winner-modal/winner-modal";
-import { qtyHeroes } from "../../../const";
-import Waiting from "../../blocks/waiting/waiting";
+import WinnerModal from "/src/components/ui/winner-modal/winner-modal";
+import { qtyHeroes } from "/src/const";
+import Waiting from "/src/components//blocks/waiting/waiting";
 
 
 function ClashPage( {sethistoryFightsList, historyFightsList, hero1, hero2, getApiData, getStats} ) {

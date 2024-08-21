@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Wrapper, StyledImageWrapper, StyledImage } from "./styles";
-import Properties from "../properties/properties";
-import HeroInfo from "../hero-info/hero-info";
-import { getRandomInteger } from "../../../utils";
+import Properties from "/src/components/ui/properties/properties";
+import HeroInfo from "/src/components/ui/hero-info/hero-info";
 
 
 function HeroCard( {hero, setStatsHero, getStats} ) {
