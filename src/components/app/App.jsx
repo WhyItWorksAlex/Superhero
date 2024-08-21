@@ -10,7 +10,7 @@ import BiographyPage from "/src/components/pages/biography-page/biography-page";
 import { getRandomInteger } from "/src/utils";
 
 
-const App = () => {
+function App () {
   // State history list
 
   const [historyFightsList, sethistoryFightsList] = useState([]);
