@@ -8,7 +8,7 @@ export const StyledWinnerModal = styled.section`
   z-index: 1050;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: scroll;
   background-color: rgba(0,0,0,.5);
 `;
 
