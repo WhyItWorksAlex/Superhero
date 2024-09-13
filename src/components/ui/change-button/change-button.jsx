@@ -3,16 +3,11 @@ import { StyledButton } from "./styles";
 import { getRandomInteger, debounce } from "/src/utils";
 import { qtyHeroes } from "/src/const";
 
-function ChangeButton( {name, getApiData} ) {
+function ChangeButton( {name, updateChar, setHero, idArray} ) {
 
   const handle = () => {
     const randomId = getRandomInteger(1, qtyHeroes)
-    if (name === 'hero1') {
-      getApiData(randomId, 1)
-
-    } else {
-      getApiData(randomId, 2)
-    }
+    updateChar(randomId, setHero, idArray)
   }
 
   const handleDebounced = debounce(handle);

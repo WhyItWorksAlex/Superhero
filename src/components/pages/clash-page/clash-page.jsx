@@ -8,7 +8,12 @@ import { qtyHeroes } from "/src/const";
 import Waiting from "/src/components//blocks/waiting/waiting";
 
 
-function ClashPage( {sethistoryFightsList, historyFightsList, hero1, hero2, getApiData, getStats} ) {
+function ClashPage( {sethistoryFightsList, historyFightsList, updateChar} ) {
+
+  // State with information about heroes
+
+  const [hero1, setHero1] = useState([]);
+  const [hero2, setHero2] = useState([]);
 
   // State with information about heroes stats
 
@@ -26,18 +31,10 @@ function ClashPage( {sethistoryFightsList, historyFightsList, hero1, hero2, getA
   // Function init Heroes
   
   const initHeroes = async () => {
-    try {
-      const hero1Data = await getApiData(getRandomInteger(1, qtyHeroes), 1);
-
-      let hero2Data = await getApiData(getRandomInteger(1, qtyHeroes), 2);
-
-      while (hero2Data.name === hero1Data.name) {
-        hero2Data = await getApiData(getRandomInteger(1, qtyHeroes), 2);
-      }
-
-    } catch (error) {
-      console.error("Ошибка загрузки героев:", error);
-    }
+    const firstId = getRandomInteger(1, qtyHeroes);
+    const secondId = getRandomInteger(1, qtyHeroes, firstId);
+    await updateChar(firstId, setHero1);
+    await updateChar(secondId, setHero2);
   };
 
   // Init heroes on first start
@@ -117,9 +114,9 @@ function ClashPage( {sethistoryFightsList, historyFightsList, hero1, hero2, getA
     <>
       {(Boolean(hero1?.name) && Boolean(hero2?.name)) ? (
         <>
-          <MainButtons getApiData={getApiData}/>
+          <MainButtons updateChar={updateChar} setHero1={setHero1} setHero2={setHero2} idArray={[hero1.id, hero2.id]} />
           <HeroCardWrapper>
-            <HeroCard name='hero1' hero={hero1} setStatsHero={setStatsHero1} getStats={getStats}/>
+            <HeroCard name='hero1' hero={hero1} setStatsHero={setStatsHero1} />
             <StyledFightButton 
               onMouseDown={handleFightBtn} 
               onMouseUp={mouseUpFightBtn}>
@@ -129,7 +126,7 @@ function ClashPage( {sethistoryFightsList, historyFightsList, hero1, hero2, getA
               <span className="span_3"></span>
               <span className="span_4"></span>
             </StyledFightButton>
-            <HeroCard name='hero2' hero={hero2} setStatsHero={setStatsHero2} getStats={getStats}/>
+            <HeroCard name='hero2' hero={hero2} setStatsHero={setStatsHero2} />
           </HeroCardWrapper>
           <WinnerModal isActiveWinnerModal={isActiveWinnerModal} setIsActiveWinnerModal={setIsActiveWinnerModal} lastFight={historyFightsList[historyFightsList.length-1]} />
         </>

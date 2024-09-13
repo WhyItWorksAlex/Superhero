@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Wrapper, StyledImageWrapper, StyledImage } from "./styles";
 import Properties from "/src/components/ui/properties/properties";
 import HeroInfo from "/src/components/ui/hero-info/hero-info";
+import { getStats } from "../../../utils";
 
 
-function HeroCard( {hero, setStatsHero, getStats} ) {
+function HeroCard( {hero, setStatsHero} ) {
 
   useEffect (() => {
     setHasImage(true);

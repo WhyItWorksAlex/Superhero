@@ -3,7 +3,7 @@ import { StyledHistoryPage, P, StyledLink, Ul, Li, FigthInfo, TournamentGrid, To
 import { AppRoute } from "/src/const";
 import HeroBigCardModal from "/src/components/ui/hero-big-card-modal/hero-big-card-modal";
 
-function HistoryPage( {historyFightsList, getStats} ) {
+function HistoryPage( {historyFightsList} ) {
 
   // State information about current Big Card hero
 
@@ -73,7 +73,7 @@ function HistoryPage( {historyFightsList, getStats} ) {
           ))}
       </Ul>)}
       {isActiveBigCardHeroModal === true ? (
-        <HeroBigCardModal isActiveBigCardHeroModal={isActiveBigCardHeroModal} setIsActiveBigCardHeroModal={setIsActiveBigCardHeroModal} hero={curHero} getStats={getStats}/>
+        <HeroBigCardModal isActiveBigCardHeroModal={isActiveBigCardHeroModal} setIsActiveBigCardHeroModal={setIsActiveBigCardHeroModal} hero={curHero} />
       ) : (
         <></>
       )}

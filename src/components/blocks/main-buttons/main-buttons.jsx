@@ -3,13 +3,13 @@ import ChangeButton from "/src/components/ui/change-button/change-button";
 import { StyledMainButtons } from "./styles";
 
 
-function MainButtons( {getApiData} ) {
+function MainButtons( {updateChar, setHero1, setHero2, idArray} ) {
 
 
   return (
     <StyledMainButtons>
-      <ChangeButton name='hero1' getApiData={getApiData} />
-      <ChangeButton name='hero2' getApiData={getApiData} />
+      <ChangeButton name='hero1' updateChar={updateChar} setHero={setHero1} idArray={idArray} />
+      <ChangeButton name='hero2' updateChar={updateChar} setHero={setHero2} idArray={idArray} />
     </StyledMainButtons>
   );
 }
