@@ -29,3 +29,26 @@ export const validateStat = (value) => {
     return value
   }
 }
+
+// Function check image
+
+export const checkImage = (value, hero) => {
+  switch (value) {
+    case true: {
+      return hero.image
+    }
+    case false: {
+      return 'https://i.ibb.co/WcqzVwy/template-image.png'
+    }
+  }
+}
+
+// Function addZero to any Number
+
+export function addZero (num) {
+  if (num < 10) {
+    return `0${num}`
+  } else {
+    return `${num}`
+  }
+}

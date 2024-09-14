@@ -1,24 +1,18 @@
-import React, { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import HeroCard from "/src/components/ui/hero-card/hero-card";
 import MainButtons from "/src/components/blocks/main-buttons/main-buttons";
-import { getRandomInteger } from "/src/utils";
-import { HeroCardWrapper, StyledFightButton } from "./styles";
 import WinnerModal from "/src/components/ui/winner-modal/winner-modal";
-import { qtyHeroes } from "/src/const";
 import Waiting from "/src/components//blocks/waiting/waiting";
-import useHeroService from "../../../services/hero-service";
+import { getRandomInteger, addZero } from "/src/utils";
+import { QTYHEROES } from "/src/const";
+import useStore from "../../../store/store";
+import { HeroCardWrapper, StyledFightButton } from "./styles";
 
+function ClashPage ( {sethistoryFightsList, historyFightsList} ) {
 
-function ClashPage( {sethistoryFightsList, historyFightsList} ) {
+  // State with information about heroes from Zustand
 
-  // Create useHeroService
-
-  const {updateChar} = useHeroService()
-
-  // State with information about heroes
-
-  const [hero1, setHero1] = useState([]);
-  const [hero2, setHero2] = useState([]);
+  const {hero1, hero2, setHero1, setHero2} = useStore(({hero1, hero2, setHero1, setHero2}) => ({hero1, hero2, setHero1, setHero2}))
 
   // State information about active WinnerModal
 
@@ -31,12 +25,10 @@ function ClashPage( {sethistoryFightsList, historyFightsList} ) {
   // Function init Heroes
   
   const initHeroes = async () => {
-    console.log('До')
-    const firstId = getRandomInteger(1, qtyHeroes);
-    const secondId = getRandomInteger(1, qtyHeroes, firstId);
-    await updateChar(firstId, setHero1);
-    await updateChar(secondId, setHero2);
-    console.log('после')
+    const firstId = getRandomInteger(1, QTYHEROES);
+    const secondId = getRandomInteger(1, QTYHEROES, firstId);
+    await setHero1(firstId);
+    await setHero2(secondId);
   };
 
   // Init heroes on first start
@@ -60,15 +52,7 @@ function ClashPage( {sethistoryFightsList, historyFightsList} ) {
     }
   )
 
-  // Function chooce the winner 
-
-  function addZero (num) {
-    if (num < 10) {
-      return `0${num}`
-    } else {
-      return num
-    }
-  }
+  // Function choose the winner 
 
   function chooseWinner () {
     const now = new Date();
@@ -117,7 +101,7 @@ function ClashPage( {sethistoryFightsList, historyFightsList} ) {
     <>
       {(Boolean(hero1?.name) && Boolean(hero2?.name)) ? (
         <>
-          <MainButtons updateChar={updateChar} setHero1={setHero1} setHero2={setHero2} idArray={[+hero1.id, +hero2.id]} />
+          <MainButtons idArray={[+hero1.id, +hero2.id]} />
           <HeroCardWrapper>
             <HeroCard name='hero1' hero={hero1} />
             <StyledFightButton 

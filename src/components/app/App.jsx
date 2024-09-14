@@ -3,7 +3,7 @@ import PageWrapper from "/src/components/layout/page-wrapper/page-wrapper";
 import { GlobalStyle } from "./styles";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "/src/components/ui/scroll-to-top/scroll-to-top";
-import { AppRoute } from "/src/const";
+import { APPROUTE } from "/src/const";
 import ClashPage from "/src/components/pages/clash-page/clash-page";
 import HistoryPage from "/src/components/pages/history-page/history-page";
 import BiographyPage from "/src/components/pages/biography-page/biography-page";
@@ -20,16 +20,16 @@ function App () {
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
-          <Route exact path={AppRoute.MAIN} element={<PageWrapper />}>
+          <Route exact path={APPROUTE.MAIN.to} element={<PageWrapper />}>
             <Route index element={<ClashPage sethistoryFightsList={sethistoryFightsList} historyFightsList={historyFightsList} />} />
             <Route
               exact
-              path={AppRoute.HISTORY}
+              path={APPROUTE.HISTORY.to}
               element={<HistoryPage historyFightsList={historyFightsList} />}
             />
             <Route
               exact
-              path={AppRoute.INFO}
+              path={APPROUTE.INFO.to}
               element={<BiographyPage />}
             />
             <Route

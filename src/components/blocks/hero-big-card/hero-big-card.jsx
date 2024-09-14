@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { StyledWrapperCard, StyledWrapperLeftPart, StyledImageWrapper, StyledImage, Description } from "./styles";
 import MainHeroInfo from "/src/components/ui/main-hero-info/main-hero-info";
 import StatsHeroInfo from "/src/components/ui/stats-hero-info/stats-hero-info";
+import { checkImage } from "../../../utils";
 
 
 function HeroBigCard( {hero} ) {
@@ -61,18 +62,13 @@ function HeroBigCard( {hero} ) {
 
   const [hasImage, setHasImage] = useState(true);
 
-  useEffect (() => {
-    setHasImage(true);
-  }, [hero])
-
-
   return (
     <>
       {hero?.name && (
         <StyledWrapperCard>
           <StyledWrapperLeftPart>
             <StyledImageWrapper>
-              <StyledImage src={hasImage ? hero.image : 'https://i.ibb.co/WcqzVwy/template-image.png'} onError={() => setHasImage(false)}/>
+              <StyledImage src={checkImage(hasImage, hero)} onError={() => setHasImage(false)}/>
             </StyledImageWrapper>
             <StatsHeroInfo stats={hero.stats}/>
           </StyledWrapperLeftPart>

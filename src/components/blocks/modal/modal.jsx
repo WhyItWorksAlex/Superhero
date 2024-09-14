@@ -3,21 +3,26 @@ import { StyledWinnerModal, Wrapper, StyledCloseBtn} from "./styles";
 
 
 function Modal ( {isActiveModal, setIsActiveModal, marginTop, children} ) {
+
+  // Close modal with key ESC
+
+  const closeKey = (e) => {
+    if (e.key === 'Escape' && isActiveModal === true){
+      closeModal();
+    }    
+  }
+
+  // Close modal click outside modal
+
+  const closeOut = (e) => {
+    if (e.target.getAttribute('data-modal') && isActiveModal === true){
+      closeModal();
+    }    
+  }
   
   // Listener keydown ESC when Modal Window is open
 
   useEffect(() => {
-    const closeKey = (e) => {
-      if (e.key === 'Escape' && isActiveModal === true){
-        closeModal();
-      }    
-    }
-
-    const closeOut = (e) => {
-      if (e.target.getAttribute('data-modal') && isActiveModal === true){
-        closeModal();
-      }    
-    }
     document.addEventListener('keydown', closeKey)
     document.addEventListener('click', closeOut)
     return () => {

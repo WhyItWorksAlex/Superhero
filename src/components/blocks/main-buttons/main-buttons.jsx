@@ -1,15 +1,19 @@
-import React from "react";
 import ChangeButton from "/src/components/ui/change-button/change-button";
 import { StyledMainButtons } from "./styles";
+import useStore from "../../../store/store";
 
 
-function MainButtons( {updateChar, setHero1, setHero2, idArray} ) {
+function MainButtons( {idArray} ) {
+
+  // State with information about heroes from Zustand
+
+  const {setHero1, setHero2} = useStore(({setHero1, setHero2}) => ({setHero1, setHero2}))
 
 
   return (
     <StyledMainButtons>
-      <ChangeButton name='hero1' updateChar={updateChar} setHero={setHero1} idArray={idArray} />
-      <ChangeButton name='hero2' updateChar={updateChar} setHero={setHero2} idArray={idArray} />
+      <ChangeButton setHero={setHero1} idArray={idArray}>Change left character</ChangeButton>
+      <ChangeButton setHero={setHero2} idArray={idArray}>Change right character</ChangeButton>
     </StyledMainButtons>
   );
 }

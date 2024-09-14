@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyledHistoryPage, P, StyledLink, Ul, Li, FigthInfo, TournamentGrid, TournamentRoundFinal, TournamentRoundWinner, TournamentMatch, TournamentMatchWinner, TournamentMatchTeam, TournamentMatchTeamWinner, Divider } from "./styles";
-import { AppRoute } from "/src/const";
+import { APPROUTE } from "/src/const";
 import HeroBigCardModal from "/src/components/ui/hero-big-card-modal/hero-big-card-modal";
 
 function HistoryPage( {historyFightsList} ) {
@@ -36,7 +36,7 @@ function HistoryPage( {historyFightsList} ) {
       {historyFightsList.length === 0 ? (
         <>
           <P>There is no fights record.<br/>
-            <StyledLink to={AppRoute.MAIN}>Go to fight!</StyledLink>
+            <StyledLink to={APPROUTE.MAIN}>Go to fight!</StyledLink>
           </P>
         </>
       ) : (

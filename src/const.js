@@ -1,12 +1,23 @@
-export const AppRoute = {
-  MAIN: "/",
-  HISTORY: "/fights-history",
-  INFO: "/heroes-full-information",
+// Routes
+
+export const APPROUTE = {
+  MAIN:   {
+    to: "/",
+    text: 'Clash',
+  },
+  HISTORY:   { 
+    to: "/fights-history",
+    text: 'Fights record',
+  },
+  INFO:   { 
+    to: "/heroes-full-information",
+    text: 'Heroes biography',
+  },
 };
 
 // Max quantity of heroes
 
-export const qtyHeroes = 3;
+export const QTYHEROES = 731;
 
 // List of heroes
 

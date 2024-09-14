@@ -3,7 +3,7 @@ import { StyledTabContent, StyledButton, StyledWrapperButtons } from "./styles";
 import MainHeroInfo from "/src/components/ui/main-hero-info/main-hero-info";
 import StatsHeroInfo from "/src/components/ui/stats-hero-info/stats-hero-info";
 
-function HeroInfo( {hero, stats} ) {
+function HeroInfo( {hero} ) {
   const [activeTab, setActiveTab] = useState(0);
 
   const mainInformation = [
@@ -48,7 +48,7 @@ function HeroInfo( {hero, stats} ) {
     },
     {
       title: "Stats",
-      content: <StatsHeroInfo stats={stats} />
+      content: <StatsHeroInfo stats={hero.stats} />
     },
   ];
 

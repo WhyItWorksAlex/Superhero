@@ -1,23 +1,23 @@
 import React from "react";
 import { StyledButton } from "./styles";
 import { getRandomInteger, debounce } from "/src/utils";
-import { qtyHeroes } from "/src/const";
+import { QTYHEROES } from "/src/const";
 
-function ChangeButton( {name, updateChar, setHero, idArray} ) {
+function ChangeButton( {setHero, idArray, children} ) {
   
   const handle = () => {
-    let randomId = getRandomInteger(1, qtyHeroes)
+    let randomId = getRandomInteger(1, QTYHEROES)
     while (idArray.some((el) => el === randomId)) {
-      randomId = getRandomInteger(1, qtyHeroes)
+      randomId = getRandomInteger(1, QTYHEROES)
     }
-    updateChar(randomId, setHero)
+    setHero(randomId)
   }
 
   const handleDebounced = debounce(handle);
 
   return (
     <>
-      <StyledButton type='button' onClick={handleDebounced}>Change {name === 'hero1' ? "left" : "right"} character</StyledButton>
+      <StyledButton type='button' onClick={handleDebounced}>{children}</StyledButton>
     </>
   );
 }
