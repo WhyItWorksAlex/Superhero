@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { StyledWrapperCard, StyledWrapperLeftPart, StyledImageWrapper, StyledImage, Description } from "./styles";
 import MainHeroInfo from "/src/components/ui/main-hero-info/main-hero-info";
 import StatsHeroInfo from "/src/components/ui/stats-hero-info/stats-hero-info";
-import { getStats } from "../../../utils";
 
 
 function HeroBigCard( {hero} ) {
@@ -16,51 +15,49 @@ function HeroBigCard( {hero} ) {
     },
     {
       title: "Full name",
-      content: hero.biography['full-name'],
+      content: hero.fullName,
     },
     {
       title: "Place of birth",
-      content: hero.biography['place-of-birth'],
+      content: hero.birthPlace,
     },
     {
       title: "Gender",
-      content: hero.appearance.gender
+      content: hero.gender
     },
     {
       title: "Race",
-      content: hero.appearance.race === 'null' ? '-' : hero.appearance.race,
+      content: hero.race,
     },
     {
       title: "Height",
-      content: (hero.appearance.height[1] === '0 cm' ? '-' : hero.appearance.height[1]), 
+      content: hero.height, 
     },
     {
       title: "Weight",
-      content: (hero.appearance.weight[1] === '0 kg' ? '-' : hero.appearance.weight[1]),
+      content: hero.height,
     },
     {
       title: "Alter egos",
-      content: hero.biography['alter-egos'],
+      content: hero.weight,
     },
     {
       title: "First appearance",
-      content: hero.biography['first-appearance'],
+      content: hero.firstAppearance,
     },
     {
       title: "Alignment",
-      content: hero.biography.alignment
+      content: hero.alignment,
     },
     {
       title: "Work",
-      content: hero.work.occupation
+      content: hero.work,
     },
     {
       title: "Connections",
-      content: hero.connections['group-affiliation']
+      content: hero.connections,
     },
   ];
-
-  const stats = getStats(hero);
 
   const [hasImage, setHasImage] = useState(true);
 
@@ -75,9 +72,9 @@ function HeroBigCard( {hero} ) {
         <StyledWrapperCard>
           <StyledWrapperLeftPart>
             <StyledImageWrapper>
-              <StyledImage src={hasImage ? hero.image.url : 'https://i.ibb.co/WcqzVwy/template-image.png'} onError={() => setHasImage(false)}/>
+              <StyledImage src={hasImage ? hero.image : 'https://i.ibb.co/WcqzVwy/template-image.png'} onError={() => setHasImage(false)}/>
             </StyledImageWrapper>
-            <StatsHeroInfo stats={stats}/>
+            <StatsHeroInfo stats={hero.stats}/>
           </StyledWrapperLeftPart>
           <Description>
             <MainHeroInfo data={information} />

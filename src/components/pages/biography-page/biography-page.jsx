@@ -3,8 +3,13 @@ import { StyledBiographyPage, P } from "./styles";
 import HeroBigCard from "/src/components/blocks/hero-big-card/hero-big-card";
 import Search from "/src/components/blocks/search/search";
 import Waiting from "/src/components/blocks/waiting/waiting";
+import useHeroService from "../../../services/hero-service";
 
-function BiographyPage( {updateChar} ) {
+function BiographyPage() {
+
+  // Create useHeroService
+
+  const {updateChar} = useHeroService()
 
   // State with information about biography hero
 

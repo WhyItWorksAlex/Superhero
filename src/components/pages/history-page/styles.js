@@ -136,7 +136,6 @@ export const TournamentMatchTeam = styled(Button)`
   }
   
   box-sizing: border-box;
-
   display: block;
   position: relative;
   min-width: 200px;
@@ -181,7 +180,7 @@ export const TournamentMatchTeamWinner = styled(Button)`
   box-sizing: border-box;
   display: block;
   position: relative;
-  width: auto;
+  min-width: 200px;
   height: 32px;
   line-height: 28px;
   padding: 0 36px 0 36px;

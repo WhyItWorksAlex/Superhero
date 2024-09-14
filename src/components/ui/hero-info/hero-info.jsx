@@ -13,26 +13,26 @@ function HeroInfo( {hero, stats} ) {
     },
     {
       title: "Alignment",
-      content: hero.biography.alignment
+      content: hero.alignment
     },
     {
       title: "Race",
-      content: hero.appearance.race === 'null' ? '-' : hero.appearance.race,
+      content: hero.race,
     },
   ];
 
   const appearanceInformation = [
     {
       title: "Gender",
-      content: hero.appearance.gender
+      content: hero.gender
     },
     {
       title: "Height",
-      content: (hero.appearance.height[1] === '0 cm' ? '-' : hero.appearance.height[1]), 
+      content: hero.height, 
     },
     {
       title: "Weight",
-      content: (hero.appearance.weight[1] === '0 kg' ? '-' : hero.appearance.weight[1]),
+      content: hero.weight,
     },
   ];
 
@@ -41,6 +41,7 @@ function HeroInfo( {hero, stats} ) {
       title: "Main",
       content: <MainHeroInfo data={mainInformation} />
     },
+
     {
       title: "Appearance",
       content: <MainHeroInfo data={appearanceInformation} />

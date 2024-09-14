@@ -20,8 +20,12 @@ function HistoryPage( {historyFightsList} ) {
         setCurHero(fight.secondHero);
         break;
       case 'winner':
-        setCurHero(fight[fight.winner]);
-        break;
+        if (fight.winner !== 'draw') {
+          setCurHero(fight[fight.winner]);
+          break;
+        } else {
+          setCurHero(fight.firstHero);
+        }
     }
     document.body.style.overflow = 'hidden';
     setIsActiveBigCardHeroModal(true);

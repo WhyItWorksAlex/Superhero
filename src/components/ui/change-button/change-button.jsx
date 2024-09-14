@@ -4,10 +4,13 @@ import { getRandomInteger, debounce } from "/src/utils";
 import { qtyHeroes } from "/src/const";
 
 function ChangeButton( {name, updateChar, setHero, idArray} ) {
-
+  
   const handle = () => {
-    const randomId = getRandomInteger(1, qtyHeroes)
-    updateChar(randomId, setHero, idArray)
+    let randomId = getRandomInteger(1, qtyHeroes)
+    while (idArray.some((el) => el === randomId)) {
+      randomId = getRandomInteger(1, qtyHeroes)
+    }
+    updateChar(randomId, setHero)
   }
 
   const handleDebounced = debounce(handle);
