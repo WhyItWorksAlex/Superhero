@@ -5,7 +5,7 @@ import WinnerModal from "/src/components/ui/winner-modal/winner-modal";
 import Waiting from "/src/components//blocks/waiting/waiting";
 import { getRandomInteger, addZero } from "/src/utils";
 import { QTYHEROES } from "/src/const";
-import useStore from "../../../store/store";
+import useStore from "../../../store/main-hero-store";
 import { HeroCardWrapper, StyledFightButton } from "./styles";
 
 function ClashPage ( {sethistoryFightsList, historyFightsList} ) {

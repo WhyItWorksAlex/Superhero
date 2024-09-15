@@ -36,7 +36,7 @@ function HistoryPage( {historyFightsList} ) {
       {historyFightsList.length === 0 ? (
         <>
           <P>There is no fights record.<br/>
-            <StyledLink to={APPROUTE.MAIN}>Go to fight!</StyledLink>
+            <StyledLink to={APPROUTE.MAIN.to}>Go to fight!</StyledLink>
           </P>
         </>
       ) : (

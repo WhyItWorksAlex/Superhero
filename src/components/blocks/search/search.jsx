@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Ul, StyledPaginationBtn , Content, UlHeroes, HeroBtn, NextPageBtn, PrevPageBtn } from "./styles";
 import { heroes } from "/src/const";
 
-function Search ( {updateChar, setBiographyHero} ) {
+function Search ( {setBiographyHero} ) {
 
   const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
@@ -41,7 +41,7 @@ function Search ( {updateChar, setBiographyHero} ) {
             <React.Fragment key={index}>
               {index < 18 * curPage && index >= (curPage === 1 ? 0 : 18 * (curPage - 1)) && (
                 <li key={index}>
-                  <HeroBtn onClick={() => {updateChar(name.id, setBiographyHero)}}>{name.name}</HeroBtn>
+                  <HeroBtn onClick={() => {setBiographyHero(name.id)}}>{name.name}</HeroBtn>
                 </li>
               )}
             </React.Fragment>

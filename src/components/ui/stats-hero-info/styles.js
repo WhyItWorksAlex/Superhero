@@ -1,4 +1,4 @@
-import styled  from "styled-components";
+import styled, { css }  from "styled-components";
 
 export const StyledStatsHeroInfo = styled.ul`
   margin: 0;
@@ -18,14 +18,24 @@ export const Li = styled.li`
   align-items: baseline;
   justify-content: space-between;
 
-  &::before {
-  flex-grow: 1;
-  order: 2;
-  margin-right: 16px;
-  margin-left: 16px;
-  border-bottom: 2px dotted rgba(89, 89, 89, 0.5);
-  content: "";
-}
+  ${(props) =>
+  props.$visible
+    ? css`
+      &::before {
+      flex-grow: 1;
+      order: 2;
+      margin-right: 16px;
+      margin-left: 16px;
+      border-bottom: 2px dotted rgba(89, 89, 89, 0.5);
+      content: "";
+      }     
+    `
+    : css`
+      &::before {
+        display: none;
+      }
+    `
+  };  
 `
 
 export const Span = styled.span`

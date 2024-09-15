@@ -1,6 +1,6 @@
 import ChangeButton from "/src/components/ui/change-button/change-button";
 import { StyledMainButtons } from "./styles";
-import useStore from "../../../store/store";
+import useStore from "../../../store/main-hero-store";
 
 
 function MainButtons( {idArray} ) {

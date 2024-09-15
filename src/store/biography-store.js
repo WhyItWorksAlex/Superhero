@@ -1,33 +1,49 @@
-import { useHttp } from "../hooks/http.hook";
+import {create} from 'zustand';
 import { validateStat } from "../utils";
 
-const useHeroService = () => {
+const useStore = create((set, get) => ({
+  biographyHero: [],
+  loading: false,
+  error: null,
+  loadingNewitem: false,
+  _apiBase: 'https://superheroapi.com/api.php/8c5c7cad236740defc0bb7b95c4e81e6/',
 
-  const {loading, request, error, clearError} = useHttp();
+  async request (url, method = 'GET', body = null, headers = {'Content-Type': 'appkication/json'}) {
+    if (get().biographyHero.length === 0) {
+      set({ loading: true })
+    } else {
+      set({ loadingNewitem: true })
+    }
+    
+    try {
+      const response = await fetch(url, {method, body, headers});
+      if (!response.ok) {
+        throw new Error(`Could not fetch ${url}, status: ${response.status}`);
+      }
+      const data = await response.json();
 
-  const _apiBase = 'https://superheroapi.com/api.php/8c5c7cad236740defc0bb7b95c4e81e6/';
+      set({ loading: false })
+      set({ loadingNewitem: false })
+      return data;
+    } catch (e) {
+      set({ loading: false })
+      set({ loadingNewitem: false })
+      set({ error: e.message })
+      throw e;
+    }
+  },
 
-  // Function get hero from by API
+  async getCharacter(id) {
+    const response = await get().request(`${get()._apiBase}${id}`);
+    return get()._transformHero(response);    
+  },
 
-  const getCharacter = async (id) => {
-    const res = await request(`${_apiBase}${id}`);
-    return _transformHero(res);
-  }
+  async setBiographyHero(id) {
+    const biographyHero = await get().getCharacter(id)
+    set({ biographyHero })
+  },
 
-  // Function update hero
-
-  const updateChar = async (id, setter) => {
-    await getCharacter(id)
-      .then((response) => {
-        setter(response)
-      })
-      .catch((error) => {
-        console.error("Ошибка при загрузке персонажа на страницу:", error);
-        throw error;
-      })
-  };
-
-  const _transformHero = (hero) => {
+  _transformHero (hero) {
     return {
       id: hero.id,
       name: hero.name,
@@ -82,9 +98,7 @@ const useHeroService = () => {
         },
       ]
     }
-  }
+  },
+}))
 
-  return {loading, error, clearError, getCharacter, updateChar}
-}
-
-export default useHeroService;
+export default useStore

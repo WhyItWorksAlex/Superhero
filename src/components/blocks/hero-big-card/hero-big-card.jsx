@@ -4,8 +4,10 @@ import MainHeroInfo from "/src/components/ui/main-hero-info/main-hero-info";
 import StatsHeroInfo from "/src/components/ui/stats-hero-info/stats-hero-info";
 import { checkImage } from "../../../utils";
 
+import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
-function HeroBigCard( {hero} ) {
+function HeroBigCard( {hero, newLoading} ) {
 
   // List of sections
 
@@ -62,23 +64,30 @@ function HeroBigCard( {hero} ) {
 
   const [hasImage, setHasImage] = useState(true);
 
+  const image = newLoading ? (
+    <Skeleton wrapper={StyledImageWrapper} borderRadius={'20px'} />
+  ) : (
+    <StyledImageWrapper>
+      <StyledImage src={checkImage(hasImage, hero)} onError={() => setHasImage(false)}/>
+    </StyledImageWrapper>
+  );
+
   return (
     <>
       {hero?.name && (
-        <StyledWrapperCard>
-          <StyledWrapperLeftPart>
-            <StyledImageWrapper>
-              <StyledImage src={checkImage(hasImage, hero)} onError={() => setHasImage(false)}/>
-            </StyledImageWrapper>
-            <StatsHeroInfo stats={hero.stats}/>
-          </StyledWrapperLeftPart>
-          <Description>
-            <MainHeroInfo data={information} />
-          </Description>
-        </StyledWrapperCard>
+        <SkeletonTheme baseColor='#ebebeb' highlightColor='#d6d6d6' duration={1} >
+          <StyledWrapperCard>
+            <StyledWrapperLeftPart>
+              {image}
+              <StatsHeroInfo stats={hero.stats} newLoading={newLoading} />
+            </StyledWrapperLeftPart>
+            <Description>
+              <MainHeroInfo data={information} newLoading={newLoading} />
+            </Description>
+          </StyledWrapperCard>
+        </SkeletonTheme>
       )}
     </>
-
   );
 }
 

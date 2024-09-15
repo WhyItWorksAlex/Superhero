@@ -1,4 +1,4 @@
-import styled  from "styled-components";
+import styled, { css }  from "styled-components";
 
 export const StyledMainHeroInfo = styled.ul`
   margin: 0;
@@ -10,10 +10,22 @@ export const StyledMainHeroInfo = styled.ul`
 export const Li = styled.li`
   margin: 0;
   padding: 0;
+  margin-bottom: 12px;  
   font-weight: 700;
-  margin-bottom: 12px;
   font-size: 20px;
   line-height: 25px;
+
+  ${(props) =>
+  props.$visible
+    ? css`
+      display: block; 
+
+    `
+    : css`
+      display: flex;
+      gap: 10px;     
+    `
+  }; 
 `
 
 export const Span = styled.span`
