@@ -17,7 +17,7 @@ export const StyledPaginationBtn = styled(Button)`
   background-color: inherit;
   color: white;
   font-size: 23px;
-  line-height: 32px;
+  line-height: 34px;
   cursor: pointer;
   font-family: "Albert Sans", sans-serif;
   font-weight: 400;
