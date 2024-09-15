@@ -75,7 +75,7 @@ function HeroBigCard( {hero, newLoading} ) {
   return (
     <>
       {hero?.name && (
-        <SkeletonTheme baseColor='#ebebeb' highlightColor='#d6d6d6' duration={1} >
+        <SkeletonTheme baseColor='#ebebeb' highlightColor='#d6d6d6' duration={1}>
           <StyledWrapperCard>
             <StyledWrapperLeftPart>
               {image}

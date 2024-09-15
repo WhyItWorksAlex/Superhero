@@ -3,7 +3,7 @@ import { StyledMainHeroInfo, Li, Span } from "./styles";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-function MainHeroInfo( {data, newLoading} ) {
+function MainHeroInfo( {data, newLoading, short} ) {
 
   return (
     <StyledMainHeroInfo>
@@ -12,8 +12,8 @@ function MainHeroInfo( {data, newLoading} ) {
           data.map((line) => {
             return (
               <Li key={line.title} >
-                <Skeleton width={100} inline={true}/>
-                <Skeleton width={350} inline={true}/>
+                <Skeleton width={short ? 60 : 100} inline={true}/>
+                <Skeleton width={short ? 155 : 350} inline={true}/>
               </Li>
             );
           })

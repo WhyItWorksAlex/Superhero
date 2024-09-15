@@ -52,3 +52,12 @@ export function addZero (num) {
     return `${num}`
   }
 }
+
+// List of heroes
+
+export async function loadHeroesList() {
+  const response = await fetch('/src/heroesList.json');
+  const data = await response.json();
+  const heroes = data.heroes
+  return heroes
+}

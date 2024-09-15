@@ -14,8 +14,6 @@ function BiographyPage() {
   useEffect (() => {
     if (!biographyHero.id) {
       setBiographyHero(644)
-    } else if (biographyHero.id !== 644) {
-      setBiographyHero(biographyHero.id)
     } 
   }, [])
 
@@ -25,7 +23,7 @@ function BiographyPage() {
   return (
     <StyledBiographyPage>
       <P>This section is about heroes information. You can figure out powerstats, biography, appearance, work, connections and so on.</P>
-      <Search setBiographyHero={setBiographyHero} />
+      <Search />
       {card}
       {load}
     </StyledBiographyPage>

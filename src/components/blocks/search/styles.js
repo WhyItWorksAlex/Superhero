@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import Button from "/src/components/ui/button/button"
 
 export const Ul = styled.ul`
@@ -17,11 +17,13 @@ export const StyledPaginationBtn = styled(Button)`
   background-color: inherit;
   color: white;
   font-size: 23px;
+  line-height: 32px;
   cursor: pointer;
   font-family: "Albert Sans", sans-serif;
   font-weight: 400;
   font-style: normal;
   transition: 0.2s ease-in-out all;
+  width: 36px;
 
   &:hover {
     text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #BFE2FF, 0 0 0.5em #BFE2FF, 0 0 0.1em #BFE2FF;
@@ -33,6 +35,16 @@ export const StyledPaginationBtn = styled(Button)`
     color: ${(props) => props.theme.btnHoverTextColor};
     opacity: 0.6;
   }
+
+  ${(props) =>
+  props.$isActive
+    ? css`
+      text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #BFE2FF, 0 0 0.5em #BFE2FF, 0 0 0.1em #BFE2FF;
+      color: ${(props) => props.theme.btnHoverTextColor};
+      font-size: 28px;
+    `
+    : null
+  }; 
 `;
 
 export const Content = styled.div`
@@ -73,6 +85,14 @@ export const HeroBtn = styled(Button)`
     text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #BFE2FF, 0 0 0.5em #BFE2FF, 0 0 0.1em #BFE2FF;
     opacity: 0.6;
   }
+
+  ${(props) =>
+  props.$isActive
+    ? css`
+      text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #BFE2FF, 0 0 0.5em #BFE2FF, 0 0 0.1em #BFE2FF;
+    `
+    : null
+  };
 `;
 
 export const NextPageBtn = styled(Button)`

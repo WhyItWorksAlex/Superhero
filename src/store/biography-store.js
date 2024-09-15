@@ -8,6 +8,11 @@ const useStore = create((set, get) => ({
   loadingNewitem: false,
   _apiBase: 'https://superheroapi.com/api.php/8c5c7cad236740defc0bb7b95c4e81e6/',
 
+  // Search information 
+  curPage: 5,
+  curLetter: 's',
+
+
   async request (url, method = 'GET', body = null, headers = {'Content-Type': 'appkication/json'}) {
     if (get().biographyHero.length === 0) {
       set({ loading: true })
@@ -41,6 +46,18 @@ const useStore = create((set, get) => ({
   async setBiographyHero(id) {
     const biographyHero = await get().getCharacter(id)
     set({ biographyHero })
+  },
+
+  setCurPage(page) {
+    set({ curPage: page })
+  },
+
+  changeCurPage(num) {
+    set((state) => ({ curPage: state.curPage + num }))
+  },
+
+  setCurLetter(letter) {
+    set({ curLetter: letter })
   },
 
   _transformHero (hero) {

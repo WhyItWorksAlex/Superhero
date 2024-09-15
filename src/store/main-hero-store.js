@@ -4,12 +4,27 @@ import { validateStat } from "../utils";
 const useStore = create((set, get) => ({
   hero1: [],
   hero2: [],
-  loading: false,
+  loadingHero1: false,
+  loadingHero2: false,
   error: null,
   _apiBase: 'https://superheroapi.com/api.php/8c5c7cad236740defc0bb7b95c4e81e6/',
+  // _apiBase: 'https://superheroapi.com/ap.php/8c5c7cad236740defc0bb7b95c4e81e6/',
 
-  async request (url, method = 'GET', body = null, headers = {'Content-Type': 'appkication/json'}) {
-    set({ loading: true })
+  heroLoading (heroNum, value) {
+    switch (heroNum) {
+      case 1: {
+        set({ loadingHero1: value });
+        break;
+      }
+      case 2: {
+        set({ loadingHero2: value });
+        break;
+      }
+    }
+  },
+
+  async request (url, heroNum, method = 'GET', body = null, headers = {'Content-Type': 'appkication/json'}) {
+    get().heroLoading(heroNum, true)
 
     try {
       const response = await fetch(url, {method, body, headers});
@@ -18,27 +33,27 @@ const useStore = create((set, get) => ({
       }
       const data = await response.json();
 
-      set({ loading: false })
+      get().heroLoading(heroNum, false)
       return data;
     } catch (e) {
-      set({ loading: false })
+      get().heroLoading(heroNum, false)
       set({ error: e.message })
-      throw e;
+      throw get().error;
     }
   },
 
-  async getCharacter(id) {
-    const response = await get().request(`${get()._apiBase}${id}`);
+  async getCharacter(id, heroNum) {
+    const response = await get().request(`${get()._apiBase}${id}`, heroNum);
     return get()._transformHero(response);    
   },
 
   async setHero1(id) {
-    const hero1 = await get().getCharacter(id)
+    const hero1 = await get().getCharacter(id, 1)
     set({ hero1 })
   },
 
   async setHero2(id) {
-    const hero2 = await get().getCharacter(id)
+    const hero2 = await get().getCharacter(id, 2)
     set({ hero2 })
   },
 

@@ -1,33 +1,78 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Ul, StyledPaginationBtn , Content, UlHeroes, HeroBtn, NextPageBtn, PrevPageBtn } from "./styles";
-import { heroes } from "/src/const";
+// import { heroes } from "/src/const";
+import {ALPHABET, MAXVISIBLENAMES} from '../../../const'
+import useStore from "../../../store/biography-store";
 
-function Search ( {setBiographyHero} ) {
+import { loadHeroesList } from "../../../utils";
 
-  const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+function Search ( ) {
+
+  // State with information about heroes from Zustand
+
+  const {
+          biographyHero, 
+          setBiographyHero,
+          curPage,
+          setCurPage,
+          changeCurPage,
+          curLetter, 
+          setCurLetter
+        } = useStore(({
+          biographyHero, 
+          setBiographyHero,
+          curPage,
+          setCurPage,
+          changeCurPage,
+          curLetter, 
+          setCurLetter
+        }) => ({
+          biographyHero, 
+          setBiographyHero,
+          curPage,
+          setCurPage,
+          changeCurPage,
+          curLetter, 
+          setCurLetter
+        }))
 
   const [pages, setPages] = useState();
-  const [arrayHeroes, setArrayHeroes] = useState([]);
-  const [curPage, setCurPage] = useState(1);
+  const [filtredHeroes, setfiltredHeroes] = useState([]);
+  const [heroesList, setHeroesList] = useState([]);
 
-  function filterByFirstLetter(arr, letter) {
+  // Get hero from json file
+
+  const getHeroes = useMemo(async () => {
+    return await loadHeroesList()
+  }, [])
+
+  // Fultred heroes array with first letter
+
+  function filterByFirstLetter(arr, letter = curLetter) {
     let filtredArray = arr.filter(obj => obj.name.startsWith(letter.toUpperCase()));
-    setArrayHeroes(filtredArray);
-    setPages(Math.ceil(filtredArray.length / 18));
+    setfiltredHeroes(filtredArray);
+    setPages(Math.ceil(filtredArray.length / MAXVISIBLENAMES));
   };
 
   useEffect(() => {
-    filterByFirstLetter(heroes, "a")
+    getHeroes
+    .then(res => {
+      setHeroesList(res)
+      return res;
+    })
+    .then(res => filterByFirstLetter(res))
   }, [])
 
   return (
     <>
       <Ul>
-        {alphabet.split('').map((letter, index) => (
+        {ALPHABET.split('').map((letter, index) => (
           <li key={index}>
-            <StyledPaginationBtn  
+            <StyledPaginationBtn 
+              $isActive={(curLetter === letter)}  
               onClick={() => {
-                filterByFirstLetter(heroes, letter);
+                setCurLetter(letter);
+                filterByFirstLetter(heroesList, letter);
                 setCurPage(1);
               }}>
               {letter.toUpperCase()}
@@ -37,21 +82,26 @@ function Search ( {setBiographyHero} ) {
       </Ul>
       <Content>
         <UlHeroes>
-          {arrayHeroes.map((name, index) => (
+          {filtredHeroes.map((hero, index) => (
             <React.Fragment key={index}>
-              {index < 18 * curPage && index >= (curPage === 1 ? 0 : 18 * (curPage - 1)) && (
+              {index < MAXVISIBLENAMES * curPage && index >= (curPage === 1 ? 0 : MAXVISIBLENAMES * (curPage - 1)) && (
                 <li key={index}>
-                  <HeroBtn onClick={() => {setBiographyHero(name.id)}}>{name.name}</HeroBtn>
+                  <HeroBtn 
+                    $isActive={(+biographyHero.id === hero.id)}  
+                    onClick={() => {setBiographyHero(hero.id)}}                    
+                  >
+                    {hero.name}
+                  </HeroBtn>
                 </li>
               )}
             </React.Fragment>
           ))}
         </UlHeroes>
           {curPage > 1 && (
-            <PrevPageBtn onClick={() => setCurPage((prev) => prev - 1)}></PrevPageBtn>
+            <PrevPageBtn onClick={() => changeCurPage(-1)}></PrevPageBtn>
           )}
           {pages !== 1 && curPage < pages && (
-            <NextPageBtn onClick={() => setCurPage((prev) => prev + 1)}></NextPageBtn>
+            <NextPageBtn onClick={() => changeCurPage(1)}></NextPageBtn>
           )}
 
       </Content>
