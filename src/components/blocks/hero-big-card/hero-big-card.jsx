@@ -38,11 +38,11 @@ function HeroBigCard( {hero, newLoading} ) {
     },
     {
       title: "Weight",
-      content: hero.height,
+      content: hero.weight,
     },
     {
       title: "Alter egos",
-      content: hero.weight,
+      content: hero.alterEgos,
     },
     {
       title: "First appearance",

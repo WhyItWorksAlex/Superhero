@@ -1,7 +1,7 @@
 import {create} from 'zustand';
 import { validateStat } from "../utils";
 
-const useStore = create((set, get) => ({
+const useMainStore = create((set, get) => ({
   hero1: [],
   hero2: [],
   loadingHero1: false,
@@ -23,7 +23,7 @@ const useStore = create((set, get) => ({
     }
   },
 
-  async request (url, heroNum, method = 'GET', body = null, headers = {'Content-Type': 'appkication/json'}) {
+  async request (url, heroNum, method = 'GET', body = null, headers = {'Content-Type': 'application/json'}) {
     get().heroLoading(heroNum, true)
 
     try {
@@ -115,4 +115,4 @@ const useStore = create((set, get) => ({
   },
 }))
 
-export default useStore
+export default useMainStore

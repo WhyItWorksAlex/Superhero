@@ -1,13 +1,13 @@
 import ChangeButton from "/src/components/ui/change-button/change-button";
 import { StyledMainButtons } from "./styles";
-import useStore from "../../../store/main-hero-store";
+import useMainStore from "../../../store/main-hero-store";
 
 
 function MainButtons( {idArray} ) {
 
   // State with information about heroes from Zustand
 
-  const {setHero1, setHero2} = useStore(({setHero1, setHero2}) => ({setHero1, setHero2}))
+  const {setHero1, setHero2} = useMainStore(({setHero1, setHero2}) => ({setHero1, setHero2}))
 
 
   return (

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledWinnerModal = styled.section`
-  display: ${(props) => props.$isActive ? 'flex' : 'none'};
+  display: flex;
   position: fixed;
   top: 0;
   left: 0;

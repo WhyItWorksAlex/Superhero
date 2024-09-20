@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import { StyledWinnerModal, Wrapper, StyledCloseBtn} from "./styles";
 
 
-function Modal ( {isActiveModal, setIsActiveModal, marginTop, children} ) {
+function Modal ( {setIsActiveModal, marginTop, children} ) {
 
   // Close modal with key ESC
 
   const closeKey = (e) => {
-    if (e.key === 'Escape' && isActiveModal === true){
+    if (e.key === 'Escape'){
       closeModal();
     }    
   }
@@ -15,7 +15,7 @@ function Modal ( {isActiveModal, setIsActiveModal, marginTop, children} ) {
   // Close modal click outside modal
 
   const closeOut = (e) => {
-    if (e.target.getAttribute('data-modal') && isActiveModal === true){
+    if (e.target.getAttribute('data-modal')){
       closeModal();
     }    
   }
@@ -29,7 +29,7 @@ function Modal ( {isActiveModal, setIsActiveModal, marginTop, children} ) {
       document.removeEventListener('keydown', closeKey);
       document.removeEventListener('click', closeOut)
     }
-  },[isActiveModal])
+  },[])
 
   // Function close Modal Window
 
@@ -39,7 +39,7 @@ function Modal ( {isActiveModal, setIsActiveModal, marginTop, children} ) {
   }
 
   return (
-    <StyledWinnerModal $isActive={isActiveModal} data-modal='modal'>
+    <StyledWinnerModal data-modal='modal'>
       <Wrapper $marginTop={marginTop}>
         <StyledCloseBtn type="button" onClick={closeModal} >✘</StyledCloseBtn>
         {children}

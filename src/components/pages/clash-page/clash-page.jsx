@@ -5,7 +5,8 @@ import WinnerModal from "/src/components/ui/winner-modal/winner-modal";
 import Waiting from "/src/components//blocks/waiting/waiting";
 import { getRandomInteger, addZero } from "/src/utils";
 import { QTYHEROES } from "/src/const";
-import useStore from "../../../store/main-hero-store";
+import useMainStore from "../../../store/main-hero-store";
+import useFightRecordStore from "../../../store/history-store";
 import { HeroCardWrapper, StyledFightButton } from "./styles";
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -19,7 +20,7 @@ function calcHeroTotalStat (stats) {
   return result;
 }
 
-function ClashPage ( {sethistoryFightsList, historyFightsList} ) {
+function ClashPage () {
 
   // State with information about heroes from Zustand
 
@@ -31,7 +32,7 @@ function ClashPage ( {sethistoryFightsList, historyFightsList} ) {
           error, 
           loadingHero1, 
           loadingHero2
-        } = useStore(({
+        } = useMainStore(({
           hero1, 
           hero2, 
           setHero1, 
@@ -48,6 +49,10 @@ function ClashPage ( {sethistoryFightsList, historyFightsList} ) {
           loadingHero1, 
           loadingHero2
         }))
+
+  // State with information about fight history
+
+  const {historyFightsList, setHistoryFightsList} = useFightRecordStore(({historyFightsList, setHistoryFightsList}) => ({historyFightsList, setHistoryFightsList}))
 
   // State information about active WinnerModal
 
@@ -121,10 +126,7 @@ function ClashPage ( {sethistoryFightsList, historyFightsList} ) {
     } else {
       historyResult.winner = 'draw';
     }
-    sethistoryFightsList((prev) => {
-      sessionStorage.setItem('storageHistoryFightList', JSON.stringify([...prev, historyResult]));
-      return [...prev, historyResult]
-    });
+    setHistoryFightsList(historyResult);
     return historyResult
   }
 
@@ -137,12 +139,8 @@ function ClashPage ( {sethistoryFightsList, historyFightsList} ) {
   )
 
   const firstLoadingContent = firstLoading ? <Waiting $isFunny={true}/> : null
-  const errorContent = error ? 
-  (
-    <>
-    <Waiting $isFunny={false}/>
-    </>
-  ) : null
+  const errorContent = error ? <Waiting /> : null
+  const modal = isActiveWinnerModal ? <WinnerModal setIsActiveWinnerModal={setIsActiveWinnerModal} lastFight={historyFightsList[historyFightsList.length-1]} /> : null
 
   return (
     <>
@@ -162,7 +160,7 @@ function ClashPage ( {sethistoryFightsList, historyFightsList} ) {
             </StyledFightButton>
             <HeroCard hero={hero2} newLoading={loadingHero2}/>
           </HeroCardWrapper>
-          <WinnerModal isActiveWinnerModal={isActiveWinnerModal} setIsActiveWinnerModal={setIsActiveWinnerModal} lastFight={historyFightsList[historyFightsList.length-1]} />
+          {modal}
         </>
       ) : (
         <>

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Ul, StyledPaginationBtn , Content, UlHeroes, HeroBtn, NextPageBtn, PrevPageBtn } from "./styles";
-// import { heroes } from "/src/const";
 import {ALPHABET, MAXVISIBLENAMES} from '../../../const'
-import useStore from "../../../store/biography-store";
+import useBiographyStore from "../../../store/biography-store";
+import SearchInput from "../../ui/search-input/search-input";
 
 import { loadHeroesList } from "../../../utils";
 
@@ -18,7 +18,7 @@ function Search ( ) {
           changeCurPage,
           curLetter, 
           setCurLetter
-        } = useStore(({
+        } = useBiographyStore(({
           biographyHero, 
           setBiographyHero,
           curPage,
@@ -36,6 +36,7 @@ function Search ( ) {
           setCurLetter
         }))
 
+  // Static 
   const [pages, setPages] = useState();
   const [filtredHeroes, setfiltredHeroes] = useState([]);
   const [heroesList, setHeroesList] = useState([]);
@@ -54,6 +55,8 @@ function Search ( ) {
     setPages(Math.ceil(filtredArray.length / MAXVISIBLENAMES));
   };
 
+
+
   useEffect(() => {
     getHeroes
     .then(res => {
@@ -65,6 +68,7 @@ function Search ( ) {
 
   return (
     <>
+      <SearchInput />
       <Ul>
         {ALPHABET.split('').map((letter, index) => (
           <li key={index}>
@@ -88,7 +92,7 @@ function Search ( ) {
                 <li key={index}>
                   <HeroBtn 
                     $isActive={(+biographyHero.id === hero.id)}  
-                    onClick={() => {setBiographyHero(hero.id)}}                    
+                    onClick={() => {setBiographyHero(hero.id)}}                
                   >
                     {hero.name}
                   </HeroBtn>
@@ -103,7 +107,6 @@ function Search ( ) {
           {curPage < pages && (
             <NextPageBtn onClick={() => changeCurPage(1)}></NextPageBtn>
           )}
-
       </Content>
     </>
   );

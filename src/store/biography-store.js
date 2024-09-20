@@ -1,21 +1,26 @@
 import {create} from 'zustand';
 import { validateStat } from "../utils";
 
-const useStore = create((set, get) => ({
+const useBiographyStore = create((set, get) => ({
   biographyHero: [],
-  loading: false,
-  error: null,
+  loading: false,  
   loadingNewitem: false,
+  loadingSearch: false,
+  error: null,
   _apiBase: 'https://superheroapi.com/api.php/8c5c7cad236740defc0bb7b95c4e81e6/',
+  _apiSearch: 'search/',
 
   // Search information 
   curPage: 5,
   curLetter: 's',
 
 
-  async request (url, method = 'GET', body = null, headers = {'Content-Type': 'appkication/json'}) {
-    if (get().biographyHero.length === 0) {
+  async request (url, method = 'GET', body = null, headers = {'Content-Type': 'application/json'}) {
+
+    if (get().biographyHero.length === 0 && !url.includes(get()._apiSearch)) {
       set({ loading: true })
+    } else if (url.includes(get()._apiSearch)) {
+      set({ loadingSearch: true })
     } else {
       set({ loadingNewitem: true })
     }
@@ -29,10 +34,12 @@ const useStore = create((set, get) => ({
 
       set({ loading: false })
       set({ loadingNewitem: false })
+      set({ loadingSearch: false })
       return data;
     } catch (e) {
       set({ loading: false })
       set({ loadingNewitem: false })
+      set({ loadingSearch: false })
       set({ error: e.message })
       throw e;
     }
@@ -46,6 +53,17 @@ const useStore = create((set, get) => ({
   async setBiographyHero(id) {
     const biographyHero = await get().getCharacter(id)
     set({ biographyHero })
+  },
+
+  async getCharacterByName(letter) {
+    try {
+      const response = await get().request(`${get()._apiBase}${get()._apiSearch}${letter}`);
+      let heroesArr = response.results.filter((item) => (item.name.toLowerCase()).startsWith(letter.toLowerCase()));
+      return heroesArr.map((item) => get()._transformHero(item))
+    }
+    catch (error) {
+      return []
+    }
   },
 
   setCurPage(page) {
@@ -118,4 +136,4 @@ const useStore = create((set, get) => ({
   },
 }))
 
-export default useStore
+export default useBiographyStore

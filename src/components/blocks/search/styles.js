@@ -28,12 +28,14 @@ export const StyledPaginationBtn = styled(Button)`
   &:hover {
     text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #BFE2FF, 0 0 0.5em #BFE2FF, 0 0 0.1em #BFE2FF;
     color: ${(props) => props.theme.btnHoverTextColor};
+    font-size: 28px;
   }
 
   &:active {
     text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #BFE2FF, 0 0 0.5em #BFE2FF, 0 0 0.1em #BFE2FF;
     color: ${(props) => props.theme.btnHoverTextColor};
     opacity: 0.6;
+    font-size: 28px;
   }
 
   ${(props) =>
@@ -90,6 +92,7 @@ export const HeroBtn = styled(Button)`
   props.$isActive
     ? css`
       text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #BFE2FF, 0 0 0.5em #BFE2FF, 0 0 0.1em #BFE2FF;
+      pointer-events: none;
     `
     : null
   };

@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { StyledHistoryPage, P, StyledLink, ButtonClear, Ul, Li, FigthInfo, TournamentGrid, TournamentRoundFinal, TournamentRoundWinner, TournamentMatch, TournamentMatchWinner, TournamentMatchTeam, TournamentMatchTeamWinner, Divider } from "./styles";
 import { APPROUTE } from "/src/const";
 import HeroBigCardModal from "/src/components/ui/hero-big-card-modal/hero-big-card-modal";
+import useFightRecordStore from "../../../store/history-store";
 
-function HistoryPage( {historyFightsList, sethistoryFightsList} ) {
+function HistoryPage() {
+
+  // State with information about fight history
+
+  const {historyFightsList, resetHistoryFightsList} = useFightRecordStore(({historyFightsList, resetHistoryFightsList}) => ({historyFightsList, resetHistoryFightsList}))
 
   // State information about current Big Card hero
 
@@ -37,12 +42,12 @@ function HistoryPage( {historyFightsList, sethistoryFightsList} ) {
 
   function handleClear () {
     sessionStorage.removeItem('storageHistoryFightList');
-    sethistoryFightsList([]);
+    resetHistoryFightsList();
   }
 
   const reverseHistoryFightList = [...historyFightsList].reverse()
 
-  const modal = isActiveBigCardHeroModal ? <HeroBigCardModal isActiveBigCardHeroModal={isActiveBigCardHeroModal} setIsActiveBigCardHeroModal={setIsActiveBigCardHeroModal} hero={curHero} /> : null;
+  const modal = isActiveBigCardHeroModal ? <HeroBigCardModal setIsActiveBigCardHeroModal={setIsActiveBigCardHeroModal} hero={curHero} /> : null;
 
   return (
     <StyledHistoryPage>
