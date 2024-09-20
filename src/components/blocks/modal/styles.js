@@ -13,11 +13,12 @@ export const StyledWinnerModal = styled.section`
 `;
 
 export const Wrapper = styled.div`
-  margin: 0 auto;
+  margin: 0 auto auto;
   margin-top: ${(props) => props.$marginTop};
   position: relative;
   padding: 40px;
   background-color: transparent;
+  
 `;
 
 export const StyledCloseBtn = styled.button`

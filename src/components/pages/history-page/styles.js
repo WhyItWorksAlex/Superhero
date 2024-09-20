@@ -34,6 +34,30 @@ export const StyledLink = styled(Link)`
   }
 `;
 
+export const ButtonClear = styled(Button)`
+  font-size: 20px;
+  line-height: 28px;
+  margin: 0 0 10px auto;
+  color: ${(props) => props.theme.fontColorBlack};
+  border: 3px outset;
+  background-color: #d6f2c5;
+  transition: 0.3s ease-in-out all;
+  box-sizing: border-box;
+  display: block;  
+  padding: 10px 36px 10px 36px;
+  
+  &:hover {
+    background-color: #87A96B;
+  }
+
+  &:active {
+    border: 3px inset;
+    background-color: #87A96B;
+  }
+  
+
+`
+
 export const Ul = styled.ul`
   list-style: none;
   margin: 0;

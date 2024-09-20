@@ -100,7 +100,7 @@ function Search ( ) {
           {curPage > 1 && (
             <PrevPageBtn onClick={() => changeCurPage(-1)}></PrevPageBtn>
           )}
-          {pages !== 1 && curPage < pages && (
+          {curPage < pages && (
             <NextPageBtn onClick={() => changeCurPage(1)}></NextPageBtn>
           )}
 

@@ -114,7 +114,6 @@ function ClashPage ( {sethistoryFightsList, historyFightsList} ) {
 
     let hero1Total = parseInt(calcHeroTotalStat(hero1.stats));
     let hero2Total = parseInt(calcHeroTotalStat(hero2.stats));
-    console.log(hero1Total, hero2Total)
     if (hero1Total > hero2Total) {
       historyResult.winner = 'firstHero';
     } else if (hero1Total < hero2Total) {
@@ -122,7 +121,10 @@ function ClashPage ( {sethistoryFightsList, historyFightsList} ) {
     } else {
       historyResult.winner = 'draw';
     }
-    sethistoryFightsList([...historyFightsList, historyResult]);
+    sethistoryFightsList((prev) => {
+      sessionStorage.setItem('storageHistoryFightList', JSON.stringify([...prev, historyResult]));
+      return [...prev, historyResult]
+    });
     return historyResult
   }
 

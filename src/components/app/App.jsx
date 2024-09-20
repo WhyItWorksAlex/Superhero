@@ -10,9 +10,13 @@ import BiographyPage from "/src/components/pages/biography-page/biography-page";
 
 function App () {
 
+  // Checking session storage for history fight list
+
+  const storageHistoryFightList = JSON.parse(sessionStorage.getItem('storageHistoryFightList'));
+
   // State history list
 
-  const [historyFightsList, sethistoryFightsList] = useState([]);
+  const [historyFightsList, sethistoryFightsList] = useState(storageHistoryFightList ? storageHistoryFightList : []);
 
   return (
     <>
@@ -25,7 +29,7 @@ function App () {
             <Route
               exact
               path={APPROUTE.HISTORY.to}
-              element={<HistoryPage historyFightsList={historyFightsList} />}
+              element={<HistoryPage sethistoryFightsList={sethistoryFightsList} historyFightsList={historyFightsList} />}
             />
             <Route
               exact

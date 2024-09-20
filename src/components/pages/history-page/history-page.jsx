@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { StyledHistoryPage, P, StyledLink, Ul, Li, FigthInfo, TournamentGrid, TournamentRoundFinal, TournamentRoundWinner, TournamentMatch, TournamentMatchWinner, TournamentMatchTeam, TournamentMatchTeamWinner, Divider } from "./styles";
+import { StyledHistoryPage, P, StyledLink, ButtonClear, Ul, Li, FigthInfo, TournamentGrid, TournamentRoundFinal, TournamentRoundWinner, TournamentMatch, TournamentMatchWinner, TournamentMatchTeam, TournamentMatchTeamWinner, Divider } from "./styles";
 import { APPROUTE } from "/src/const";
 import HeroBigCardModal from "/src/components/ui/hero-big-card-modal/hero-big-card-modal";
 
-function HistoryPage( {historyFightsList} ) {
+function HistoryPage( {historyFightsList, sethistoryFightsList} ) {
 
   // State information about current Big Card hero
 
@@ -11,7 +11,9 @@ function HistoryPage( {historyFightsList} ) {
 
   const [curHero, setCurHero] = useState({});
 
-  function handleBtn (fight, heroType) {
+  // Function click on hero button
+
+  function handleHero (fight, heroType) {
     switch (heroType) {
       case 'first': 
         setCurHero(fight.firstHero);
@@ -31,6 +33,17 @@ function HistoryPage( {historyFightsList} ) {
     setIsActiveBigCardHeroModal(true);
   }
 
+  // Function click on clear button
+
+  function handleClear () {
+    sessionStorage.removeItem('storageHistoryFightList');
+    sethistoryFightsList([]);
+  }
+
+  const reverseHistoryFightList = [...historyFightsList].reverse()
+
+  const modal = isActiveBigCardHeroModal ? <HeroBigCardModal isActiveBigCardHeroModal={isActiveBigCardHeroModal} setIsActiveBigCardHeroModal={setIsActiveBigCardHeroModal} hero={curHero} /> : null;
+
   return (
     <StyledHistoryPage>
       {historyFightsList.length === 0 ? (
@@ -41,7 +54,8 @@ function HistoryPage( {historyFightsList} ) {
         </>
       ) : (
       <Ul>
-        {historyFightsList.map((fight, index) => (
+        <ButtonClear onClick={handleClear}>Clear history</ButtonClear>
+        {reverseHistoryFightList.map((fight, index) => (
           <Li key={index}>
             <FigthInfo>Fight №{fight.number}. {fight.date}</FigthInfo>
             <TournamentGrid>
@@ -49,13 +63,13 @@ function HistoryPage( {historyFightsList} ) {
                 <TournamentMatch>
                   <TournamentMatchTeam
                     onClick={() => {
-                      handleBtn(fight, 'first');
+                      handleHero(fight, 'first');
                     }}>
                     {fight.firstHero.name}
                   </TournamentMatchTeam>
                   <TournamentMatchTeam
                     onClick={() => {
-                      handleBtn(fight, 'second');
+                      handleHero(fight, 'second');
                     }}>
                     {fight.secondHero.name}
                   </TournamentMatchTeam>
@@ -65,7 +79,7 @@ function HistoryPage( {historyFightsList} ) {
                 <TournamentMatchWinner>
                   <TournamentMatchTeamWinner
                     onClick={() => {
-                      handleBtn(fight, 'winner');
+                      handleHero(fight, 'winner');
                     }}>
                     {fight.winner !== 'draw' ? fight[fight.winner].name : 'draw'}
                   </TournamentMatchTeamWinner>
@@ -76,11 +90,7 @@ function HistoryPage( {historyFightsList} ) {
           </Li>
           ))}
       </Ul>)}
-      {isActiveBigCardHeroModal === true ? (
-        <HeroBigCardModal isActiveBigCardHeroModal={isActiveBigCardHeroModal} setIsActiveBigCardHeroModal={setIsActiveBigCardHeroModal} hero={curHero} />
-      ) : (
-        <></>
-      )}
+      {modal}
     </StyledHistoryPage>
   );
 }
