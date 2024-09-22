@@ -10,7 +10,7 @@ const Neon = React.memo(( ) => {
     <StyledNeon>  
       <NeonText 
         // {...(pageUrl === APPROUTE.MAIN ? { as: "span" } : { to: APPROUTE.MAIN })} // rerender on main page
-        {...{ to: APPROUTE.MAIN }}
+        {...{ to: APPROUTE.MAIN.to }}
       >Cl
         <NeonLetter>as</NeonLetter>
         h of Sup
