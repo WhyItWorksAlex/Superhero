@@ -9,7 +9,7 @@ import useMainStore from "../../../store/main-hero-store";
 import useFightRecordStore from "../../../store/history-store";
 import { HeroCardWrapper, StyledFightButton } from "./styles";
 import toast from 'react-hot-toast';
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 // Function calculating total hero stat
 
@@ -153,7 +153,7 @@ function ClashPage () {
 
 
   return (
-    <>
+    <HelmetProvider>
       <Helmet>
         <meta
             name="description"
@@ -186,7 +186,7 @@ function ClashPage () {
           </>
         )
       }
-    </>
+    </HelmetProvider>
   );
 }
 

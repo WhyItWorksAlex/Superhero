@@ -3,7 +3,7 @@ import { StyledHistoryPage, P, StyledLink, ButtonClear, Ul, Li, FightInfo, Tourn
 import { APPROUTE } from "/src/const";
 import HeroBigCardModal from "/src/components/ui/hero-big-card-modal/hero-big-card-modal";
 import useFightRecordStore from "../../../store/history-store";
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 function HistoryPage() {
 
@@ -51,60 +51,62 @@ function HistoryPage() {
   const modal = isActiveBigCardHeroModal ? <HeroBigCardModal setIsActiveBigCardHeroModal={setIsActiveBigCardHeroModal} hero={curHero} /> : null;
 
   return (
-    <StyledHistoryPage>
-      <Helmet>
-        <meta
-            name="description"
-            content="Fights record page"
-        />
-        <title>Fights record</title>
-      </Helmet>
-      {historyFightsList.length === 0 ? (
-        <>
-          <P>There is no fights record.<br/>
-            <StyledLink to={APPROUTE.MAIN.to}>Go to fight!</StyledLink>
-          </P>
-        </>
-      ) : (
-      <Ul>
-        <ButtonClear onClick={handleClear}>Clear history</ButtonClear>
-        {reverseHistoryFightList.map((fight, index) => (
-          <Li key={index}>
-            <FightInfo>Fight №{fight.number}. {fight.date}</FightInfo>
-            <TournamentGrid>
-              <TournamentRoundFinal>
-                <TournamentMatch>
-                  <TournamentMatchTeam
-                    onClick={() => {
-                      handleHero(fight, 'first');
-                    }}>
-                    {fight.firstHero.name}
-                  </TournamentMatchTeam>
-                  <TournamentMatchTeam
-                    onClick={() => {
-                      handleHero(fight, 'second');
-                    }}>
-                    {fight.secondHero.name}
-                  </TournamentMatchTeam>
-                </TournamentMatch>
-              </TournamentRoundFinal>
-              <TournamentRoundWinner>
-                <TournamentMatchWinner>
-                  <TournamentMatchTeamWinner
-                    onClick={() => {
-                      handleHero(fight, 'winner');
-                    }}>
-                    {fight.winner !== 'draw' ? fight[fight.winner].name : 'draw'}
-                  </TournamentMatchTeamWinner>
-                </TournamentMatchWinner>
-              </TournamentRoundWinner>
-            </TournamentGrid>
-            <Divider />
-          </Li>
-          ))}
-      </Ul>)}
-      {modal}
-    </StyledHistoryPage>
+    <HelmetProvider>
+      <StyledHistoryPage>
+        <Helmet>
+          <meta
+              name="description"
+              content="Fights record page"
+          />
+          <title>Fights record</title>
+        </Helmet>
+        {historyFightsList.length === 0 ? (
+          <>
+            <P>There is no fights record.<br/>
+              <StyledLink to={APPROUTE.MAIN.to}>Go to fight!</StyledLink>
+            </P>
+          </>
+        ) : (
+        <Ul>
+          <ButtonClear onClick={handleClear}>Clear history</ButtonClear>
+          {reverseHistoryFightList.map((fight, index) => (
+            <Li key={index}>
+              <FightInfo>Fight №{fight.number}. {fight.date}</FightInfo>
+              <TournamentGrid>
+                <TournamentRoundFinal>
+                  <TournamentMatch>
+                    <TournamentMatchTeam
+                      onClick={() => {
+                        handleHero(fight, 'first');
+                      }}>
+                      {fight.firstHero.name}
+                    </TournamentMatchTeam>
+                    <TournamentMatchTeam
+                      onClick={() => {
+                        handleHero(fight, 'second');
+                      }}>
+                      {fight.secondHero.name}
+                    </TournamentMatchTeam>
+                  </TournamentMatch>
+                </TournamentRoundFinal>
+                <TournamentRoundWinner>
+                  <TournamentMatchWinner>
+                    <TournamentMatchTeamWinner
+                      onClick={() => {
+                        handleHero(fight, 'winner');
+                      }}>
+                      {fight.winner !== 'draw' ? fight[fight.winner].name : 'draw'}
+                    </TournamentMatchTeamWinner>
+                  </TournamentMatchWinner>
+                </TournamentRoundWinner>
+              </TournamentGrid>
+              <Divider />
+            </Li>
+            ))}
+        </Ul>)}
+        {modal}
+      </StyledHistoryPage>
+    </HelmetProvider>
   );
 }
 
