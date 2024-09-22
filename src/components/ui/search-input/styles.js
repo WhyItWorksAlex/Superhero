@@ -34,6 +34,8 @@ export const SearchForm = styled.form`
   font-size: 22px;
   line-height: 28px;
   position: relative;
+  font-family: "Albert Sans", sans-serif;
+  font-weight: 400;
 `;
 
 export const Label = styled.label`

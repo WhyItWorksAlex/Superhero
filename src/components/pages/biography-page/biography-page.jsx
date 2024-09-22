@@ -28,7 +28,7 @@ function BiographyPage() {
               name="description"
               content="Biography heroes page"
           />
-          <title>Biography {biographyHero.name}</title>
+          <title>Biography {biographyHero.name ? biographyHero.name : 'page'}</title>
       </Helmet>
       <P>This section is about heroes information. You can figure out powerstats, biography, appearance, work, connections and so on.</P>
       <Search />
