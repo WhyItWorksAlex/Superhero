@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "/src/components/layout/header/header";
 import { StyledMain } from "./styles";
 

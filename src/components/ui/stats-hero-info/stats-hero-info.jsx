@@ -1,4 +1,3 @@
-import React from "react";
 import { StyledStatsHeroInfo, Li, Span } from "./styles";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'

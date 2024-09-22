@@ -1,4 +1,3 @@
-import React from "react";
 import { StyledWinnerText } from "./styles";
 import Modal from "/src/components/blocks/modal/modal";
 

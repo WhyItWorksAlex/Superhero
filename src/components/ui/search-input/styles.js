@@ -1,5 +1,32 @@
 import styled from "styled-components";
 
+export const P = styled.p`
+  margin: 10px;
+  margin-left: 20px;
+`;
+
+export const Loading = styled.div`
+  margin: 10px;
+  margin-left: 20px;
+
+  & span {
+    animation: 1s blink infinite
+  }
+  & span:nth-child(2) {
+    animation-delay: 250ms
+  }
+  & span:nth-child(3) {
+    animation-delay: 500ms
+  }
+
+  @keyframes blink {
+    50% {
+      color: transparent
+    }
+  }
+`;
+
+
 export const SearchForm = styled.form`
   z-index: 10;
   width: 600px;
@@ -45,21 +72,20 @@ export const Input = styled.input`
 export const WrapperResults = styled.div`
   position: absolute;
   box-sizing: border-box;
-  top: 38px;
+  top: 41px;
   width: 100%;
   max-height: 500px;
   overflow-y: auto;
   background: #fff;
+  border-radius: 5px;
   border: 2px solid red;
-  border-top: none;
+  border-top: 1px solid red;;
   z-index: 10;
   color: black;
 `;
 
 export const HeroResult = styled.div`
-
   padding: 5px;
-
   box-sizing: border-box;
   width: 100%;
 
@@ -75,13 +101,6 @@ export const HeroResult = styled.div`
     width: 50px;
     height: 50px;
     object-fit: contain;
-  }
-
-  & span {
-    /* border-bottom: 1px solid rgb(207, 203, 203);
-    width: 100%;
-    height: 50px;
-    margin-top: 10px; */
   }
 `;
 

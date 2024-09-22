@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Overlay, SearchForm, Input, Label, WrapperResults, HeroResult } from "./styles";
+import { P, Loading, Overlay, SearchForm, Input, Label, WrapperResults, HeroResult } from "./styles";
 import useBiographyStore from "../../../store/biography-store";
 import useDebounce from "../../../hooks/debounce.hook";
+import toast from 'react-hot-toast';
 
 const SearchInput = () => {
 
@@ -41,14 +42,15 @@ const SearchInput = () => {
   }
 
   const onBlur = () => {
-    setTimeout(() => setDnone(true),150)
+    setTimeout(() => setDnone(true), 150)
   }
 
   const loadCharacterbyName = (request) => {
     if(!request) {
         return
     }
-    getCharacterByName(request).then(data => setSearchHeroesList(data))
+    getCharacterByName(request)
+      .then(data => setSearchHeroesList(data))    
   }
 
   useEffect(()=> {
@@ -57,22 +59,29 @@ const SearchInput = () => {
     }
     loadCharacterbyName(debouncedTerm)
     //eslint-disable-next-line
-  },[debouncedTerm])
+  }, [debouncedTerm])
 
   function onSubmit (e) {
     e.preventDefault();
 
   }
 
-  const renderResults = (debouncedTerm && searchHeroesList.length === 0) ? <span>nothing</span> : searchHeroesList.map(({id, name, image}) => 
+  const renderResults = (debouncedTerm && searchHeroesList.length === 0) ? <P>No results</P> : searchHeroesList.map(({id, name, image}) => 
     <HeroResult key={id}>
       <button onClick={() => {setBiographyHero(id)}} >         
         <img src={image} alt={name}/>
-        <span className='findCharacter__desc'>{name}</span>        
+        <span>{name}</span>        
       </button>
     </HeroResult>)
 
-  const noDisplay = dnone ? 'none' : 'block'
+  const loading = 
+                  <Loading>Loading
+                    <span class="dot">.</span>
+                    <span class="dot">.</span>
+                    <span class="dot">.</span>
+                  </Loading>
+
+  const noDisplay = (dnone || !debouncedTerm) ? 'none' : 'block'
 
   return (
     <>
@@ -93,7 +102,7 @@ const SearchInput = () => {
           />
         </Label>
         <WrapperResults style={{display: noDisplay}}>
-          {loadingSearch ? 'loading...' : renderResults}  
+          {loadingSearch ? loading : renderResults}  
         </WrapperResults>
       </SearchForm>
       {dnone ? null : <Overlay /> }

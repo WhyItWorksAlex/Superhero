@@ -8,7 +8,7 @@ import { QTYHEROES } from "/src/const";
 import useMainStore from "../../../store/main-hero-store";
 import useFightRecordStore from "../../../store/history-store";
 import { HeroCardWrapper, StyledFightButton } from "./styles";
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 // Function calculating total hero stat
 
@@ -74,6 +74,7 @@ function ClashPage () {
     try {
       await setHero1(firstId);
       await setHero2(secondId);
+      toast.success('Heroes loaded!')
     }
     catch (err) {
       toast.error(err)
@@ -108,7 +109,7 @@ function ClashPage () {
 
   function chooseWinner () {
     const now = new Date();
-    const curDate = `${addZero(now.getDay())}.${addZero(now.getMonth())}.${now.getFullYear()} ${addZero(now.getHours())}:${addZero(now.getMinutes())}`;
+    const curDate = `${addZero(now.getDate())}.${addZero(now.getMonth() + 1)}.${now.getFullYear()} ${addZero(now.getHours())}:${addZero(now.getMinutes())}`;
 
     const historyResult = {
       number: historyFightsList.length + 1,
@@ -139,8 +140,16 @@ function ClashPage () {
   )
 
   const firstLoadingContent = firstLoading ? <Waiting $isFunny={true}/> : null
-  const errorContent = error ? <Waiting /> : null
+  const errorContent = error ? <HeroCardWrapper>
+                                <HeroCard hero={hero1} newLoading={true}/>
+                                <StyledFightButton onClick={initHeroes}>
+                                  Try again
+                                </StyledFightButton>
+                                <HeroCard hero={hero2} newLoading={true}/>
+                              </HeroCardWrapper>
+                              : null
   const modal = isActiveWinnerModal ? <WinnerModal setIsActiveWinnerModal={setIsActiveWinnerModal} lastFight={historyFightsList[historyFightsList.length-1]} /> : null
+
 
   return (
     <>
@@ -162,16 +171,13 @@ function ClashPage () {
           </HeroCardWrapper>
           {modal}
         </>
-      ) : (
-        <>
-          {errorContent}
-          {firstLoadingContent}
-        </>
-      )
-    }
-      <Toaster
-        position="bottom-right"
-      />
+        ) : (
+          <>
+            {errorContent}
+            {firstLoadingContent}
+          </>
+        )
+      }
     </>
   );
 }

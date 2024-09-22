@@ -1,4 +1,3 @@
-import React from "react";
 import { StyledProperties, PropertiesList, Property, PropertyImage, PropertyValue } from "./styles";
 import Skeleton from "react-loading-skeleton";
 

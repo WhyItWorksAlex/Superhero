@@ -62,7 +62,7 @@ const useBiographyStore = create((set, get) => ({
       return heroesArr.map((item) => get()._transformHero(item))
     }
     catch (error) {
-      return []
+      return []      
     }
   },
 

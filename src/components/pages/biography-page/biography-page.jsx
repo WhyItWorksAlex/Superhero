@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { StyledBiographyPage, P } from "./styles";
 import HeroBigCard from "/src/components/blocks/hero-big-card/hero-big-card";
 import Search from "/src/components/blocks/search/search";

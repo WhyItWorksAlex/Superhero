@@ -36,7 +36,6 @@ function Search ( ) {
           setCurLetter
         }))
 
-  // Static 
   const [pages, setPages] = useState();
   const [filtredHeroes, setfiltredHeroes] = useState([]);
   const [heroesList, setHeroesList] = useState([]);
@@ -54,8 +53,6 @@ function Search ( ) {
     setfiltredHeroes(filtredArray);
     setPages(Math.ceil(filtredArray.length / MAXVISIBLENAMES));
   };
-
-
 
   useEffect(() => {
     getHeroes

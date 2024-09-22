@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { StyledHistoryPage, P, StyledLink, ButtonClear, Ul, Li, FigthInfo, TournamentGrid, TournamentRoundFinal, TournamentRoundWinner, TournamentMatch, TournamentMatchWinner, TournamentMatchTeam, TournamentMatchTeamWinner, Divider } from "./styles";
+import { useState } from "react";
+import { StyledHistoryPage, P, StyledLink, ButtonClear, Ul, Li, FightInfo, TournamentGrid, TournamentRoundFinal, TournamentRoundWinner, TournamentMatch, TournamentMatchWinner, TournamentMatchTeam, TournamentMatchTeamWinner, Divider } from "./styles";
 import { APPROUTE } from "/src/const";
 import HeroBigCardModal from "/src/components/ui/hero-big-card-modal/hero-big-card-modal";
 import useFightRecordStore from "../../../store/history-store";
@@ -62,7 +62,7 @@ function HistoryPage() {
         <ButtonClear onClick={handleClear}>Clear history</ButtonClear>
         {reverseHistoryFightList.map((fight, index) => (
           <Li key={index}>
-            <FigthInfo>Fight №{fight.number}. {fight.date}</FigthInfo>
+            <FightInfo>Fight №{fight.number}. {fight.date}</FightInfo>
             <TournamentGrid>
               <TournamentRoundFinal>
                 <TournamentMatch>

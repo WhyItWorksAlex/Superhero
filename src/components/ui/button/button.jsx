@@ -1,6 +1,3 @@
-import React from "react";
-
-
 function Button({
   children, // дочерний элемент, отображаемый в кнопке
   className, // класс

@@ -1,4 +1,3 @@
-import React from "react";
 import { useLocation } from "react-router-dom";
 import { APPROUTE } from "/src/const";
 import NavEl from "/src/components/ui/nav-el/nav-el";

@@ -8,7 +8,6 @@ const useMainStore = create((set, get) => ({
   loadingHero2: false,
   error: null,
   _apiBase: 'https://superheroapi.com/api.php/8c5c7cad236740defc0bb7b95c4e81e6/',
-  // _apiBase: 'https://superheroapi.com/ap.php/8c5c7cad236740defc0bb7b95c4e81e6/',
 
   heroLoading (heroNum, value) {
     switch (heroNum) {

@@ -1,24 +1,23 @@
-import React, { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { StyledWinnerModal, Wrapper, StyledCloseBtn} from "./styles";
-
 
 function Modal ( {setIsActiveModal, marginTop, children} ) {
 
   // Close modal with key ESC
 
-  const closeKey = (e) => {
+  const closeKey = useCallback((e) => {
     if (e.key === 'Escape'){
       closeModal();
     }    
-  }
+  }, [])
 
   // Close modal click outside modal
 
-  const closeOut = (e) => {
+  const closeOut = useCallback((e) => {
     if (e.target.getAttribute('data-modal')){
       closeModal();
     }    
-  }
+  }, [])
   
   // Listener keydown ESC when Modal Window is open
 

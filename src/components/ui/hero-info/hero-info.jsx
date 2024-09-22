@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { StyledTabContent, StyledButton, StyledWrapperButtons } from "./styles";
 import MainHeroInfo from "/src/components/ui/main-hero-info/main-hero-info";
 import StatsHeroInfo from "/src/components/ui/stats-hero-info/stats-hero-info";

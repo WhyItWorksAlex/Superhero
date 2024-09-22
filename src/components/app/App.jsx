@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import PageWrapper from "/src/components/layout/page-wrapper/page-wrapper";
+import {lazy, Suspense} from 'react'
 import { GlobalStyle } from "./styles";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Toaster } from 'react-hot-toast';
+import PageWrapper from "/src/components/layout/page-wrapper/page-wrapper";
+import {ClashPage, HistoryPage, BiographyPage} from '../pages'
 import ScrollToTop from "/src/components/ui/scroll-to-top/scroll-to-top";
 import { APPROUTE } from "/src/const";
-import ClashPage from "/src/components/pages/clash-page/clash-page";
-import HistoryPage from "/src/components/pages/history-page/history-page";
-import BiographyPage from "/src/components/pages/biography-page/biography-page";
+
+const Page404 = lazy(() => import("../pages/Page404"));
 
 function App () {
 
@@ -15,25 +16,28 @@ function App () {
       <GlobalStyle />
       <BrowserRouter>
         <ScrollToTop />
-        <Routes>
-          <Route exact path={APPROUTE.MAIN.to} element={<PageWrapper />}>
-            <Route index element={<ClashPage />} />
-            <Route
-              exact
-              path={APPROUTE.HISTORY.to}
-              element={<HistoryPage />}
-            />
-            <Route
-              exact
-              path={APPROUTE.INFO.to}
-              element={<BiographyPage />}
-            />
-            <Route
-              path="*"
-              element={<h1 style={{color: 'white'}}>Ошибка 404. Страница не существует.</h1>}
-            />
-          </Route>
-        </Routes>        
+        <Toaster position="bottom-right" />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route exact path={APPROUTE.MAIN.to} element={<PageWrapper />}>
+              <Route index element={<ClashPage />} />
+              <Route
+                exact
+                path={APPROUTE.HISTORY.to}
+                element={<HistoryPage />}
+              />
+              <Route
+                exact
+                path={APPROUTE.INFO.to}
+                element={<BiographyPage />}
+              />  
+              <Route
+                path="*"
+                element={<Page404 />}
+              />
+            </Route>
+          </Routes> 
+        </Suspense>       
       </BrowserRouter>  
     </>
   );

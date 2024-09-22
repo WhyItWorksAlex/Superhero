@@ -9,7 +9,6 @@ function MainButtons( {idArray} ) {
 
   const {setHero1, setHero2} = useMainStore(({setHero1, setHero2}) => ({setHero1, setHero2}))
 
-
   return (
     <StyledMainButtons>
       <ChangeButton setHero={setHero1} idArray={idArray}>Change left character</ChangeButton>

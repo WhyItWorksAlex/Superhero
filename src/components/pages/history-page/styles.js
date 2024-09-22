@@ -75,7 +75,7 @@ export const Li = styled.li`
   flex-direction: column;
 `;
 
-export const FigthInfo = styled.p`
+export const FightInfo = styled.p`
   margin: 0;
   align-self: center;
   text-decoration: underline;
