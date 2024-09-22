@@ -3,6 +3,7 @@ import { StyledHistoryPage, P, StyledLink, ButtonClear, Ul, Li, FightInfo, Tourn
 import { APPROUTE } from "/src/const";
 import HeroBigCardModal from "/src/components/ui/hero-big-card-modal/hero-big-card-modal";
 import useFightRecordStore from "../../../store/history-store";
+import { Helmet } from 'react-helmet';
 
 function HistoryPage() {
 
@@ -51,6 +52,13 @@ function HistoryPage() {
 
   return (
     <StyledHistoryPage>
+      <Helmet>
+        <meta
+            name="description"
+            content="Fights record page"
+        />
+        <title>Fights record</title>
+      </Helmet>
       {historyFightsList.length === 0 ? (
         <>
           <P>There is no fights record.<br/>

@@ -4,6 +4,7 @@ import HeroBigCard from "/src/components/blocks/hero-big-card/hero-big-card";
 import Search from "/src/components/blocks/search/search";
 import Waiting from "/src/components/blocks/waiting/waiting";
 import useBiographyStore from "../../../store/biography-store";
+import { Helmet } from 'react-helmet';
 
 function BiographyPage() {
 
@@ -22,6 +23,13 @@ function BiographyPage() {
 
   return (
     <StyledBiographyPage>
+      <Helmet>
+          <meta
+              name="description"
+              content="Biography heroes page"
+          />
+          <title>Biography {biographyHero.name}</title>
+      </Helmet>
       <P>This section is about heroes information. You can figure out powerstats, biography, appearance, work, connections and so on.</P>
       <Search />
       {card}

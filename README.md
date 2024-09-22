@@ -1,28 +1,37 @@
 # Project Clash of Superheroes
 
 ![image](https://github.com/WhyItWorksAlex/Superhero/blob/master/src/assets/clash-page.png)
-SPA приложение с полной функциональностью:
-- отображение списка героев и комиксов
-- роутинг приложения
-- реализация хука запроса на сервер
-- реализация хука useDebounce
-- live search героев 
+SPA application with full functionality:
+Clash page:
+- select a random hero for clashing
+- fighting of two superheroes
+History page:
+- check fights record
+Biography page:
+- live search heroes
+- entire information about each hero
 
-STACK: `JS`, `React`, `React Router`, `RHF`, `Helmet`, `yup`
-## Ссылка на проект
+Features:
+- routing by React Router
+- use state manager by Zustand
+- lazy loading
+- tosts by react-hot-tosts
+- hook useDebounce
+- skeletons by react-loading-skeleton
+-change meta information by react-helmet
 
-[GitHub Pages](https://firstn1kon.github.io/marvel/#/)
+STACK: `JS`, `React`, `Vite`, `React Router`, `Zustand`, `styled-components`, `react-hot-tosts`, `react-loading-skeleton`, `react-helmet`
 
-## Сборка CRA
+## Link to deploy version
+
+[Netlify](https://clash-of-superheroes.netlify.app/)
+
+## Сборка
 
 ### `npm start`
 
-Запустить сборку в режиме разработки
+Launch for development
 
 ### `npm run build`
 
-Запсука сборки build для деплоя на сервер
-
-### `npm run eject`
-
-Если вас не устраивает средство сборки и выбор конфигурации, вы можете это сделать eject в любое время. Эта команда удалит единственную зависимость сборки из вашего проекта.
+Launch for future deploy

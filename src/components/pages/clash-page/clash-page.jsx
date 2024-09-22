@@ -9,6 +9,7 @@ import useMainStore from "../../../store/main-hero-store";
 import useFightRecordStore from "../../../store/history-store";
 import { HeroCardWrapper, StyledFightButton } from "./styles";
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet';
 
 // Function calculating total hero stat
 
@@ -153,6 +154,13 @@ function ClashPage () {
 
   return (
     <>
+      <Helmet>
+        <meta
+            name="description"
+            content="Clash page"
+        />
+        <title>Clash of Superheroes</title>
+      </Helmet>
       {(Boolean(hero1?.name) && Boolean(hero2?.name)) ? (
         <>
           <MainButtons idArray={[+hero1.id, +hero2.id]} />
