@@ -1,6 +1,6 @@
 # Project Clash of Superheroes
 
-![image](https://github.com/WhyItWorksAlex/Superhero/tree/master/src/assets/clash-page.JPG)
+![image](https://github.com/WhyItWorksAlex/Superhero/tree/master/src/assets/clash-page.png)
 SPA приложение с полной функциональностью:
 - отображение списка героев и комиксов
 - роутинг приложения
