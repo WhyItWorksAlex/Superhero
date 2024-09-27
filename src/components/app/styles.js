@@ -36,11 +36,16 @@ export const GlobalStyle = createGlobalStyle`
 
   html {
     height: 100%;
-    background-image: url('https://i.ibb.co/rdkB8N6/e6a975ac03b598fb827578dc38060d70.jpg');
+    background-image: url('https://i.ibb.co/hFpkJwc/e6a975ac03b598fb827578dc38060d70.jpg');
     background-repeat: no-repeat;
-    background-size: calc(100vw);
+    background-size: 100vw;
     background-position: center left;
     background-attachment: fixed;
+
+    @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+      background-size: cover;
+      background-position: center center;
+    }
   }
   
   body {

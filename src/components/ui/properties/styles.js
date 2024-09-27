@@ -6,6 +6,12 @@ export const StyledProperties = styled.div`
   bottom: 3px;
   border-radius: 0 10px 0 20px;
   width: ${(props) => props.theme.widthPhotoHero};
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    width: 100%;
+    padding: 0 3px;
+    box-sizing: border-box
+  }
 `;
 
 export const PropertiesList = styled.ul`
@@ -30,12 +36,22 @@ export const Property = styled.li`
   position: relative;
   font-family: "Albert Sans", sans-serif;
   padding-top: 3px;
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    height: 35px;
+    width: 20px;
+  }
 `;
 
 export const PropertyImage = styled.img`
   display: block;
   height: 30px;
   width: 30px;
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    height: 20px;
+    width: 20px;
+  }
 `;
 
 export const PropertyValue = styled.p`
@@ -50,4 +66,10 @@ export const PropertyValue = styled.p`
        1px -1px 0px black,
       -1px  1px 0px black,
        1px  1px 0px black;
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    padding-top: 3px;
+    font-size: 10px;
+    line-height: 14px;
+  }
 `;

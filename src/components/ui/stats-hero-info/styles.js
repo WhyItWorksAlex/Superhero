@@ -5,6 +5,11 @@ export const StyledStatsHeroInfo = styled.ul`
   padding-left: 10px;
   padding-right: 10px;
   list-style: none;
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
 `
 
 export const Li = styled.li`
@@ -17,6 +22,11 @@ export const Li = styled.li`
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    font-size: 12px;
+    line-height: 16px;
+  }
 
   ${(props) =>
   props.$visible

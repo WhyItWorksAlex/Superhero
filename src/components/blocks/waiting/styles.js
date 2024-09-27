@@ -13,6 +13,13 @@ export const WrapperWaiting = styled.div`
   line-height: 50px;
   margin-top: ${(props) => props.$isFunny ? '130px' : '30px'};
   color: white;
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    margin-top: ${(props) => props.$isFunny ? '80px' : '30px'};
+    gap: ${(props) => props.$isFunny ? '70px' : '30px'};
+    font-size: 35px;
+    line-height: 35px;
+  }
 `;
 
 export const WaitingText = styled.p`
@@ -22,9 +29,17 @@ export const WaitingText = styled.p`
 export const WaitingImg = styled.img`
   display: block;
   height: 300px;
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+
+  }
 `;
 
 export const WaitingImgLu = styled.img`
   display: block;
   height: 190px;
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    height: 140px;
+  }
 `;

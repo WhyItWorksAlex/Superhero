@@ -30,4 +30,18 @@ export const StyledButton = styled(Button)`
   &:active {
     border: 3px inset #888;
   }
+
+	@media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+		font-size: 16px;
+		border-radius: 9px;
+		padding: 5px 10px;
+		border: 2px outset #888;
+		box-shadow: 0 0 8px rgb(0, 0, 0, 1);
+
+		&:active {
+			border: 2px inset #888;
+			color: ${(props) => props.theme.btnHoverTextColor};
+			box-shadow: 0 0 2px 2px rgba(237, 215, 12, .4)
+		}
+	}
 `;

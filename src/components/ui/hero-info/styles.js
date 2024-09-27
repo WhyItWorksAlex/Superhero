@@ -9,6 +9,11 @@ export const StyledTabContent = styled.div`
   font-weight: 400;
   font-style: normal;
   min-height: 144px;
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    border-radius: 0 20px 20px 0;
+    flex-grow: 1;
+  }
 `
 
 export const StyledWrapperButtons = styled.div`
@@ -16,6 +21,11 @@ export const StyledWrapperButtons = styled.div`
   padding: 0 20px;
   gap: 5px;
   flex-wrap: wrap;
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    flex-direction: column;
+    padding-right: 0;
+  }
 `
 
 
@@ -36,13 +46,16 @@ export const StyledButton = styled(Button)`
   font-size: 18px;
   cursor: pointer;
 
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    font-size: 16px;
+  }
+
 
   ${(props) =>
   props.$active
     ? css`
         opacity: 1;
         background-color: ${(props) => props.theme.bcgrCardInfoColor};
-        border-radius: 0 0 5px 5px;
         box-sizing: border-box;
         z-index: 2;
         border-bottom: 2px solid rgba(0,0,0, 0.1);
@@ -88,5 +101,43 @@ export const StyledButton = styled(Button)`
         opacity: 0.8;
       }
       `
-  };  
+  }; 
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    border-radius: 5px;
+
+    ${(props) =>
+    props.$active
+      ? css`
+          opacity: 1;
+          background-color: ${(props) => props.theme.bcgrCardInfoColor};
+          box-sizing: border-box;
+          z-index: 2;
+          border-bottom: 2px solid rgba(0,0,0, 0.1);
+          border-left: 1px solid rgba(0,0,0, 0.1);
+          box-shadow: -2px 2px 2px 0 rgba(0,0,0, 0.5);
+
+          &::before {
+            display: none;
+          }
+
+          &::after {
+            display: none;
+          }
+          
+        `
+      : css`
+        &:before {
+          display: none;
+        }
+
+        &:hover {
+          border-bottom: unset;
+          border-bottom: unset;
+          border-bottom: unset;
+          border-bottom: unset;
+        }
+        `
+    }; 
+  }
 `;

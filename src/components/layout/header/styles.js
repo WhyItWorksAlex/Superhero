@@ -12,4 +12,18 @@ export const StyledHeader = styled.header`
   align-items: center;
   z-index: 5;
   box-sizing: border-box;
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    padding-left: ${(props) => props.theme.pagePaddingTablet};
+    padding-right: ${(props) => props.theme.pagePaddingTablet};
+    width: 100%;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    padding-left: ${(props) => props.theme.pagePaddingMobile};
+    padding-right: ${(props) => props.theme.pagePaddingMobile};
+  }
 `;

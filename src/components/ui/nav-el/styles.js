@@ -7,11 +7,10 @@ export const StyledNavEl = styled.div`
 ${(props) =>
   props.$isActive
     ? css`
-      border-bottom: 2px solid ${(props) => props.theme.btnHoverTextColor};
+      
     `
     : css`
       &:hover {
-        border-bottom: 2px solid ${(props) => props.theme.btnTextColor};
         animation: shake 0.62s cubic-bezier(.36,.07,.19,.97) both;
         transform: translate3d(0, 0, 0);
 
@@ -33,6 +32,11 @@ ${(props) =>
       }
     `
   };  
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    display: flex;
+    justify-content: center;
+  }
 `
 
 export const StyledLink = styled(Link)`
@@ -49,10 +53,20 @@ export const StyledLink = styled(Link)`
   props.$isActive
     ? css`
       color: ${(props) => props.theme.btnHoverTextColor};
+      border-bottom: 2px solid ${(props) => props.theme.btnHoverTextColor};
     `
     : css`
       color: ${(props) => props.theme.btnTextColor};
+      border-bottom: 2px solid transparent;
+
+      &:hover {
+        border-bottom: 2px solid ${(props) => props.theme.btnTextColor};
+      }
     `
   };  
 
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    font-size: 18px;
+    line-height: 18px;
+  }
 `;

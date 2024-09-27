@@ -1,11 +1,32 @@
 import styled from "styled-components";
 import Button from "/src/components/ui/button/button";
 
+export const Wrapper = styled.div`
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    display: grid;
+    grid-template-columns: 140px auto;
+    grid-template-rows: 260px 260px 100px;
+    column-gap: 10px;
+    row-gap: 20px;
+  }
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    display: flex;
+  }
+`;
+
 export const HeroCardWrapper = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 50px;
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    justify-content: space-between;
+    grid-row: 1/4;
+    gap: 0;
+    flex-direction: column;
+  }
 `;
 
 export const StyledFightButton = styled(Button)`
@@ -103,4 +124,23 @@ export const StyledFightButton = styled(Button)`
     transition: 1s;
     transition-delay: 0.75s;
   }
+
+	@media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+		font-size: 20px;
+		border-radius: 9px;
+		padding: 15px;
+		border: 2px outset #888;
+		box-shadow: 0 0 8px rgb(0, 0, 0, 1);
+    letter-spacing: 2px;
+    width: 200px;
+    order: 3;
+    margin-top: 20px;
+    margin-left: -160px;
+
+		&:active {
+			border: 2px inset #888;
+			color: ${(props) => props.theme.btnHoverTextColor};
+			box-shadow: 0 0 2px 2px rgba(237, 215, 12, .4)
+		}
+	}
 `;

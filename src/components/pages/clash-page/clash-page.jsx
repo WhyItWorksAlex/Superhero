@@ -7,9 +7,11 @@ import { getRandomInteger, addZero } from "/src/utils";
 import { QTYHEROES } from "/src/const";
 import useMainStore from "../../../store/main-hero-store";
 import useFightRecordStore from "../../../store/history-store";
-import { HeroCardWrapper, StyledFightButton } from "./styles";
+import { Wrapper, HeroCardWrapper, StyledFightButton } from "./styles";
 import toast from 'react-hot-toast';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import useMediaService from "../../../services/MediaService";
+import ChangeButton from "/src/components/ui/change-button/change-button";
 
 // Function calculating total hero stat
 
@@ -22,6 +24,8 @@ function calcHeroTotalStat (stats) {
 }
 
 function ClashPage () {
+
+  const {isTablet, isMobile} = useMediaService()
 
   // State with information about heroes from Zustand
 
@@ -106,6 +110,14 @@ function ClashPage () {
     }
   )
 
+  // Function tap on Fight btn
+
+  const tapFightButton = () => {
+    document.body.style.overflow = 'hidden';
+    setIsActiveWinnerModal(true);
+    chooseWinner();
+  }
+
   // Function choose the winner 
 
   function chooseWinner () {
@@ -149,7 +161,25 @@ function ClashPage () {
                                 <HeroCard hero={hero2} newLoading={true}/>
                               </HeroCardWrapper>
                               : null
-  const modal = isActiveWinnerModal ? <WinnerModal setIsActiveWinnerModal={setIsActiveWinnerModal} lastFight={historyFightsList[historyFightsList.length-1]} /> : null
+  const modal = isActiveWinnerModal ? 
+                  <WinnerModal setIsActiveWinnerModal={setIsActiveWinnerModal} lastFight={historyFightsList[historyFightsList.length-1]} /> 
+                  : null
+
+  const fightBtn = isTablet ? 
+                    <StyledFightButton 
+                      onClick={tapFightButton}>
+                        Fight
+                    </StyledFightButton>
+                       : 
+                    <StyledFightButton 
+                      onMouseDown={handleFightBtn} 
+                      onMouseUp={mouseUpFightBtn}>
+                      Hold to Fight
+                      <span className="span_1"></span>
+                      <span className="span_2"></span>
+                      <span className="span_3"></span>
+                      <span className="span_4"></span>
+                    </StyledFightButton>
 
 
   return (
@@ -162,23 +192,27 @@ function ClashPage () {
         <title>Clash of Superheroes</title>
       </Helmet>
       {(Boolean(hero1?.name) && Boolean(hero2?.name)) ? (
-        <>
-          <MainButtons idArray={[+hero1.id, +hero2.id]} />
+        <Wrapper>
+          {isMobile ? null : <MainButtons idArray={[+hero1.id, +hero2.id]} />}
           <HeroCardWrapper>
+            {isMobile ? 
+              <ChangeButton setHero={setHero1} idArray={[+hero1.id, +hero2.id]}>
+                Change character
+              </ChangeButton> 
+            : null}
             <HeroCard hero={hero1} newLoading={loadingHero1}/>
-            <StyledFightButton 
-              onMouseDown={handleFightBtn} 
-              onMouseUp={mouseUpFightBtn}>
-              Hold to Fight
-              <span className="span_1"></span>
-              <span className="span_2"></span>
-              <span className="span_3"></span>
-              <span className="span_4"></span>
-            </StyledFightButton>
+
+            {fightBtn}
+
+            {isMobile ? 
+              <ChangeButton setHero={setHero2} idArray={[+hero1.id, +hero2.id]}>
+                Change character
+              </ChangeButton> 
+            : null}
             <HeroCard hero={hero2} newLoading={loadingHero2}/>
           </HeroCardWrapper>
           {modal}
-        </>
+        </Wrapper>
         ) : (
           <>
             {errorContent}
