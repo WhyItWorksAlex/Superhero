@@ -15,7 +15,7 @@ export const StyledTabContent = styled.div`
     flex-grow: 1;
   }
 
-  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
     border-radius: 0 0 20px 20px;
     flex-grow: unset;
     margin-bottom: 20px;
@@ -33,7 +33,7 @@ export const StyledWrapperButtons = styled.div`
     padding-right: 0;
   }
 
-  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
     padding: 0;
   }
 `

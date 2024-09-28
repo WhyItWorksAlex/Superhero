@@ -11,12 +11,28 @@ export const GlobalStyle = createGlobalStyle`
     font-display: swap;
   }
 
-  @font-face {
+  /* @font-face {
     font-family: "Albert Sans";
     src: url("/AlbertSans-VariableFont_wght.ttf") format("truetype");
     font-style: normal;
     font-weight: 400;
     font-display: swap;
+  } */
+
+  @font-face {
+    font-display: swap;
+    font-family: 'Albert Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/albert-sans-v1-latin-regular.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-display: swap;
+    font-family: 'Albert Sans';
+    font-style: italic;
+    font-weight: 400;
+    src: url('/albert-sans-v1-latin-italic.woff2') format('woff2'); 
   }
 
   @font-face {
