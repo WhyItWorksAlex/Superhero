@@ -101,7 +101,7 @@ export const StyledButton = styled(Button)`
         
       `
     : css`
-      &:before {
+      &::before {
         display: none;
       }
 
@@ -120,13 +120,6 @@ export const StyledButton = styled(Button)`
     ${(props) =>
     props.$active
       ? css`
-          opacity: 1;
-          background-color: ${(props) => props.theme.bcgrCardInfoColor};
-          box-sizing: border-box;
-          z-index: 2;
-          border-bottom: 2px solid rgba(0,0,0, 0.1);
-          border-left: 1px solid rgba(0,0,0, 0.1);
-          box-shadow: -2px 2px 2px 0 rgba(0,0,0, 0.5);
 
           &::before {
             display: none;
@@ -138,16 +131,7 @@ export const StyledButton = styled(Button)`
           
         `
       : css`
-        &:before {
-          display: none;
-        }
-
-        &:hover {
-          border-bottom: unset;
-          border-left: unset;
-          box-shadow: unset;
-          opacity: unset;
-        }
+      
         `
     }; 
   }
