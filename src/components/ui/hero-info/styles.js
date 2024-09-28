@@ -55,6 +55,7 @@ export const StyledButton = styled(Button)`
   opacity: 0.6;
   font-size: 18px;
   cursor: pointer;
+  color: ${(props) => props.theme.fontColorBlack};
 
   @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
     font-size: 16px;
