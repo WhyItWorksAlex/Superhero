@@ -5,6 +5,7 @@ import Search from "/src/components/blocks/search/search";
 import Waiting from "/src/components/blocks/waiting/waiting";
 import useBiographyStore from "../../../store/biography-store";
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { DEFAULTBIOGRAPHYHEROID } from '../../../const'
 
 function BiographyPage() {
 
@@ -14,7 +15,7 @@ function BiographyPage() {
 
   useEffect (() => {
     if (!biographyHero.id) {
-      setBiographyHero(644)
+      setBiographyHero(DEFAULTBIOGRAPHYHEROID)
     } 
   }, [])
 

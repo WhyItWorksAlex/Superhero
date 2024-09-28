@@ -22,8 +22,6 @@ export const defaultTheme = {
   widthBiographyHeroTablet: "600px",
   pagePaddingTablet: "50px",
   indentTablet: "20px",
-  // fontSizeDefaultTablet: "18px",
-  // pageWidthTablet: "90vw",
 
   // Устройство мобильное
 
@@ -33,7 +31,5 @@ export const defaultTheme = {
   // widthBiographyHeroMobile: "800px",
   pagePaddingMobile: "30px",
   // indentMobile: "20px",
-  // fontSizeDefaultMobile: "18px",
-  // pageWidthMobile: "1280px",
 
 };

@@ -39,12 +39,12 @@ function HeroInfo( {hero, newLoading} ) {
   const tabsList = [
     {
       title: "Main",
-      content: <MainHeroInfo data={mainInformation} newLoading={newLoading} short={true}/>
+      content: <MainHeroInfo data={mainInformation} newLoading={newLoading} />
     },
 
     {
       title: "Appearance",
-      content: <MainHeroInfo data={appearanceInformation} newLoading={newLoading} short={true}/>
+      content: <MainHeroInfo data={appearanceInformation} newLoading={newLoading} />
     },
     {
       title: "Stats",

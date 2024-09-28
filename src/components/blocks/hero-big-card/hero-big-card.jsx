@@ -9,6 +9,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 function HeroBigCard( {hero, newLoading} ) {
 
+
   // List of sections
 
   const information = [
@@ -86,7 +87,7 @@ function HeroBigCard( {hero, newLoading} ) {
               <StatsHeroInfo stats={hero.stats} newLoading={newLoading} />
             </StyledWrapperLeftPart>
             <Description>
-              <MainHeroInfo data={information} newLoading={newLoading} />
+              <MainHeroInfo data={information} newLoading={newLoading} big={true} />
             </Description>
           </StyledWrapperCard>
         </SkeletonTheme>

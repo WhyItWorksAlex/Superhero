@@ -28,17 +28,19 @@ export const Loading = styled.div`
 
 
 export const SearchForm = styled.form`
-  z-index: 10;
+  z-index: 9;
   width: 600px;
   margin-bottom: 15px;
-  font-size: 22px;
-  line-height: 28px;
   position: relative;
   font-family: "Albert Sans", sans-serif;
   font-weight: 400;
 
   @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
     margin-bottom: 25px;
+  }
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    width: 100%;
   }
 `;
 
@@ -73,6 +75,11 @@ export const Input = styled.input`
     border: 2px solid red;
     outline: none;
   }
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    font-size: 18px;
+    line-height: 24px;
+  }
 `;
 
 export const WrapperResults = styled.div`
@@ -82,12 +89,16 @@ export const WrapperResults = styled.div`
   width: 100%;
   max-height: 500px;
   overflow-y: auto;
-  background: #fff;
+  background: ${(props) => props.theme.colorWhite};
   border-radius: 5px;
   border: 2px solid red;
   border-top: 1px solid red;;
-  z-index: 10;
-  color: black;
+  z-index: 9;
+  color: ${(props) => props.theme.fontColorBlack};
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    max-height: 350px;
+  }
 `;
 
 export const HeroResult = styled.div`

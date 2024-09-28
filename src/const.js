@@ -25,6 +25,12 @@ export const ALPHABET = 'abcdefghijklmnopqrstuvwxyz';
 
 // Max visible names 
 
+export const MAXVISIBLENAMESMOBILE = 9;
+export const MAXVISIBLENAMESTABLET = 12;
 export const MAXVISIBLENAMES = 18;
-export const MAXVISIBLENAMESTABLET = 18;
-export const MAXVISIBLENAMESMOBILE = 18;
+
+
+
+
+export const DEFAULTBIOGRAPHYHEROID = 644;
+export const DEFAULTBIOGRAPHYHERONAME = 'Superman';

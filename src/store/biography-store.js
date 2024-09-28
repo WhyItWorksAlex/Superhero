@@ -11,7 +11,7 @@ const useBiographyStore = create((set, get) => ({
   _apiSearch: 'search/',
 
   // Search information 
-  curPage: 5,
+  curPage: null,
   curLetter: 's',
 
 

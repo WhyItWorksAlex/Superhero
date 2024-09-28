@@ -23,4 +23,9 @@ export const P = styled.p`
     text-align: center;
     padding: 0;
   }
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    font-size: 16px;
+    margin-top: 0;
+  }
 `;

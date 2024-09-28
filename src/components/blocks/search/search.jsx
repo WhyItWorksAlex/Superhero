@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Ul, StyledPaginationBtn , Content, UlHeroes, HeroBtn, NextPageBtn, PrevPageBtn } from "./styles";
-import {ALPHABET} from '../../../const'
+import { Ul, StyledPaginationBtn , Content, UlHeroes, Li, HeroBtn, NextPageBtn, PrevPageBtn } from "./styles";
+import {ALPHABET, MAXVISIBLENAMES, MAXVISIBLENAMESTABLET, MAXVISIBLENAMESMOBILE, DEFAULTBIOGRAPHYHEROID, DEFAULTBIOGRAPHYHERONAME} from '../../../const'
 import useBiographyStore from "../../../store/biography-store";
 import SearchInput from "../../ui/search-input/search-input";
 import useMediaService from "../../../services/MediaService";
@@ -11,7 +11,7 @@ function Search ( ) {
 
   const {isTablet, isMobile} = useMediaService()
 
-  let MAXVISIBLENAMES = isTablet ? 12 : 18;
+  const quantityVisibleNames = isMobile ? MAXVISIBLENAMESMOBILE : (isTablet ? MAXVISIBLENAMESTABLET : MAXVISIBLENAMES);
 
   // State with information about heroes from Zustand
 
@@ -56,19 +56,19 @@ function Search ( ) {
   function filterByFirstLetter(arr, letter = curLetter) {
     let filtredArray = arr.filter(obj => obj.name.startsWith(letter.toUpperCase()));
     setfiltredHeroes(filtredArray);
-    setPages(Math.ceil(filtredArray.length / MAXVISIBLENAMES));
+    setPages(Math.ceil(filtredArray.length / quantityVisibleNames));
   };
 
   // Find position choosen hero
 
-  function findPositionByName(id, name) {
-    const filtredArray = heroesList.filter(obj => obj.name.startsWith(name[0].toUpperCase()));
+  function findPositionByName(id, name, arr = heroesList) {
+    const filtredArray = arr.filter(obj => obj.name.startsWith(name[0].toUpperCase()));
     const index = filtredArray.findIndex((el) => el.id === +id);
     if (index !== -1) {
       setfiltredHeroes(filtredArray);
-      setPages(Math.ceil(filtredArray.length / MAXVISIBLENAMES));
+      setPages(Math.ceil(filtredArray.length / quantityVisibleNames));
       setCurLetter(name[0].toLowerCase())
-      setCurPage(Math.ceil((index + 1) / MAXVISIBLENAMES))
+      setCurPage(Math.ceil((index + 1) / quantityVisibleNames))
     } else {
       return
     }
@@ -80,8 +80,14 @@ function Search ( ) {
       setHeroesList(res)
       return res;
     })
-    .then(res => filterByFirstLetter(res))
+    .then(res => {
+      filterByFirstLetter(res)
+    })  
   }, [])
+
+  useEffect(() => {
+    findPositionByName(DEFAULTBIOGRAPHYHEROID, DEFAULTBIOGRAPHYHERONAME) 
+  }, [heroesList])
 
   return (
     <>
@@ -105,15 +111,15 @@ function Search ( ) {
         <UlHeroes>
           {filtredHeroes.map((hero, index) => (
             <React.Fragment key={index}>
-              {index < MAXVISIBLENAMES * curPage && index >= (curPage === 1 ? 0 : MAXVISIBLENAMES * (curPage - 1)) && (
-                <li key={index}>
+              {index < quantityVisibleNames * curPage && index >= (curPage === 1 ? 0 : quantityVisibleNames * (curPage - 1)) && (
+                <Li key={index}>
                   <HeroBtn 
                     $isActive={(+biographyHero.id === hero.id)}  
                     onClick={() => {setBiographyHero(hero.id)}}                
                   >
                     {hero.name}
                   </HeroBtn>
-                </li>
+                </Li>
               )}
             </React.Fragment>
           ))}

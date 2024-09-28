@@ -18,6 +18,10 @@ export const Ul = styled.ul`
     justify-content: center;
     margin-bottom: 30px;
   }
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    width: 100%;
+  }
 `;
 
 export const StyledPaginationBtn = styled(Button)`
@@ -83,7 +87,19 @@ export const UlHeroes = styled.ul`
     grid-template-columns: repeat(4, 1fr);
     margin-bottom: 30px;
   }
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
 `;
+
+export const Li = styled.li`
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    line-height: 0;
+  }
+`
+
 
 export const HeroBtn = styled(Button)`
   border: none;
@@ -100,6 +116,12 @@ export const HeroBtn = styled(Button)`
     font-size: 14px;
     padding-left: 4px;
     padding-right: 4px;
+  }
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    font-size: 12px;
+    padding-left: 4px;
+    padding-right: 4px;
+    height: 35px;
   }
 
   &:hover {
@@ -132,6 +154,11 @@ export const NextPageBtn = styled(Button)`
   right: 0;
   height: calc(100% - 20px);
   width: 60px;
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    height: 105px;
+    width: 30px;
+  }
 
 
   &::before {
@@ -166,6 +193,11 @@ export const PrevPageBtn = styled(Button)`
   left: 0;
   height: calc(100% - 20px);
   width: 60px;
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    height: 105px;
+    width: 30px;
+  }
 
   &::before {
     position: absolute;
