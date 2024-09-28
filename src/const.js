@@ -26,3 +26,5 @@ export const ALPHABET = 'abcdefghijklmnopqrstuvwxyz';
 // Max visible names 
 
 export const MAXVISIBLENAMES = 18;
+export const MAXVISIBLENAMESTABLET = 18;
+export const MAXVISIBLENAMESMOBILE = 18;

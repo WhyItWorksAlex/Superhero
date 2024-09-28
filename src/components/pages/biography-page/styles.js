@@ -17,4 +17,10 @@ export const P = styled.p`
   flex-direction: column;
   justify-content: center;
   color: white;
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    font-size: 20px;
+    text-align: center;
+    padding: 0;
+  }
 `;

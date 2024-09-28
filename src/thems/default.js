@@ -19,7 +19,7 @@ export const defaultTheme = {
   maxTabletWidth: '1459px',
 
   // widthPhotoHeroTablet: "270px",
-  // widthBiographyHeroTablet: "800px",
+  widthBiographyHeroTablet: "600px",
   pagePaddingTablet: "50px",
   indentTablet: "20px",
   // fontSizeDefaultTablet: "18px",

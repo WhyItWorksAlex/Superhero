@@ -8,6 +8,10 @@ export const StyledWrapperCard = styled.div`
   display: flex;
   color: ${(props) => props.theme.fontColorBlack};
   gap: 15px;
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    width: 90%;
+  }
 `;
 
 export const StyledWrapperLeftPart = styled.div`

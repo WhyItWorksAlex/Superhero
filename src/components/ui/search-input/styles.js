@@ -36,6 +36,10 @@ export const SearchForm = styled.form`
   position: relative;
   font-family: "Albert Sans", sans-serif;
   font-weight: 400;
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    margin-bottom: 25px;
+  }
 `;
 
 export const Label = styled.label`

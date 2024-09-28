@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { StyledWrapperCard, StyledWrapperLeftPart, StyledImageWrapper, StyledImage, Description } from "./styles";
 import MainHeroInfo from "/src/components/ui/main-hero-info/main-hero-info";
 import StatsHeroInfo from "/src/components/ui/stats-hero-info/stats-hero-info";
@@ -63,6 +63,10 @@ function HeroBigCard( {hero, newLoading} ) {
   ];
 
   const [hasImage, setHasImage] = useState(true);
+  
+  useEffect(() => {
+    setHasImage(true)
+  }, [hero])
 
   const image = newLoading ? (
     <Skeleton wrapper={StyledImageWrapper} borderRadius={'20px'} />

@@ -10,6 +10,14 @@ export const Ul = styled.ul`
   padding: 0 60px;
   box-sizing: border-box;
   margin-bottom: 20px;
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    flex-wrap: wrap;
+    padding: 0;
+    width: 90%;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
 `;
 
 export const StyledPaginationBtn = styled(Button)`
@@ -24,6 +32,10 @@ export const StyledPaginationBtn = styled(Button)`
   font-style: normal;
   transition: 0.2s ease-in-out all;
   width: 36px;
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    width: 45px;
+  }
 
   &:hover {
     text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #BFE2FF, 0 0 0.5em #BFE2FF, 0 0 0.1em #BFE2FF;
@@ -66,6 +78,11 @@ export const UlHeroes = styled.ul`
   padding: 0 60px;
   box-sizing: border-box;
   margin-bottom: 20px;
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 30px;
+  }
 `;
 
 export const HeroBtn = styled(Button)`
@@ -78,6 +95,12 @@ export const HeroBtn = styled(Button)`
   font-weight: 400;
   font-style: normal;
   transition: 0.2s ease-in-out all;
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    font-size: 14px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
 
   &:hover {
     text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #BFE2FF, 0 0 0.5em #BFE2FF, 0 0 0.1em #BFE2FF;

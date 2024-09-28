@@ -4,7 +4,7 @@ import useBiographyStore from "../../../store/biography-store";
 import useDebounce from "../../../hooks/debounce.hook";
 import toast from 'react-hot-toast';
 
-const SearchInput = () => {
+const SearchInput = ( {findPositionByName} ) => {
 
   // State with information about heroes from Zustand
 
@@ -68,7 +68,10 @@ const SearchInput = () => {
 
   const renderResults = (debouncedTerm && searchHeroesList.length === 0) ? <P>No results</P> : searchHeroesList.map(({id, name, image}) => 
     <HeroResult key={id}>
-      <button onClick={() => {setBiographyHero(id)}} >         
+      <button onClick={() => {
+        setBiographyHero(id)
+        findPositionByName(id, name)
+      }} >         
         <img src={image} alt={name}/>
         <span>{name}</span>        
       </button>
@@ -76,9 +79,9 @@ const SearchInput = () => {
 
   const loading = 
                   <Loading>Loading
-                    <span class="dot">.</span>
-                    <span class="dot">.</span>
-                    <span class="dot">.</span>
+                    <span>.</span>
+                    <span>.</span>
+                    <span>.</span>
                   </Loading>
 
   const noDisplay = (dnone || !debouncedTerm) ? 'none' : 'block'

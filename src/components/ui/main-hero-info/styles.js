@@ -1,4 +1,14 @@
-import styled, { css }  from "styled-components";
+import styled  from "styled-components";
+
+export const SkeletonWrapper = styled.div`
+  display: flex;
+  gap: 10px;   
+  align-items: center; 
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+
+  }
+`
 
 export const StyledMainHeroInfo = styled.ul`
   margin: 0;
@@ -22,29 +32,13 @@ export const Li = styled.li`
     margin-bottom: 8px;  
     font-size: 18px;
     line-height: 22px;
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  ${(props) =>
-  props.$visible
-    ? css`
-      display: block; 
-
-    `
-    : css`
-      display: flex;
-      gap: 10px;   
-      align-items: center; 
-
-      @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
-        gap: 7px;  
-  }
-    `
-  }; 
+  } 
 `
-export const TitleSpan = styled.span`
+export const Title = styled.p`
+  display: block; 
   font-weight: 700;
+  margin: 0;
+  padding: 0;
 `
 
 export const Span = styled.span`

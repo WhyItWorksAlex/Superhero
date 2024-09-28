@@ -75,6 +75,7 @@ export const ButtonClear = styled(Button)`
     font-size: 16px;
     line-height: 22px;
     padding: 6px 20px;
+    margin: 0 auto 10px 0;
   }
 `
 

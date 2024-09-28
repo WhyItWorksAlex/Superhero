@@ -18,8 +18,8 @@ export const Wrapper = styled.div`
   position: relative;
   padding: 40px;
   background-color: transparent;
-  
-  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
     padding: 40px 20px;
     width: 80%;
   }
