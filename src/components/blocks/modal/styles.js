@@ -19,6 +19,10 @@ export const Wrapper = styled.div`
   padding: 40px;
   background-color: transparent;
   
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    padding: 40px 20px;
+    width: 80%;
+  }
 `;
 
 export const StyledCloseBtn = styled.button`

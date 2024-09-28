@@ -69,4 +69,17 @@ export const StyledLink = styled(Link)`
     font-size: 18px;
     line-height: 18px;
   }
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    padding-top: 7px;
+
+    ${(props) =>
+    props.$isActive ? null : 
+    
+      css`
+        border-bottom: 2px solid transparent;
+      `
+    }; 
+  }
+  
 `;

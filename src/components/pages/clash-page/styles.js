@@ -147,5 +147,13 @@ export const StyledFightButton = styled(Button)`
 
   @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
     margin-left: 0;
+    position: sticky;
+    bottom: 10px;
+    z-index: 15;
+    order: 3;
+    width: 100px;
+    border-radius: 50%;
+    padding: 10px;
+    align-self: flex-start;
 	}
 `;
