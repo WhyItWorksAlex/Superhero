@@ -17,6 +17,16 @@ export const P = styled.p`
   font-size: 40px;
   text-align: center;
   line-height: 50px;
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    font-size: 26px;
+    line-height: 34px;
+  }
 `;
 
 export const StyledLink = styled(Link)`
@@ -44,7 +54,7 @@ export const ButtonClear = styled(Button)`
   transition: 0.3s ease-in-out all;
   box-sizing: border-box;
   display: block;  
-  padding: 10px 36px 10px 36px;
+  padding: 10px 36px;
   
   &:hover {
     background-color: #87A96B;
@@ -55,7 +65,17 @@ export const ButtonClear = styled(Button)`
     background-color: #87A96B;
   }
   
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    font-size: 18px;
+    line-height: 25px;
+    padding: 8px 30px;
+  }
 
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    font-size: 16px;
+    line-height: 22px;
+    padding: 6px 20px;
+  }
 `
 
 export const Ul = styled.ul`
@@ -86,10 +106,6 @@ export const TournamentGrid = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  
-  &::before {
-
-  }
 `
 
 export const TournamentRoundFinal = styled.div`
@@ -165,8 +181,23 @@ export const TournamentMatchTeam = styled(Button)`
   min-width: 200px;
   height: 32px;
   line-height: 28px;
-  padding: 0 36px 0 36px;
+  padding: 0 36px;
   margin: auto;
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    font-size: 14px;
+    min-width: 150px;
+    padding: 0 20px;
+  }
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    font-size: 14px;
+    min-width: 120px;
+    padding: 0 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
   &:after {
     content: '';
@@ -209,6 +240,21 @@ export const TournamentMatchTeamWinner = styled(Button)`
   line-height: 28px;
   padding: 0 36px 0 36px;
   margin: auto;
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    font-size: 14px;
+    min-width: 150px;
+    padding: 0 20px;
+  }
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    font-size: 14px;
+    min-width: 120px;
+    padding: 0 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
   &:after {
     content: '';

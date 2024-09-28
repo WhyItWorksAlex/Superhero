@@ -197,7 +197,7 @@ function ClashPage () {
           <HeroCardWrapper>
             {isMobile ? 
               <ChangeButton setHero={setHero1} idArray={[+hero1.id, +hero2.id]}>
-                Change character
+                Change first character
               </ChangeButton> 
             : null}
             <HeroCard hero={hero1} newLoading={loadingHero1}/>
@@ -206,7 +206,7 @@ function ClashPage () {
 
             {isMobile ? 
               <ChangeButton setHero={setHero2} idArray={[+hero1.id, +hero2.id]}>
-                Change character
+                Change second character
               </ChangeButton> 
             : null}
             <HeroCard hero={hero2} newLoading={loadingHero2}/>
