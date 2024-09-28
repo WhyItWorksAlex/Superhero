@@ -3,8 +3,6 @@ import { BurgerBtn, Line, Legend } from "./styles";
 
 function Burger( {isActive, setIsActive, children} ) {
 
-
-
   function onHandle () {
     setIsActive((prev) => !prev)
   }

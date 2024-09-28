@@ -41,6 +41,11 @@ export const Property = styled.li`
     height: 35px;
     width: 20px;
   }
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    height: 50px;
+    width: 30px;
+  }
 `;
 
 export const PropertyImage = styled.img`
@@ -51,6 +56,11 @@ export const PropertyImage = styled.img`
   @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
     height: 20px;
     width: 20px;
+  }
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    height: 30px;
+    width: 30px;
   }
 `;
 
@@ -71,5 +81,11 @@ export const PropertyValue = styled.p`
     padding-top: 3px;
     font-size: 10px;
     line-height: 14px;
+  }
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    padding-top: 4px;
+    font-size: 14px;
+    line-height: 17px;
   }
 `;

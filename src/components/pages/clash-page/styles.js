@@ -12,6 +12,7 @@ export const Wrapper = styled.div`
 
   @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
     display: flex;
+    justify-content: center;
   }
 `;
 
@@ -142,5 +143,9 @@ export const StyledFightButton = styled(Button)`
 			color: ${(props) => props.theme.btnHoverTextColor};
 			box-shadow: 0 0 2px 2px rgba(237, 215, 12, .4)
 		}
+	}
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    margin-left: 0;
 	}
 `;

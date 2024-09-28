@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Wrapper, StyledImageWrapper, StyledImage } from "./styles";
 import Properties from "/src/components/ui/properties/properties";
 import HeroInfo from "/src/components/ui/hero-info/hero-info";
@@ -15,12 +15,16 @@ function HeroCard( props ) {
 
   const [hasImage, setHasImage] = useState(true);
 
+  useEffect(() => {
+    setHasImage(true)
+  }, [hero])
+
   let isGood = (hero.alignment === "good" || hero.alignment === "neutral")
 
-  const skeleton = isTablet ? (
+  const skeleton = isTablet && !isMobile ? (
     <Skeleton style={{'display': 'block'}} borderRadius={'20px 0 0 20px'} width={150} height={200} />
   ) : (
-    <Skeleton style={{'display': 'block'}} borderRadius={'20px'} width={270} height={320} />
+    <Skeleton style={{'display': 'block'}} borderRadius={'20px 20px 0 0'} width={270} height={320} />
   )
 
   const image = newLoading ? (

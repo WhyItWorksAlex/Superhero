@@ -14,6 +14,12 @@ export const StyledTabContent = styled.div`
     border-radius: 0 20px 20px 0;
     flex-grow: 1;
   }
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    border-radius: 0 0 20px 20px;
+    flex-grow: unset;
+    margin-bottom: 20px;
+  }
 `
 
 export const StyledWrapperButtons = styled.div`
@@ -25,6 +31,10 @@ export const StyledWrapperButtons = styled.div`
   @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
     flex-direction: column;
     padding-right: 0;
+  }
+
+  @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
+    padding: 0;
   }
 `
 
