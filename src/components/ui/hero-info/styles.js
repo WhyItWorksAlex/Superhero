@@ -144,9 +144,9 @@ export const StyledButton = styled(Button)`
 
         &:hover {
           border-bottom: unset;
-          border-bottom: unset;
-          border-bottom: unset;
-          border-bottom: unset;
+          border-left: unset;
+          box-shadow: unset;
+          opacity: unset;
         }
         `
     }; 
