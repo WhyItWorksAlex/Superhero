@@ -24,7 +24,7 @@ function HeroCard( props ) {
   const skeleton = isTablet && !isMobile ? (
     <Skeleton style={{'display': 'block'}} borderRadius={'20px 0 0 20px'} width={150} height={200} />
   ) : (
-    <Skeleton style={{'display': 'block'}} borderRadius={'20px 20px 0 0'} width={270} height={320} />
+    <Skeleton style={{'display': 'block'}} borderRadius={'20px 20px 0 0'} width={270} height={isMobile ? 280: 320} />
   )
 
   const image = newLoading ? (

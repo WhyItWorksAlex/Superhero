@@ -7,7 +7,7 @@ function MainHeroInfo( {data, newLoading, short} ) {
 
   const {isTablet, isMobile} = useMediaService()
 
-  const skeleton = isTablet ? (
+  const skeleton = isTablet && !isMobile ? (
     <Skeleton width={120} inline={true}/>
   ) : (
     <>

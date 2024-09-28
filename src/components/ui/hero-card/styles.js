@@ -35,7 +35,7 @@ export const StyledImageWrapper = styled.div`
   }
 
   @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
-    height: 320px;
+    height: 280px;
     width: unset;
   }
 `;

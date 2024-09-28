@@ -50,8 +50,8 @@ export const StyledButton = styled(Button)`
   position: relative;
   padding: 5px;
   border-radius: 0 0 5px 5px;
-  border-bottom: 2px solid rgba(0,0,0, 0);
-  border-left: 1px solid rgba(0,0,0, 0);
+  border-bottom: 2px solid transparent;
+  border-left: 1px solid transparent;
   opacity: 0.6;
   font-size: 18px;
   cursor: pointer;
@@ -131,6 +131,13 @@ export const StyledButton = styled(Button)`
           
         `
       : css`
+
+          &:hover {
+            border-bottom: 2px solid transparent;
+            border-left: 1px solid transparent;
+            box-shadow: unset;
+            opacity: 0.6;
+          }
       
         `
     }; 
