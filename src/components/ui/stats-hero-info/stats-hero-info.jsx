@@ -2,10 +2,10 @@ import { StyledStatsHeroInfo, Li, Span } from "./styles";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-function StatsHeroInfo( {stats, newLoading} ) {
+function StatsHeroInfo( {stats, newLoading, big} ) {
 
   return (
-    <StyledStatsHeroInfo>
+    <StyledStatsHeroInfo $big={big}>
       {newLoading ? 
         (
           <Skeleton wrapper={Li} count='6'/>

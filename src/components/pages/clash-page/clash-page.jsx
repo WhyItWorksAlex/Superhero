@@ -27,8 +27,6 @@ function ClashPage () {
 
   const {isTablet, isMobile} = useMediaService()
 
-  console.log(`Тут проверка ${isMobile}`)
-
   // State with information about heroes from Zustand
 
   const {

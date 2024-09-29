@@ -41,7 +41,7 @@ export const Li = styled.li`
   @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
 
   ${(props) =>
-  props.big
+  props.$big
     ? css`
       margin-bottom: 8px;  
       font-size: 14px;

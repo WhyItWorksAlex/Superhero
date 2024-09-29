@@ -14,7 +14,7 @@ export const StyledStatsHeroInfo = styled.ul`
   @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
 
   ${(props) =>
-  props.big
+  props.$big
     ? css`
       padding-bottom: 15px;
     `
