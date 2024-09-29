@@ -15,8 +15,10 @@ export const StyledWrapperCard = styled.div`
   }
 
   @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
-    width: 235px;
-    height: 520px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 560px;
+    overflow-y: scroll;
   }
 `;
 
@@ -24,6 +26,10 @@ export const StyledWrapperLeftPart = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    width: 100%;
+  }
 `;
 
 
@@ -34,8 +40,9 @@ export const StyledImageWrapper = styled.div`
   justify-content: center;
 
   @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
-    height: 315px;
-    width: 235px;
+    height: unset;
+    max-height: 350px;
+    width: 100%;
   }
 `;
 
@@ -46,15 +53,20 @@ export const StyledImage = styled.img`
   max-width: 270px;
   border-radius: 20px;
   margin-bottom: 30px;
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    max-width: unset;
+    min-width: 150px;
+  }
 `;
 
 export const Description = styled.div`
 `;
 
 export const StyledSwiper = styled(Swiper)`
-  width: 275px;
-  height: 520px;
-  padding: 25px;
+  width: 85%;
+  height: 540px;
+  padding: 20px;
   margin: 0 auto;
   
 `;

@@ -9,7 +9,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import useMediaService from "../../../services/MediaService";
 
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -93,17 +93,11 @@ function HeroBigCard( {hero, newLoading} ) {
 
   return (
     <>
-
       {hero?.name && (
-        <SkeletonTheme baseColor='#ebebeb' highlightColor='#d6d6d6' duration={1}>
-          
-          
-          
-          
+        <SkeletonTheme baseColor='#ebebeb' highlightColor='#d6d6d6' duration={1}>          
           {isMobile ?
             <StyledSwiper
               effect={'flip'}
-              grabCursor={true}
               pagination={true}
               navigation={true}
               loop={true}

@@ -91,6 +91,8 @@ export const UlHeroes = styled.ul`
   @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
+    padding: 0 30px;
+    margin-bottom: 0;
   }
 `;
 
@@ -119,8 +121,6 @@ export const HeroBtn = styled(Button)`
   }
   @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
     font-size: 12px;
-    padding-left: 4px;
-    padding-right: 4px;
     height: 35px;
   }
 
@@ -171,6 +171,11 @@ export const NextPageBtn = styled(Button)`
     background-position: center;
     top: 50%;
     transform: translateY(-50%) translateX(-50%);
+
+    @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+      width: 20px;
+      background-position: right;
+    }
   }
 
   &:hover {
@@ -197,6 +202,7 @@ export const PrevPageBtn = styled(Button)`
   @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
     height: 105px;
     width: 30px;
+    padding: 0;
   }
 
   &::before {
@@ -209,6 +215,11 @@ export const PrevPageBtn = styled(Button)`
     background-position: center;
     top: 50%;
     transform: translateY(-50%) translateX(-50%) rotate(180deg);
+
+    @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+      width: 20px;
+      background-position: right;
+    }
   }
 
   &:hover {

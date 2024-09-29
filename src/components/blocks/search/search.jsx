@@ -86,7 +86,9 @@ function Search ( ) {
   }, [])
 
   useEffect(() => {
-    findPositionByName(DEFAULTBIOGRAPHYHEROID, DEFAULTBIOGRAPHYHERONAME) 
+    if (curLetter !== 's' && !curPage) {
+      findPositionByName(DEFAULTBIOGRAPHYHEROID, DEFAULTBIOGRAPHYHERONAME) 
+    }
   }, [heroesList])
 
   return (

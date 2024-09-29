@@ -10,6 +10,10 @@ export const StyledStatsHeroInfo = styled.ul`
     padding-left: 5px;
     padding-right: 5px;
   }
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    padding-bottom: 15px;
+  }
 `
 
 export const Li = styled.li`
