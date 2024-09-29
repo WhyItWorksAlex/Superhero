@@ -20,7 +20,7 @@ function MainHeroInfo( {data, newLoading, big} ) {
     <StyledMainHeroInfo>
       {data.map((line) => {
         return (
-          <Li key={line.title} >
+          <Li key={line.title} big={big}>
             {newLoading ? skeleton : 
               <>
                 <Title>

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Swiper } from "swiper/react";
 
 export const StyledWrapperCard = styled.div`
   padding: 20px;
@@ -11,6 +12,11 @@ export const StyledWrapperCard = styled.div`
 
   @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
     width: 90%;
+  }
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    width: 235px;
+    height: 520px;
   }
 `;
 
@@ -26,6 +32,11 @@ export const StyledImageWrapper = styled.div`
   width: 270px;
   display: flex;
   justify-content: center;
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    height: 315px;
+    width: 235px;
+  }
 `;
 
 export const StyledImage = styled.img`
@@ -39,3 +50,12 @@ export const StyledImage = styled.img`
 
 export const Description = styled.div`
 `;
+
+export const StyledSwiper = styled(Swiper)`
+  width: 275px;
+  height: 520px;
+  padding: 25px;
+  margin: 0 auto;
+  
+`;
+

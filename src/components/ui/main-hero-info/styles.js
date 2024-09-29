@@ -1,4 +1,4 @@
-import styled  from "styled-components";
+import styled, { css }  from "styled-components";
 
 export const SkeletonWrapper = styled.div`
   display: flex;
@@ -19,6 +19,10 @@ export const StyledMainHeroInfo = styled.ul`
   @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
     margin-top: 5px;
   }
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    padding-left: 0;
+  }
 `
 
 export const Li = styled.li`
@@ -32,7 +36,25 @@ export const Li = styled.li`
     margin-bottom: 8px;  
     font-size: 18px;
     line-height: 22px;
-  } 
+  }
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+
+  ${(props) =>
+  props.big
+    ? css`
+      margin-bottom: 8px;  
+      font-size: 14px;
+      line-height: 18px;
+
+    `
+    : css`
+      margin-bottom: 8px;  
+      font-size: 18px;
+      line-height: 22px;
+    `
+  }; 
+} 
 `
 export const Title = styled.p`
   display: block; 
