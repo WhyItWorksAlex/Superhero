@@ -10,15 +10,12 @@ import useMediaService from "../../../services/MediaService";
 
 // Import Swiper React components
 import { SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
+import { EffectFlip, Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-flip';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-// import required modules
-import { EffectFlip, Pagination, Navigation } from 'swiper/modules';
 
 function HeroBigCard( {hero, newLoading} ) {
 

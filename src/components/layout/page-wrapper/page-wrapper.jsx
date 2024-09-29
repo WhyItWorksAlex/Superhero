@@ -8,7 +8,7 @@ function PageWrapper( ) {
   
   return (
     <>
-      <ScrollToTop />
+      {/* <ScrollToTop /> */}
       <Header />
       <StyledMain>
         <Outlet />
