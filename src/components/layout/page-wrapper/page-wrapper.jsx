@@ -3,11 +3,13 @@ import { StyledMain } from "./styles";
 import ScrollToTop from "../../ui/scroll-to-top/scroll-to-top";
 import { Outlet } from "react-router-dom";
 
+
+
 function PageWrapper( ) {
   
   return (
     <>
-      <ScrollToTop />
+      <ScrollToTop /> 
       <Header />
       <StyledMain>
         <Outlet />

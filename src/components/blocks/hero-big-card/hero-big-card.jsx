@@ -10,7 +10,7 @@ import useMediaService from "../../../services/MediaService";
 
 // Import Swiper React components
 import { SwiperSlide } from 'swiper/react';
-import { EffectFlip, Pagination, Navigation } from 'swiper/modules';
+import { EffectFlip, Pagination, Navigation, EffectCards } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-flip';
 import 'swiper/css/pagination';
@@ -81,24 +81,22 @@ function HeroBigCard( {hero, newLoading} ) {
   }, [hero])
 
   const image = newLoading ? (
-    <Skeleton wrapper={StyledImageWrapper} borderRadius={'20px'} />
+    <Skeleton wrapper={StyledImageWrapper} borderRadius={'20px'} height={isMobile ? '330px' : null} />
   ) : (
     <StyledImageWrapper>
       <StyledImage src={checkImage(hasImage, hero)} onError={() => setHasImage(false)}/>
     </StyledImageWrapper>
   );
 
-  return (
+  return (  
     <>
       {hero?.name && (
         <SkeletonTheme baseColor='#ebebeb' highlightColor='#d6d6d6' duration={1}>          
           {isMobile ?
             <StyledSwiper
-              effect={'flip'}
-              pagination={true}
-              navigation={true}
+              effect={'cards'}
               loop={true}
-              modules={[EffectFlip, Pagination, Navigation]}
+              modules={[EffectCards]}
             >
               <SwiperSlide>
                 <StyledWrapperCard>
