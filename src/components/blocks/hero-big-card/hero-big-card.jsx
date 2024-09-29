@@ -107,7 +107,7 @@ function HeroBigCard( {hero, newLoading} ) {
                 <StyledWrapperCard>
                   <StyledWrapperLeftPart>
                     {image}
-                    <StatsHeroInfo stats={hero.stats} newLoading={newLoading} />
+                    <StatsHeroInfo stats={hero.stats} newLoading={newLoading} big={true} />
                   </StyledWrapperLeftPart>
                 </StyledWrapperCard>        
               </SwiperSlide>
@@ -123,7 +123,7 @@ function HeroBigCard( {hero, newLoading} ) {
           <StyledWrapperCard>
             <StyledWrapperLeftPart>
               {image}
-              <StatsHeroInfo stats={hero.stats} newLoading={newLoading} />
+              <StatsHeroInfo stats={hero.stats} newLoading={newLoading} big={true} />
             </StyledWrapperLeftPart>
             <Description>
               <MainHeroInfo data={information} newLoading={newLoading} big={true} />

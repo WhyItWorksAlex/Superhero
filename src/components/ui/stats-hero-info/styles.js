@@ -12,7 +12,14 @@ export const StyledStatsHeroInfo = styled.ul`
   }
 
   @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
-    padding-bottom: 15px;
+
+  ${(props) =>
+  props.big
+    ? css`
+      padding-bottom: 15px;
+    `
+    : null 
+    }
   }
 `
 

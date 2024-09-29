@@ -48,11 +48,7 @@ export const Li = styled.li`
       line-height: 18px;
 
     `
-    : css`
-      margin-bottom: 8px;  
-      font-size: 18px;
-      line-height: 22px;
-    `
+    : null
   }; 
 } 
 `
