@@ -13,7 +13,7 @@ function MainHeroInfo( {data, newLoading, big} ) {
       <Skeleton width={!isTablet ? 350 : big ? 200 : 80} inline={true}/>
     </SkeletonWrapper> 
   ) : (
-    <Skeleton width={big ? 200 : 120} inline={true}/>
+    <Skeleton width={big ? 180 : 120} inline={true}/>
   )
 
   return (

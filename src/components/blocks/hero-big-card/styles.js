@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Swiper } from "swiper/react";
 
 export const StyledWrapperCard = styled.div`
+  font-family: "Albert Sans", sans-serif;
   padding: 20px;
   width: ${(props) => props.theme.widthBiographyHero};
   border-radius: 30px;

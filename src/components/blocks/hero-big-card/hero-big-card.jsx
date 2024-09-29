@@ -10,7 +10,7 @@ import useMediaService from "../../../services/MediaService";
 
 // Import Swiper React components
 import { SwiperSlide } from 'swiper/react';
-import { EffectFlip, Pagination, Navigation, EffectCards } from 'swiper/modules';
+import { Pagination, EffectCards } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-flip';
 import 'swiper/css/pagination';
@@ -95,8 +95,9 @@ function HeroBigCard( {hero, newLoading} ) {
           {isMobile ?
             <StyledSwiper
               effect={'cards'}
+              pagination={true}
               loop={true}
-              modules={[EffectCards]}
+              modules={[Pagination, EffectCards]}
             >
               <SwiperSlide>
                 <StyledWrapperCard>

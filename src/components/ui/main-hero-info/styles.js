@@ -22,6 +22,7 @@ export const StyledMainHeroInfo = styled.ul`
 
   @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
     padding-left: 0;
+    padding-bottom: 10px;
   }
 `
 
