@@ -21,6 +21,7 @@ export const Ul = styled.ul`
 
   @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
     width: 100%;
+    gap: 2px;
   }
 `;
 
@@ -39,6 +40,10 @@ export const StyledPaginationBtn = styled(Button)`
 
   @media (max-width: ${(props) => props.theme.maxTabletWidth}) {
     width: 45px;
+  }
+
+  @media (max-width: ${(props) => props.theme.maxMobileWidth}) {
+    width: 40px;
   }
 
   &:hover {
