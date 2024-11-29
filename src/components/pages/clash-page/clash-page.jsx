@@ -8,56 +8,44 @@ import { QTYHEROES } from "/src/const";
 import useMainStore from "../../../store/main-hero-store";
 import useFightRecordStore from "../../../store/history-store";
 import { Wrapper, HeroCardWrapper, StyledFightButton } from "./styles";
-import toast from 'react-hot-toast';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
+import toast from "react-hot-toast";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import useMediaService from "../../../services/MediaService";
 import ChangeButton from "/src/components/ui/change-button/change-button";
 
 // Function calculating total hero stat
 
-function calcHeroTotalStat (stats) {
+function calcHeroTotalStat(stats) {
   let result = 0;
   stats.forEach((stat) => {
-    result += stat.content * stat.coefficient
-  })
+    result += stat.content * stat.coefficient;
+  });
   return result;
 }
 
-function ClashPage () {
-
-  const {isTablet, isMobile} = useMediaService()
+function ClashPage() {
+  const { isTablet, isMobile } = useMediaService();
 
   // State with information about heroes from Zustand
 
-  const {
-          hero1, 
-          hero2, 
-          setHero1, 
-          setHero2, 
-          error, 
-          loadingHero1, 
-          loadingHero2
-        } = useMainStore(({
-          hero1, 
-          hero2, 
-          setHero1, 
-          setHero2, 
-          error, 
-          loadingHero1, 
-          loadingHero2
-        }) => ({
-          hero1, 
-          hero2, 
-          setHero1, 
-          setHero2, 
-          error, 
-          loadingHero1, 
-          loadingHero2
-        }))
+  const { hero1, hero2, setHero1, setHero2, error, loadingHero1, loadingHero2 } = useMainStore(
+    ({ hero1, hero2, setHero1, setHero2, error, loadingHero1, loadingHero2 }) => ({
+      hero1,
+      hero2,
+      setHero1,
+      setHero2,
+      error,
+      loadingHero1,
+      loadingHero2,
+    })
+  );
 
   // State with information about fight history
 
-  const {historyFightsList, setHistoryFightsList} = useFightRecordStore(({historyFightsList, setHistoryFightsList}) => ({historyFightsList, setHistoryFightsList}))
+  const { historyFightsList, setHistoryFightsList } = useFightRecordStore(({ historyFightsList, setHistoryFightsList }) => ({
+    historyFightsList,
+    setHistoryFightsList,
+  }));
 
   // State information about active WinnerModal
 
@@ -70,21 +58,19 @@ function ClashPage () {
   // State timer when hold Fight btn
 
   const [timer, setTimer] = useState(null);
-  
+
   // Function init Heroes
-  
+
   const initHeroes = async () => {
     const firstId = getRandomInteger(1, QTYHEROES);
     const secondId = getRandomInteger(1, QTYHEROES, firstId);
     try {
       await setHero1(firstId);
       await setHero2(secondId);
-      toast.success('Heroes loaded!')
-    }
-    catch (err) {
-      toast.error(err)
-    }
-    finally {
+      toast.success("Heroes loaded!");
+    } catch (err) {
+      toast.error("Heroes loading error!");
+    } finally {
       setFirstLoading(false);
     }
   };
@@ -93,133 +79,121 @@ function ClashPage () {
 
   useEffect(() => {
     if (!hero1?.name && !hero2?.name) {
-      initHeroes();   
+      initHeroes();
     }
   }, []);
 
   // Function push on Fight btn
 
-  const handleFightBtn = useMemo(() => () => 
-    {
-      const newTimer = setTimeout(() => {
-        document.body.style.overflow = 'hidden';
-        setIsActiveWinnerModal(true);
-        chooseWinner();
-      }, 1400);
-      setTimer(newTimer)
-    }
-  )
+  const handleFightBtn = useMemo(() => () => {
+    const newTimer = setTimeout(() => {
+      document.body.style.overflow = "hidden";
+      setIsActiveWinnerModal(true);
+      chooseWinner();
+    }, 1400);
+    setTimer(newTimer);
+  });
 
   // Function tap on Fight btn
 
   const tapFightButton = () => {
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
     setIsActiveWinnerModal(true);
     chooseWinner();
-  }
+  };
 
-  // Function choose the winner 
+  // Function choose the winner
 
-  function chooseWinner () {
+  function chooseWinner() {
     const now = new Date();
-    const curDate = `${addZero(now.getDate())}.${addZero(now.getMonth() + 1)}.${now.getFullYear()} ${addZero(now.getHours())}:${addZero(now.getMinutes())}`;
+    const curDate = `${addZero(now.getDate())}.${addZero(now.getMonth() + 1)}.${now.getFullYear()} ${addZero(
+      now.getHours()
+    )}:${addZero(now.getMinutes())}`;
 
     const historyResult = {
       number: historyFightsList.length + 1,
       firstHero: hero1,
       secondHero: hero2,
       date: curDate,
-    }
+    };
 
     let hero1Total = parseInt(calcHeroTotalStat(hero1.stats));
     let hero2Total = parseInt(calcHeroTotalStat(hero2.stats));
     if (hero1Total > hero2Total) {
-      historyResult.winner = 'firstHero';
+      historyResult.winner = "firstHero";
     } else if (hero1Total < hero2Total) {
-      historyResult.winner = 'secondHero';
+      historyResult.winner = "secondHero";
     } else {
-      historyResult.winner = 'draw';
+      historyResult.winner = "draw";
     }
     setHistoryFightsList(historyResult);
-    return historyResult
+    return historyResult;
   }
 
   // Function reset timer when unpress fight button before time
 
-  const mouseUpFightBtn = useMemo(() => () => 
-    {
-      clearInterval(timer)
-    }
-  )
+  const mouseUpFightBtn = useMemo(() => () => {
+    clearInterval(timer);
+  });
 
-  const firstLoadingContent = firstLoading ? <Waiting $isFunny={true}/> : null
-  const errorContent = error ? <HeroCardWrapper>
-                                <HeroCard hero={hero1} newLoading={true}/>
-                                <StyledFightButton onClick={initHeroes}>
-                                  Try again
-                                </StyledFightButton>
-                                <HeroCard hero={hero2} newLoading={true}/>
-                              </HeroCardWrapper>
-                              : null
-  const modal = isActiveWinnerModal ? 
-                  <WinnerModal setIsActiveWinnerModal={setIsActiveWinnerModal} lastFight={historyFightsList[historyFightsList.length-1]} /> 
-                  : null
+  const firstLoadingContent = firstLoading ? <Waiting $isFunny={true} /> : null;
+  const errorContent = error ? (
+    <HeroCardWrapper>
+      <HeroCard hero={hero1} newLoading={true} />
+      <StyledFightButton onClick={initHeroes}>Try again</StyledFightButton>
+      <HeroCard hero={hero2} newLoading={true} />
+    </HeroCardWrapper>
+  ) : null;
+  const modal = isActiveWinnerModal ? (
+    <WinnerModal setIsActiveWinnerModal={setIsActiveWinnerModal} lastFight={historyFightsList[historyFightsList.length - 1]} />
+  ) : null;
 
-  const fightBtn = isTablet ? 
-                    <StyledFightButton 
-                      onClick={tapFightButton}>
-                        Fight
-                    </StyledFightButton>
-                       : 
-                    <StyledFightButton 
-                      onMouseDown={handleFightBtn} 
-                      onMouseUp={mouseUpFightBtn}>
-                      Hold to Fight
-                      <span className="span_1"></span>
-                      <span className="span_2"></span>
-                      <span className="span_3"></span>
-                      <span className="span_4"></span>
-                    </StyledFightButton>
-
+  const fightBtn = isTablet ? (
+    <StyledFightButton onClick={tapFightButton}>Fight</StyledFightButton>
+  ) : (
+    <StyledFightButton onMouseDown={handleFightBtn} onMouseUp={mouseUpFightBtn}>
+      Hold to Fight
+      <span className="span_1"></span>
+      <span className="span_2"></span>
+      <span className="span_3"></span>
+      <span className="span_4"></span>
+    </StyledFightButton>
+  );
 
   return (
     <HelmetProvider>
       <Helmet>
-        <meta
-            name="description"
-            content="Clash page"
-        />
+        <meta name="description" content="Clash page" />
         <title>Clash of Superheroes</title>
       </Helmet>
-      {(Boolean(hero1?.name) && Boolean(hero2?.name)) ? (
+      {Boolean(hero1?.name) && Boolean(hero2?.name) ? (
         <Wrapper>
           {isMobile ? null : <MainButtons idArray={[+hero1.id, +hero2.id]} />}
           <HeroCardWrapper>
-            {isMobile ? 
+            {isMobile ? (
               <ChangeButton setHero={setHero1} idArray={[+hero1.id, +hero2.id]}>
                 Change first character
-              </ChangeButton> 
-            : null}
-            <HeroCard hero={hero1} newLoading={loadingHero1}/>
+              </ChangeButton>
+            ) : null}
+            <HeroCard hero={hero1} newLoading={loadingHero1} />
 
             {fightBtn}
 
-            {isMobile ? 
+            {isMobile ? (
               <ChangeButton setHero={setHero2} idArray={[+hero1.id, +hero2.id]}>
                 Change second character
-              </ChangeButton> 
-            : null}
-            <HeroCard hero={hero2} newLoading={loadingHero2}/>
+              </ChangeButton>
+            ) : null}
+            <HeroCard hero={hero2} newLoading={loadingHero2} />
           </HeroCardWrapper>
           {modal}
         </Wrapper>
-        ) : (
-          <>
-            {errorContent}
-            {firstLoadingContent}
-          </>
-        )
-      }
+      ) : (
+        <>
+          {errorContent}
+          {firstLoadingContent}
+        </>
+      )}
     </HelmetProvider>
   );
 }

@@ -4,38 +4,49 @@ import HeroBigCard from "/src/components/blocks/hero-big-card/hero-big-card";
 import Search from "/src/components/blocks/search/search";
 import Waiting from "/src/components/blocks/waiting/waiting";
 import useBiographyStore from "../../../store/biography-store";
-import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { DEFAULTBIOGRAPHYHEROID } from '../../../const'
+import { Helmet, HelmetProvider } from "react-helmet-async";
+import { DEFAULTBIOGRAPHYHEROID } from "../../../const";
 
 function BiographyPage() {
+  const storageBiographyChar = sessionStorage.getItem("storageBiographyChar");
 
   // State with information about heroes from Zustand
 
-  const {biographyHero, setBiographyHero, loading, loadingNewitem, error} = useBiographyStore(({biographyHero, setBiographyHero, loading, loadingNewitem, error}) => ({biographyHero, setBiographyHero, loading, loadingNewitem, error}))
+  const { biographyHero, setBiographyHero, loading, loadingNewitem, error } = useBiographyStore(
+    ({ biographyHero, setBiographyHero, loading, loadingNewitem, error }) => ({
+      biographyHero,
+      setBiographyHero,
+      loading,
+      loadingNewitem,
+      error,
+    })
+  );
 
-  useEffect (() => {
+  useEffect(() => {
     if (!biographyHero.id) {
-      setBiographyHero(DEFAULTBIOGRAPHYHEROID)
-    } 
-  }, [])
+      storageBiographyChar ? setBiographyHero(storageBiographyChar) : setBiographyHero(DEFAULTBIOGRAPHYHEROID);
+    }
+  }, []);
 
-  const card = (!loading && !error) ? <HeroBigCard hero={biographyHero} newLoading={loadingNewitem} /> : null;
+  const card = !loading && !error ? <HeroBigCard hero={biographyHero} newLoading={loadingNewitem} /> : null;
   const load = loading ? <Waiting /> : null;
-
+  const errorContent = error ? <HeroBigCard hero={biographyHero} newLoading={true} /> : null;
+  console.log(error);
   return (
     <HelmetProvider>
       <StyledBiographyPage>
         <Helmet>
-            <meta
-                name="description"
-                content="Biography heroes page"
-            />
-            <title>Biography {biographyHero.name ? biographyHero.name : 'page'}</title>
+          <meta name="description" content="Biography heroes page" />
+          <title>Biography {biographyHero.name ? biographyHero.name : "page"}</title>
         </Helmet>
-        <P>This section is about heroes information. You can figure out powerstats, biography, appearance, work, connections and so on.</P>
+        <P>
+          This section is about heroes information. You can figure out powerstats, biography, appearance, work, connections and so
+          on.
+        </P>
         <Search />
         {card}
         {load}
+        {errorContent}
       </StyledBiographyPage>
     </HelmetProvider>
   );
